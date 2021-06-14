@@ -1,0 +1,79 @@
+.wrap-create .accordion {
+    margin: 0 auto;
+    /* width: 80%; */
+  }
+  .wrap-create .accordion .title {
+    padding: 30px 30px;
+    cursor: pointer;
+    /* -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); */
+    color: white;
+    position: relative;
+    font-size: 20px;
+    background: #fff;
+    /* margin-bottom: -1px; */
+    border-bottom: 1px solid var(--text-gray);
+    text-align: left;
+    color: #212121;
+  }
+  .wrap-create .accordion .title::after {
+    content: "";
+    width: 12px; height: 12px;
+    border-left: 2px solid #212121;
+    border-bottom: 2px solid #212121;
+    -webkit-transition: -webkit-transform 0.5s ease-in-out;
+    transition: -webkit-transform 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+    position: absolute;
+    right: 30px;
+    top:40%;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+  .wrap-create .accordion .title.is-expanded {
+    -webkit-transition: background 0.5s;
+    transition: background 0.5s;
+    background: #fff;
+    border-bottom: 0;
+    
+  }
+  .wrap-create .accordion .title.is-expanded::after {
+    /* content: "-"; */
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+  }
+  .wrap-create .accordion .content {
+    overflow: hidden;
+    max-height: 0;
+    -webkit-transition: max-height 0.5s;
+    transition: max-height 0.5s;
+    margin: 0;
+    padding: 0 30px;
+    /* border: solid 1px var(--text-gray); */
+    border-top: 0;
+    background: #fff;
+  }
+  .wrap-create .accordion .content p {
+    padding: 30px 0;
+    margin: 0;
+    opacity: 0;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }
+  .wrap-create .accordion .content.is-expanded {
+    max-height: 500px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--text-gray);
+  }
+  .wrap-create .accordion .content.is-expanded p {
+    opacity: 1;
+  }
+  /* .wrap-create .accordion:after {
+    width: 100%;
+    height: 10px;
+    display: block;
+    background: #0e4671;
+    content: "";
+  } */
+  
