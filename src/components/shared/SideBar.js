@@ -46,7 +46,7 @@ const SideBar = ({ toggle, isOpen }) => {
         <Nav.Item>
           <NavLink className="nav-link" to="/" exact>
             <FaHome className="mr-2" />
-            Dashboard
+            <span>Dashboard</span>
           </NavLink>
         </Nav.Item>
         <Nav.Item>

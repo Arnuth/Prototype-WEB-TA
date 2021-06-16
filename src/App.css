@@ -130,8 +130,8 @@ a:focus {
 .sidebar .collapsing {
   background: var(--primary);
 }
-.sidebar .nav{position: sticky; top:60px;flex-wrap: nowrap;  max-height: calc(100vh - 60px);}
-.sidebar.is-open .nav{overflow: auto;overflow-x: hidden;}
+.sidebar .nav{position: sticky; top:60px;flex-wrap: nowrap;}
+.sidebar.is-open .nav{overflow: auto;overflow-x: hidden;max-height: calc(100vh - 60px);}
 .sidebar .nav-item {
   /*color: #ced4da;*/
   color: #adb5bd;
