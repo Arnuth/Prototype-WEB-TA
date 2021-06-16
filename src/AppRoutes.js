@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import ContractList from "./pages/ContractList";
 import ContractCreate from "./pages/ContractCreate";
 import ContractCreateCondition from "./pages/ContractCreateCondition";
+import BlankPage from "./pages/BlankPage";
 import Login from "./pages/Login";
 import Forgotpassword from "./pages/Forgotpassword";
 
@@ -17,7 +18,7 @@ const AppRoutes = () => {
       <Route path="/contract/list" component={ContractList} />
       <Route path="/contract/create" component={ContractCreate} />
       <Route path="/contract/condition" component={ContractCreateCondition} />
-
+      <Route path="/page/:id/title/:title" component={BlankPage} />
       <Route path="/login" component={Login} />
       <Route path="/forgotpassword" component={Forgotpassword} />
 

@@ -1,16 +1,4 @@
 import React, { useState } from "react";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import {
-//   faHouseDamage,
-//   faBriefcase,
-//   faPaperPlane,
-//   faFileContract,
-//   faImage,
-//   faCopy,
-//   faTimes,
-//   faCaretDown, 
-//   faCaretUp
-// } from "@fortawesome/free-solid-svg-icons";
 import { 
   FaHome,
   FaBriefcase,
@@ -22,7 +10,8 @@ import {
   FaCaretUp,
   FaImage
  } from "react-icons/fa";
- import {CgClose} from "react-icons/cg";
+import {CgClose} from "react-icons/cg";
+import {FiChevronLeft,FiChevronRight} from "react-icons/fi";
 // import SubMenu from "./SubMenu";
 import { Nav, Button } from "react-bootstrap";
 import { NavLink, useLocation } from "react-router-dom";
@@ -51,7 +40,7 @@ const SideBar = ({ toggle, isOpen }) => {
           <CgClose />
         </Button>
       </div>
-      <button className="sw-sidebar" onClick={toggle} />
+      <button className="sw-sidebar" onClick={toggle}>{isOpen ? <FiChevronLeft /> : <FiChevronRight />}</button>
       <Nav className="flex-column pt-1">
         
         <Nav.Item>
@@ -73,49 +62,49 @@ const SideBar = ({ toggle, isOpen }) => {
           </NavLink>
         </Nav.Item> */}
         <Nav.Item>
-          <NavLink className="nav-link" to="/page2">
+          <NavLink className="nav-link" to="/page/2/title/ข้อมูลสาขา">
             <FaImage className="mr-2" />
             <span>ข้อมูลสาขา</span>
           </NavLink>
         </Nav.Item>
         <Nav.Item>
-          <NavLink className="nav-link" to="/page3">
+          <NavLink className="nav-link" to="/page/3/title/Test Run">
             <FaImage className="mr-2" />
             <span>Test Run</span>
           </NavLink>
         </Nav.Item>
         <Nav.Item>
-          <NavLink className="nav-link" to="/page4">
+          <NavLink className="nav-link" to="/page/4/title/Report">
             <FaImage className="mr-2" />
             <span>Report</span>
           </NavLink>
         </Nav.Item>
         <Nav.Item>
-          <NavLink className="nav-link" to="/page5">
+          <NavLink className="nav-link" to="/page/5/title/Settlement">
             <FaImage className="mr-2" />
             <span>Settlement</span>
           </NavLink>
         </Nav.Item>
         <Nav.Item>
-          <NavLink className="nav-link" to="/page6">
+          <NavLink className="nav-link" to="/page/6/title/User Management">
             <FaImage className="mr-2" />
             <span>User Management</span>
           </NavLink>
         </Nav.Item>
         <Nav.Item>
-          <NavLink className="nav-link" to="/page7">
+          <NavLink className="nav-link" to="/page/7/title/Owner/Parter">
             <FaImage className="mr-2" />
             <span>Owner/Parter</span>
           </NavLink>
         </Nav.Item>
         <Nav.Item>
-          <NavLink className="nav-link" to="/page8">
+          <NavLink className="nav-link" to="/page/8/title/ค่ากระจายสินค้า">
             <FaImage className="mr-2" />
             <span>ค่ากระจายสินค้า</span>
           </NavLink>
         </Nav.Item>
         <Nav.Item>
-          <NavLink className="nav-link" to="/page9">
+          <NavLink className="nav-link" to="/page/9/title/GL Account">
             <FaImage className="mr-2" />
             <span>G/L Account</span>
           </NavLink>

@@ -9,7 +9,7 @@ import {
   Table,
 } from "react-bootstrap";
 import { FaRegFileImage } from "react-icons/fa";
-import { FiEdit, FiChevronDown } from "react-icons/fi";
+import { FiEdit, FiChevronDown, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { RiFileList3Line } from "react-icons/ri";
 import { BiCommentDots } from "react-icons/bi";
 import { ImAttachment } from "react-icons/im";
@@ -83,7 +83,7 @@ function ContractCreate() {
         >
           {/* <h1 className="text-center h4">สร้างใบ TA main</h1> */}
           <Accordion defaultActiveKey="0">
-            <Card>
+            <Card className={idx.includes(0) ? null : "active"}>
               <Accordion.Toggle
                 as={Card.Header}
                 eventKey="0"
@@ -129,7 +129,7 @@ function ContractCreate() {
             </Card>
           </Accordion>
           <Accordion defaultActiveKey="1">
-            <Card>
+            <Card className={idx.includes(1) ? null : "active"}>
               <Accordion.Toggle
                 as={Card.Header}
                 eventKey="1"
@@ -269,10 +269,7 @@ function ContractCreate() {
                           })}
                         >
                           <h3 className="h5">Actual 63/64</h3>
-                          <button
-                            className="sw-actual"
-                            onClick={toggleActual}
-                          ></button>
+                          <button className="sw-actual" onClick={toggleActual}>{collapsed ? <FiChevronRight /> : <FiChevronLeft />}</button>
                           <div className="row m-0 toggle-tb">
                             {/* 2563 */}
                             <div className="col-6 pl-0 pr-1">
@@ -612,7 +609,7 @@ function ContractCreate() {
           </Accordion>
 
           <Accordion defaultActiveKey="2">
-            <Card>
+            <Card className={idx.includes(2) ? null : "active"}>
               <Accordion.Toggle
                 as={Card.Header}
                 eventKey="2"
@@ -644,7 +641,7 @@ function ContractCreate() {
             </Card>
           </Accordion>
           <Accordion defaultActiveKey="1">
-            <Card>
+            <Card className={idx.includes(3) ? null : "active"}>
               <Accordion.Toggle
                 as={Card.Header}
                 eventKey="3"

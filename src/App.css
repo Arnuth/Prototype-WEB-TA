@@ -130,7 +130,8 @@ a:focus {
 .sidebar .collapsing {
   background: var(--primary);
 }
-.sidebar .nav{position: sticky; top:60px;flex-wrap: nowrap; overflow: auto; max-height: calc(100vh - 60px);}
+.sidebar .nav{position: sticky; top:60px;flex-wrap: nowrap;  max-height: calc(100vh - 60px);}
+.sidebar.is-open .nav{overflow: auto;overflow-x: hidden;}
 .sidebar .nav-item {
   /*color: #ced4da;*/
   color: #adb5bd;
@@ -177,11 +178,12 @@ a:focus {
   z-index: 99;
 }
 .header .btn-bars{display: none;}
-.sidebar .sw-sidebar,.sw-actual{display: block; position: fixed; top: calc(50vh - 16px);left:57px; transform: translateX(-50%); z-index: 200; width: 32px; height: 32px; border-radius: 5rem; background: var(--primart-hover);border: 1px solid rgba(255,255,255,0.2); transition: .5s all ease;}
+.sidebar .sw-sidebar,.sw-actual{display:block; position: fixed; top: calc(50vh - 16px);left:57px; transform: translateX(-50%); z-index: 200; width: 32px; height: 32px; border-radius: 5rem; background: var(--primart-hover);border: 1px solid rgba(255,255,255,0.2); transition: .5s all ease;}
 .sidebar .sw-sidebar{opacity: 0;}
 .sidebar:hover .sw-sidebar{opacity: 1;}
-.sidebar.is-open .sw-sidebar{left:247px;}
-.sidebar .sw-sidebar:before,.sw-actual:before{content: ""; display: block; position: absolute; width: 10px; height: 10px; border-left: 2px solid #194793; border-bottom: 2px solid #194793; transform: rotate(-135deg);margin-top: -5px;  margin-left: 3px; transition: .2s all ease;}
+.sidebar .sw-sidebar svg{position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%); width: 20px; height: 20px; font-size: 20px;}
+.sidebar.is-open .sw-sidebar{left:247px;text-align: center;}
+/* .sidebar .sw-sidebar:before,.sw-actual:before{content: ""; display: block; position: absolute; width: 10px; height: 10px; border-left: 2px solid #194793; border-bottom: 2px solid #194793; transform: rotate(-135deg);margin-top: -5px;  margin-left: 3px; transition: .2s all ease;} */
 .sidebar.is-open .sw-sidebar:before,.open .sw-actual:before{transform: rotate(45deg);margin-left: 8px;}
 .sidebar .sw-sidebar:after{content: "";display: block; position: fixed; top: 0; right:11px;height: 100vh;
   transform: translateY(-47%);  z-index: -1; border-left: 6px solid var(--primart-hover);}
@@ -393,14 +395,11 @@ a:focus {
 
 /*Create TA*/
 .wrap-accordion>.accordion > .card{ margin-bottom: 1rem; box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.06), 0px 2px 6px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04); border: none; border-radius: 10px;}
-.wrap-ta .accordion>.card>.card-header{position: relative;border: none;background: none;border-top-left-radius: 10px; border-top-right-radius: 10px;transition: .2s all ease;border:1px solid transparent; border-bottom: none;}
+.wrap-ta .accordion>.card>.card-header{position: relative;border: none;background: none;}
 .wrap-ta .accordion>.card>.card-header:after{content:""; display: block; position: absolute; right: 30px; top: 50%; width: 10px; height: 10px; margin-top: -5px; border-left: 2px solid #999; border-bottom: 2px solid #999; transform: rotate(-45deg); transition: .2s all ease;}
 .wrap-ta .accordion>.card>.card-header.active:after{transform: rotate(135deg);}
 .SubHdIcon{display: flex; flex-flow: row nowrap; align-items: center; font-family: "Sarabun";}
 .SubHdIcon i{ display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background-color: #fff; color: #3B99FC;box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.06), 0px 2px 6px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);border-radius: 100%;}
-.wrap-ta .accordion>.card>.collapse{border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;transition: .2s all ease;border:1px solid transparent; border-top: none;}
-.wrap-ta .accordion>.card>.card-header.active{border:1px solid var(--primart-active); border-bottom: none;}
-.wrap-ta .accordion>.card>.card-header+.show{border:1px solid var(--primart-active); border-top: none;}
 .SubHdIcon>span>*{ display: block;}
 .SubHdIcon>span .head{font-size: 18px; font-weight: 500; margin-bottom: 5px;}
 .SubHdIcon>span .sub-head{font-size: 12px;}
