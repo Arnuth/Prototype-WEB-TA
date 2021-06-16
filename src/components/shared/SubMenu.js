@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Accordion, Nav } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames";
 
 const SubMenu = ({ icon, title, items }) => {
@@ -19,12 +19,12 @@ const SubMenu = ({ icon, title, items }) => {
           eventKey="0"
           onClick={toggleNavbar}
         >
-          <FontAwesomeIcon icon={icon} className="mr-2" />
+          {/* <FontAwesomeIcon icon={icon} className="mr-2" /> */}
           {title}
-          <FontAwesomeIcon
+          {/* <FontAwesomeIcon
             icon={collapsed ? faCaretDown : faCaretUp}
             className="float-right"
-          />
+          /> */}
         </Accordion.Toggle>
 
         <Accordion.Collapse eventKey="0">

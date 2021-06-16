@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Breadcrumb, Container, Row, Col } from "react-bootstrap";
+import { Breadcrumb, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
@@ -123,6 +123,17 @@ const ContractCreateCondition = () => {
               <small className="sub-head">ภาพรวม</small>
             </span>
           </h2>
+          <Col xs={12} className="card-body" style={{minHeight:"300px"}}>
+            Field form
+          </Col>
+          <Col
+            xs={12}
+            className="footer-bar d-flex justify-content-end align-items-center pt-2 pb-2 pl-3 pr-3 position-sticky"
+            style={{ bottom: "0" }}
+          >
+            <Button variant="success">Save</Button>
+            <Button variant="outline-secondary ml-2">Cancel</Button>
+          </Col>
         </TabPanel>
         <TabPanel value={value} index={1}>
           <h2 className="SubHdIcon">
@@ -132,6 +143,17 @@ const ContractCreateCondition = () => {
               <small className="sub-head">% ยอดซื้อเติบโต</small>
             </span>
           </h2>
+          <Col xs={12} className="card-body" style={{minHeight:"300px"}}>
+            Field form
+          </Col>
+          <Col
+            xs={12}
+            className="footer-bar d-flex justify-content-end align-items-center pt-2 pb-2 pl-3 pr-3 position-sticky"
+            style={{ bottom: "0" }}
+          >
+            <Button variant="success">Save</Button>
+            <Button variant="outline-secondary ml-2">Cancel</Button>
+          </Col>
         </TabPanel>
         <TabPanel value={value} index={2}>
           <h2 className="SubHdIcon">

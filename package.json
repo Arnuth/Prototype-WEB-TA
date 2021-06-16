@@ -1,13 +1,8 @@
 {
-  "name": "react-bootstrap-simple-sidebar",
+  "name": "Web-Trade-Agreement",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.19",
-    "@fortawesome/free-brands-svg-icons": "^5.9.0",
-    "@fortawesome/free-regular-svg-icons": "^5.9.0",
-    "@fortawesome/free-solid-svg-icons": "^5.9.0",
-    "@fortawesome/react-fontawesome": "^0.1.4",
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
     "bootstrap": "^4.6.0",

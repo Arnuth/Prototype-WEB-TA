@@ -25,16 +25,21 @@ import {
  import {CgClose} from "react-icons/cg";
 // import SubMenu from "./SubMenu";
 import { Nav, Button } from "react-bootstrap";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import classNames from "classnames";
-// import Logo from "../../assets/imgs/logo-new.png";
 
 const SideBar = ({ toggle, isOpen }) => {
-  const [collapsed, setCollapsed] = useState(true);
-  const toggleNavbar = () => {
-    setCollapsed(!collapsed);
-  };
-  console.log(isOpen)
+  // const [collapsed, setCollapsed] = useState(true);
+  // const toggleNavbar = () => {
+  //   setCollapsed(!collapsed);
+  // };
+  // console.log(isOpen)
+
+   //check location addClass
+   const location = useLocation();
+   const { pathname } = location;
+   const splitLocation = pathname.split("/");
+
   return (
     <div className={classNames("sidebar", { "is-open": isOpen })}>
       <div className="sidebar-header">
@@ -45,9 +50,6 @@ const SideBar = ({ toggle, isOpen }) => {
         >
           <CgClose />
         </Button>
-        {/* <h3>
-          <img src={Logo} alt="logo" />
-        </h3> */}
       </div>
       <button className="sw-sidebar" onClick={toggle} />
       <Nav className="flex-column pt-1">
@@ -59,7 +61,7 @@ const SideBar = ({ toggle, isOpen }) => {
           </NavLink>
         </Nav.Item>
         <Nav.Item>
-          <NavLink className="nav-link" to="/contract/list">
+          <NavLink className={splitLocation[1] === "contract" ? "active nav-link" : "nav-link"} to="/contract/list">
             <FaImage className="mr-2" />
             <span>ใบความต้องการ</span>
           </NavLink>

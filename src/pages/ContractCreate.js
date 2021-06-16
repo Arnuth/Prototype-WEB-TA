@@ -21,19 +21,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // To make rows collapsible
 // import "bootstrap/dist/js/bootstrap.min.js";
 import "bootstrap/js/src/collapse.js";
+import $ from "jquery";
 
 // import "../assets/css/accordion.css";
 
+
 function ContractCreate() {
-  const eventFire = (el, etype) => {
-    if (el.fireEvent) {
-      el.fireEvent("on" + etype);
-    } else {
-      var evObj = document.createEvent("Events");
-      evObj.initEvent(etype, true, false);
-      el.dispatchEvent(evObj);
-    }
-  };
 
   const [collapsed, setCollapsed] = useState(false);
   const toggleActual = () => {
@@ -54,6 +47,26 @@ function ContractCreate() {
   const handleDelete = (deleted) => {
     setFiles(files.filter((f) => f !== deleted));
   };
+
+  //click call id
+  const eventFire = (el, etype) => {
+    if (el.fireEvent) {
+      el.fireEvent("on" + etype);
+    } else {
+      var evObj = document.createEvent("Events");
+      evObj.initEvent(etype, true, false);
+      el.dispatchEvent(evObj);
+    }
+  };
+  
+  //sync table height
+  $(function () {
+    var rows = $(".collapse.show .interactive tr");
+    $(".collapse.show .sub table tr").each(function (i) {
+      $("table.sync-height tr").eq(i).height($(this).height());
+      // $("table.sync-height-create tr").eq(i).height($(this).height());
+    });
+  });
 
   return (
     <div className="wrap-ta pt-1 pl-1 pr-1">
@@ -104,10 +117,7 @@ function ContractCreate() {
                     <Button
                       variant="secondary"
                       onClick={() => {
-                        eventFire(
-                          document.getElementById("btn-supplier"),
-                          "click"
-                        );
+                        eventFire( document.getElementById("btn-supplier"), "click" );
                       }}
                     >
                       Cancel
@@ -184,16 +194,16 @@ function ContractCreate() {
                                 }}
                               >
                                 <Table striped bordered hover>
-                                  <tbody>
+                                  <tbody className="interactive">
                                     <tr>
                                       <td width="50">1</td>
-                                      <td width="30%">Name 1</td>
+                                      <td width="30%">Name 1 <br />break line</td>
                                       <td>Email 1</td>
                                     </tr>
                                     <tr>
                                       <td>2</td>
                                       <td>Name 2</td>
-                                      <td>Email 2</td>
+                                      <td>Email 2 <br />breack line<br />break line</td>
                                     </tr>
                                   </tbody>
                                 </Table>
@@ -202,8 +212,10 @@ function ContractCreate() {
                           </tr>
                           <tr
                             data-toggle="collapse"
-                            className="collapsed"
-                            aria-expanded="false"
+                            // className="collapsed"
+                            // aria-expanded="false"
+                            className="first"
+                            aria-expanded="true"
                             data-target=".multi-collapse2"
                             aria-controls="multiCollapseExample2"
                             style={{ backgroundColor: "var(--primary)" }}
@@ -218,7 +230,7 @@ function ContractCreate() {
                             </td>
                           </tr>
                           <tr
-                            class="collapse multi-collapse2"
+                            class="collapse show multi-collapse2"
                             id="multiCollapseExample2"
                           >
                             <td colSpan="3" className="p-0">
@@ -230,15 +242,15 @@ function ContractCreate() {
                                 }}
                               >
                                 <Table striped bordered hover>
-                                  <tbody>
+                                  <tbody className="interactive">
                                     <tr>
                                       <td width="50">1</td>
                                       <td width="30%">Name 1</td>
-                                      <td>Email 1</td>
+                                      <td>Email 1<br />break line<br />break line<br />break line</td>
                                     </tr>
                                     <tr>
                                       <td>2</td>
-                                      <td>Name 2</td>
+                                      <td>Name 2<br />break line</td>
                                       <td>Email 2</td>
                                     </tr>
                                   </tbody>
@@ -299,14 +311,7 @@ function ContractCreate() {
                                           marginRight: "-1px",
                                         }}
                                       >
-                                        <Table striped bordered hover>
-                                          {/* <thead>
-                                            <tr>
-                                              <th width="50">#</th>
-                                              <th>Name</th>
-                                              <th>Email</th>
-                                            </tr>
-                                          </thead> */}
+                                        <Table striped bordered hover className="sync-height">
                                           <tbody>
                                             <tr>
                                               <td width="100">x.xx%</td>
@@ -323,7 +328,9 @@ function ContractCreate() {
                                   </tr>
                                   <tr
                                     data-toggle="collapse"
-                                    className="collapsed"
+                                    // className="collapsed"
+                                    className="first"
+                                    aria-expanded="true"
                                     data-target=".multi-collapse2"
                                     aria-controls="multiCollapseExample2"
                                     style={{
@@ -335,7 +342,7 @@ function ContractCreate() {
                                     <td className="main">xx,xxx.xx บาท</td>
                                   </tr>
                                   <tr
-                                    class="collapse multi-collapse2"
+                                    class="collapse show multi-collapse2"
                                     id="multiCollapseExample2"
                                   >
                                     <td colSpan="2" className="main p-0">
@@ -346,7 +353,7 @@ function ContractCreate() {
                                           marginRight: "-1px",
                                         }}
                                       >
-                                        <Table striped bordered hover>
+                                        <Table striped bordered hover className="sync-height">
 
                                           <tbody>
                                             <tr>
@@ -403,7 +410,7 @@ function ContractCreate() {
                                           marginRight: "-1px",
                                         }}
                                       >
-                                        <Table striped bordered hover>
+                                        <Table striped bordered hover className="sync-height">
                                           <tbody>
                                             <tr>
                                               <td width="100">x.xx%</td>
@@ -420,7 +427,9 @@ function ContractCreate() {
                                   </tr>
                                   <tr
                                     data-toggle="collapse"
-                                    className="collapsed"
+                                    // className="collapsed"
+                                    className="first"
+                                    aria-expanded="true"
                                     data-target=".multi-collapse2"
                                     aria-controls="multiCollapseExample2"
                                     style={{
@@ -432,7 +441,7 @@ function ContractCreate() {
                                     <td className="main">19,506.91 บาท</td>
                                   </tr>
                                   <tr
-                                    class="collapse multi-collapse2"
+                                    class="collapse show multi-collapse2"
                                     id="multiCollapseExample2"
                                   >
                                     <td colSpan="2" className="main p-0">
@@ -443,7 +452,7 @@ function ContractCreate() {
                                           marginRight: "-1px",
                                         }}
                                       >
-                                        <Table striped bordered hover>
+                                        <Table striped bordered hover className="sync-height">
                                           <tbody>
                                             <tr>
                                               <td width="100">x.xx%</td>
@@ -512,7 +521,7 @@ function ContractCreate() {
                                         marginRight: "-1px",
                                       }}
                                     >
-                                      <Table striped bordered hover>
+                                      <Table striped bordered hover className="sync-height">
                                         <tbody>
                                           <tr>
                                             <td width="100">x.xx%</td>
@@ -539,7 +548,9 @@ function ContractCreate() {
                                 </tr>
                                 <tr
                                   data-toggle="collapse"
-                                  className="collapsed"
+                                  // className="collapsed"
+                                  className="first"
+                                  aria-expanded="true"
                                   data-target=".multi-collapse2"
                                   aria-controls="multiCollapseExample2"
                                   style={{
@@ -552,7 +563,7 @@ function ContractCreate() {
                                   <td width="110">&nbsp;</td>
                                 </tr>
                                 <tr
-                                  class="collapse multi-collapse2"
+                                  class="collapse show multi-collapse2"
                                   id="multiCollapseExample2"
                                 >
                                   <td colSpan="3" className="p-0">
@@ -563,7 +574,7 @@ function ContractCreate() {
                                         marginRight: "-1px",
                                       }}
                                     >
-                                      <Table striped bordered hover>
+                                      <Table striped bordered hover className="sync-height">
                                         <tbody>
                                           <tr>
                                             <td width="100">x.xx%</td>
