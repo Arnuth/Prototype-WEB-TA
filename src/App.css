@@ -10,8 +10,6 @@
   --bg-gr:linear-gradient(0deg, #122F60, #122F60), #194793;
 }
 
-/* @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"; */
-/* @import "https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,500,600,700"; */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@200;400;500;700&display=swap');
 html{scroll-behavior: smooth}
@@ -95,6 +93,7 @@ a:focus {
 .navbar-nav .nav-item.nav-profile .nav-link .u-display>small{font-size: 90%; color: #AEAEAE;}
 .navbar-dropdown-right{left: auto; right:0}
 .toggle-arrow-hide:after{display: none;}
+.navbar-expand .navbar-nav .dropdown-menu .dropdown-divider{margin: 0;}
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -214,7 +213,8 @@ a:focus {
     text-indent: -9999px; transition: .5s all ease-in-out;
   }
   .sidebar:not(.is-open) .nav-item .nav-link svg{display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 18px; height: 18px; margin-right: 0!important;}
-  .sidebar:not(.is-open) .nav-item .nav-link:hover>span{display: flex; align-items: center; position: absolute; top: 0; left: 100%; background-color: var(--primart-hover); color: #fff; padding:5px 10px; text-indent: 0; min-width: 150px;min-height: 40px;}
+  .sidebar:not(.is-open) .nav-item .nav-link>span{display: flex;visibility: hidden; opacity: 0; text-indent: -9999px; position: absolute; left: -100%; white-space: nowrap; min-width: 0;overflow: hidden;transition: .2s all ease}
+  .sidebar:not(.is-open) .nav-item .nav-link:hover>span{display: flex;visibility: visible; opacity: 1; align-items: center; position: absolute; top: 0; left: 100%; background-color: var(--primart-hover); color: #fff; padding:5px 10px; text-indent: 0; min-width: 150px;min-height: 40px;}
   .sidebar:not(.is-open) .accordion .nav-link svg.float-right{ width: 12px; height: 12px; left: auto; right: 3px;transform: translate(0,-50%);}
   .sidebar:not(.is-open) .accordion>div{position: absolute; top: 0; left: 100%; width: 200px;}
   .sidebar:not(.is-open) .accordion>div>.nav .nav-link{text-indent: 0; width: auto; height: auto; padding:10px 15px!important}
@@ -394,7 +394,8 @@ a:focus {
 }
 
 /*Create TA*/
-.wrap-accordion>.accordion > .card{ margin-bottom: 1rem; box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.06), 0px 2px 6px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04); border: none; border-radius: 10px;}
+.wrap-accordion>.accordion>.card{ margin-bottom: 1rem; box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.06), 0px 2px 6px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04); border: none; border-radius: 10px;}
+.wrap-accordion>.accordion>.card.active{box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.06), 0 0 0 1.5px var(--primart-hover) inset;}
 .wrap-ta .accordion>.card>.card-header{position: relative;border: none;background: none;}
 .wrap-ta .accordion>.card>.card-header:after{content:""; display: block; position: absolute; right: 30px; top: 50%; width: 10px; height: 10px; margin-top: -5px; border-left: 2px solid #999; border-bottom: 2px solid #999; transform: rotate(-45deg); transition: .2s all ease;}
 .wrap-ta .accordion>.card>.card-header.active:after{transform: rotate(135deg);}

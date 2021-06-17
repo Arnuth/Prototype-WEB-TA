@@ -60,10 +60,13 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: "row",
       justifyContent: "flex-start",
       textAlign: "left",
+      lineHeight: '120%',
+      fontFamily: 'Sarabun',
       "& svg": { fontSize: '1.5rem' }
     },
     "& .MuiTab-labelIcon": {
-      minHeight: '50px'
+      minHeight: '50px',
+      maxWidth: '100%',
     },
     "& .Mui-selected": {
       backgroundColor: '#f3f9ff',
@@ -78,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ContractCreateCondition = () => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

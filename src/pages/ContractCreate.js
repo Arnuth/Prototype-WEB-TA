@@ -6,16 +6,14 @@ import {
   Accordion,
   Card,
   Button,
-  Table,
 } from "react-bootstrap";
 import { FaRegFileImage } from "react-icons/fa";
-import { FiEdit, FiChevronDown, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { RiFileList3Line } from "react-icons/ri";
 import { BiCommentDots } from "react-icons/bi";
 import { ImAttachment } from "react-icons/im";
 import { Link } from "react-router-dom";
 import { DropzoneAreaBase } from "material-ui-dropzone";
-import classNames from "classnames";
+import TAConditionCompare from '../components/TAConditionCompare'
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 // To make rows collapsible
@@ -28,11 +26,16 @@ import $ from "jquery";
 
 function ContractCreate() {
 
-  const [collapsed, setCollapsed] = useState(false);
-  const toggleActual = () => {
-    setCollapsed(!collapsed);
+  //check class active accordion
+  const [expanded, setExpanded] = useState('panel1');
+  const handleChange = (panel) => (event, newExpanded) => {
+    if(expanded === panel) {
+      setExpanded('');
+    } else {
+      setExpanded(panel);
+    }
   };
-  const [idx, setIdx] = useState([3]);
+  
 
   //Dropzone
   const [files, setFiles] = useState([]);
@@ -61,7 +64,7 @@ function ContractCreate() {
   
   //sync table height
   $(function () {
-    var rows = $(".collapse.show .interactive tr");
+    // var rows = $(".collapse.show .interactive tr");
     $(".collapse.show .sub table tr").each(function (i) {
       $("table.sync-height tr").eq(i).height($(this).height());
       // $("table.sync-height-create tr").eq(i).height($(this).height());
@@ -83,16 +86,18 @@ function ContractCreate() {
         >
           {/* <h1 className="text-center h4">สร้างใบ TA main</h1> */}
           <Accordion defaultActiveKey="0">
-            <Card className={idx.includes(0) ? null : "active"}>
+            <Card className={expanded === 'panel1' ? "active" : null}>
               <Accordion.Toggle
                 as={Card.Header}
                 eventKey="0"
                 id="btn-supplier"
-                onClick={() => {
-                  if (idx.includes(0)) setIdx(idx.filter((i) => i !== 0));
-                  else setIdx([...idx, 0]);
-                }}
-                className={idx.includes(0) ? null : "active"}
+                // onClick={() => {
+                //   if (idx.includes(0)) setIdx([idx.filter((i) => i !== 0)]);
+                //   else setIdx([0]);
+                // }}
+                // className={idx.includes(0) ? "active" : null}
+                onClick={handleChange('panel1')}
+                className={expanded === 'panel1' ? "active" : null}
               >
                 <h2 className="SubHdIcon">
                   <i className="mr-2 mb-0">
@@ -127,18 +132,19 @@ function ContractCreate() {
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
-          </Accordion>
-          <Accordion defaultActiveKey="1">
-            <Card className={idx.includes(1) ? null : "active"}>
+
+            <Card className={expanded === 'panel2' ? "active" : null}>
               <Accordion.Toggle
                 as={Card.Header}
                 eventKey="1"
                 id="btn-supplier"
-                onClick={() => {
-                  if (idx.includes(1)) setIdx(idx.filter((i) => i !== 1));
-                  else setIdx([...idx, 1]);
-                }}
-                className={idx.includes(1) ? null : "active"}
+                // onClick={() => {
+                //   if (idx.includes(1)) setIdx(idx.filter((i) => i !== 1));
+                //   else setIdx([1]);
+                // }}
+                // className={idx.includes(1) ? "active" :  null}
+                onClick={handleChange('panel2')}
+                className={expanded === 'panel2' ? "active" : null}
               >
                 <h2 className="SubHdIcon">
                   <i className="mr-2 mb-0">
@@ -152,472 +158,22 @@ function ContractCreate() {
               </Accordion.Toggle>
               <Accordion.Collapse eventKey="1">
                 <Card.Body>
-                  <div className="row main-ta mt-4 mb-4 ml-n1 mr-n1">
-                    <aside className="sidebar-con toggle-tb col-md-4 col-xl-3 pl-1">
-                      <h3 class="h5">เงื่อนไขทางการค้า</h3>
-                      <Table bordered hover>
-                        <thead>
-                          <tr>
-                            <th width="50">No.</th>
-                            <th>DESCRIPTION</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr
-                            data-toggle="collapse"
-                            className="first"
-                            aria-expanded="true"
-                            data-target=".multi-collapse1"
-                            aria-controls="multiCollapseExample1"
-                            style={{ backgroundColor: "var(--primary)" }}
-                          >
-                            <td colSpan="2" width="50">
-                              <div className="d-flex justify-content-between text-white">
-                                Overall
-                                <i>
-                                  <FiChevronDown />
-                                </i>
-                              </div>
-                            </td>
-                          </tr>
-
-                          <tr
-                            class="collapse show multi-collapse1"
-                            id="multiCollapseExample1"
-                          >
-                            <td colSpan="3" className="p-0">
-                              <div
-                                className="sub"
-                                style={{
-                                  marginLeft: "-1px",
-                                  marginRight: "-1px",
-                                }}
-                              >
-                                <Table striped bordered hover>
-                                  <tbody className="interactive">
-                                    <tr>
-                                      <td width="50">1</td>
-                                      <td width="30%">Name 1 <br />break line</td>
-                                      <td>Email 1</td>
-                                    </tr>
-                                    <tr>
-                                      <td>2</td>
-                                      <td>Name 2</td>
-                                      <td>Email 2 <br />breack line<br />break line</td>
-                                    </tr>
-                                  </tbody>
-                                </Table>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr
-                            data-toggle="collapse"
-                            // className="collapsed"
-                            // aria-expanded="false"
-                            className="first"
-                            aria-expanded="true"
-                            data-target=".multi-collapse2"
-                            aria-controls="multiCollapseExample2"
-                            style={{ backgroundColor: "var(--primary)" }}
-                          >
-                            <td colSpan="2">
-                              <div className="d-flex justify-content-between text-white">
-                                1) ส่วนลดการสั่งซื้อ (Rebates)
-                                <i>
-                                  <FiChevronDown />
-                                </i>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr
-                            class="collapse show multi-collapse2"
-                            id="multiCollapseExample2"
-                          >
-                            <td colSpan="3" className="p-0">
-                              <div
-                                className="sub"
-                                style={{
-                                  marginLeft: "-1px",
-                                  marginRight: "-1px",
-                                }}
-                              >
-                                <Table striped bordered hover>
-                                  <tbody className="interactive">
-                                    <tr>
-                                      <td width="50">1</td>
-                                      <td width="30%">Name 1</td>
-                                      <td>Email 1<br />break line<br />break line<br />break line</td>
-                                    </tr>
-                                    <tr>
-                                      <td>2</td>
-                                      <td>Name 2<br />break line</td>
-                                      <td>Email 2</td>
-                                    </tr>
-                                  </tbody>
-                                </Table>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </Table>
-                    </aside>
-                    <div className="compair-con col-md-8 col-xl p-0">
-                      <div className="d-flex flex-nowrap">
-                        <div
-                          className={classNames("oldYears", {
-                            open: !collapsed,
-                          })}
-                        >
-                          <h3 className="h5">Actual 63/64</h3>
-                          <button className="sw-actual" onClick={toggleActual}>{collapsed ? <FiChevronRight /> : <FiChevronLeft />}</button>
-                          <div className="row m-0 toggle-tb">
-                            {/* 2563 */}
-                            <div className="col-6 pl-0 pr-1">
-                              <Table bordered hover>
-                                <thead>
-                                  <tr>
-                                    <th width="100">Amount</th>
-                                    <th className="main">Total Amount</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr
-                                    data-toggle="collapse"
-                                    className="first"
-                                    aria-expanded="true"
-                                    data-target=".multi-collapse1"
-                                    aria-controls="multiCollapseExample1"
-                                    style={{
-                                      backgroundColor: "var(--primary)",
-                                      color: "#fff",
-                                    }}
-                                  >
-                                    <td>x.xx%</td>
-                                    <td className="main">xx,xxx.xx บาท</td>
-                                  </tr>
-
-                                  <tr
-                                    class="collapse show multi-collapse1"
-                                    id="multiCollapseExample1"
-                                  >
-                                    <td colSpan="2" className="main p-0">
-                                      <div
-                                        className="sub"
-                                        style={{
-                                          marginLeft: "-1px",
-                                          marginRight: "-1px",
-                                        }}
-                                      >
-                                        <Table striped bordered hover className="sync-height">
-                                          <tbody>
-                                            <tr>
-                                              <td width="100">x.xx%</td>
-                                              <td className="main">xx,xxx.xx บาท</td>
-                                            </tr>
-                                            <tr>
-                                              <td width="100">x.xx%</td>
-                                              <td className="main">xx,xxx.xx บาท</td>
-                                            </tr>
-                                          </tbody>
-                                        </Table>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                  <tr
-                                    data-toggle="collapse"
-                                    // className="collapsed"
-                                    className="first"
-                                    aria-expanded="true"
-                                    data-target=".multi-collapse2"
-                                    aria-controls="multiCollapseExample2"
-                                    style={{
-                                      backgroundColor: "var(--primary)",
-                                      color: "#fff",
-                                    }}
-                                  >
-                                    <td>x.xx%</td>
-                                    <td className="main">xx,xxx.xx บาท</td>
-                                  </tr>
-                                  <tr
-                                    class="collapse show multi-collapse2"
-                                    id="multiCollapseExample2"
-                                  >
-                                    <td colSpan="2" className="main p-0">
-                                      <div
-                                        className="sub"
-                                        style={{
-                                          marginLeft: "-1px",
-                                          marginRight: "-1px",
-                                        }}
-                                      >
-                                        <Table striped bordered hover className="sync-height">
-
-                                          <tbody>
-                                            <tr>
-                                              <td width="100">x.xx%</td>
-                                              <td className="main">xx,xxx.xx บาท</td>
-                                            </tr>
-                                            <tr>
-                                              <td width="100">x.xx%</td>
-                                              <td className="main">xx,xxx.xx บาท</td>
-                                            </tr>
-                                          </tbody>
-                                        </Table>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </Table>
-                            </div>
-
-                            {/* 2564 */}
-                            <div className="col-6 pr-0 pl-1">
-                              <Table bordered hover>
-                                <thead>
-                                  <tr>
-                                    <th>Amount</th>
-                                    <th className="main">Total Amount</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr
-                                    data-toggle="collapse"
-                                    className="first"
-                                    aria-expanded="true"
-                                    data-target=".multi-collapse1"
-                                    aria-controls="multiCollapseExample1"
-                                    style={{
-                                      backgroundColor: "var(--primary)",
-                                      color: "#fff",
-                                    }}
-                                  >
-                                    <td width="100">1.29%</td>
-                                    <td className="main">56,506.13 บาท</td>
-                                  </tr>
-
-                                  <tr
-                                    class="collapse show multi-collapse1"
-                                    id="multiCollapseExample1"
-                                  >
-                                    <td colSpan="2" className="main p-0">
-                                      <div
-                                        className="sub"
-                                        style={{
-                                          marginLeft: "-1px",
-                                          marginRight: "-1px",
-                                        }}
-                                      >
-                                        <Table striped bordered hover className="sync-height">
-                                          <tbody>
-                                            <tr>
-                                              <td width="100">x.xx%</td>
-                                              <td className="main">xx,xxx.xx บาท</td>
-                                            </tr>
-                                            <tr>
-                                              <td width="100">x.xx%</td>
-                                              <td className="main">xx,xxx.xx บาท</td>
-                                            </tr>
-                                          </tbody>
-                                        </Table>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                  <tr
-                                    data-toggle="collapse"
-                                    // className="collapsed"
-                                    className="first"
-                                    aria-expanded="true"
-                                    data-target=".multi-collapse2"
-                                    aria-controls="multiCollapseExample2"
-                                    style={{
-                                      backgroundColor: "var(--primary)",
-                                      color: "#fff",
-                                    }}
-                                  >
-                                    <td width="100">2.99%</td>
-                                    <td className="main">19,506.91 บาท</td>
-                                  </tr>
-                                  <tr
-                                    class="collapse show multi-collapse2"
-                                    id="multiCollapseExample2"
-                                  >
-                                    <td colSpan="2" className="main p-0">
-                                      <div
-                                        className="sub"
-                                        style={{
-                                          marginLeft: "-1px",
-                                          marginRight: "-1px",
-                                        }}
-                                      >
-                                        <Table striped bordered hover className="sync-height">
-                                          <tbody>
-                                            <tr>
-                                              <td width="100">x.xx%</td>
-                                              <td className="main">xx,xxx.xx บาท</td>
-                                            </tr>
-                                            <tr>
-                                              <td width="100">x.xx%</td>
-                                              <td className="main">xx,xxx.xx บาท</td>
-                                            </tr>
-                                          </tbody>
-                                        </Table>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </Table>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="col pr-1">
-                          <h3 class="h5">Plan 2565</h3>
-                          <div
-                            className="toggle-tb"
-                            style={{
-                              display: "flex",
-                              justifyContent: "center",
-                              alignItems: "center",
-                            }}
-                          >
-                            {/* Add Content */}
-
-                            <Table bordered hover>
-                              <thead>
-                                <tr>
-                                  <th width="100">AMOUNT</th>
-                                  <th colSpan="2">TOTAL AMOUNT</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr
-                                  data-toggle="collapse"
-                                  className="first"
-                                  aria-expanded="true"
-                                  data-target=".multi-collapse1"
-                                  aria-controls="multiCollapseExample1"
-                                  style={{
-                                    backgroundColor: "var(--primary)",
-                                    color: "#fff",
-                                  }}
-                                >
-                                  <td>x.xx%</td>
-                                  <td>xx,xxx.xx บาท</td>
-                                  <td width="110">&nbsp;</td>
-                                </tr>
-
-                                <tr
-                                  class="collapse show multi-collapse1"
-                                  id="multiCollapseExample1"
-                                >
-                                  <td colSpan="3" className="p-0">
-                                    <div
-                                      className="sub"
-                                      style={{
-                                        marginLeft: "-1px",
-                                        marginRight: "-1px",
-                                      }}
-                                    >
-                                      <Table striped bordered hover className="sync-height">
-                                        <tbody>
-                                          <tr>
-                                            <td width="100">x.xx%</td>
-                                            <td>xx,xxx.xx บาท</td>
-                                            <td width="110">
-                                              <Link to="/contract/condition">
-                                                <FiEdit /> เพิ่มเงื่อนไข
-                                              </Link>
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td>x.xx%</td>
-                                            <td>xx,xxx.xx บาท</td>
-                                            <td>
-                                              <Link to="/contract/condition">
-                                                <FiEdit /> เพิ่มเงื่อนไข
-                                              </Link>
-                                            </td>
-                                          </tr>
-                                        </tbody>
-                                      </Table>
-                                    </div>
-                                  </td>
-                                </tr>
-                                <tr
-                                  data-toggle="collapse"
-                                  // className="collapsed"
-                                  className="first"
-                                  aria-expanded="true"
-                                  data-target=".multi-collapse2"
-                                  aria-controls="multiCollapseExample2"
-                                  style={{
-                                    backgroundColor: "var(--primary)",
-                                    color: "#fff",
-                                  }}
-                                >
-                                  <td>x.xx%</td>
-                                  <td>xx,xxx.xx บาท</td>
-                                  <td width="110">&nbsp;</td>
-                                </tr>
-                                <tr
-                                  class="collapse show multi-collapse2"
-                                  id="multiCollapseExample2"
-                                >
-                                  <td colSpan="3" className="p-0">
-                                    <div
-                                      className="sub"
-                                      style={{
-                                        marginLeft: "-1px",
-                                        marginRight: "-1px",
-                                      }}
-                                    >
-                                      <Table striped bordered hover className="sync-height">
-                                        <tbody>
-                                          <tr>
-                                            <td width="100">x.xx%</td>
-                                            <td>xx,xxx.xx บาท</td>
-                                            <td width="110">
-                                              <Link to="/contract/condition">
-                                                <FiEdit /> เพิ่มเงื่อนไข
-                                              </Link>
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td>x.xx%</td>
-                                            <td>xx,xxx.xx บาท</td>
-                                            <td>
-                                              <Link to="/contract/condition">
-                                                <FiEdit /> เพิ่มเงื่อนไข
-                                              </Link>
-                                            </td>
-                                          </tr>
-                                        </tbody>
-                                      </Table>
-                                    </div>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </Table>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <TAConditionCompare />
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
-          </Accordion>
 
-          <Accordion defaultActiveKey="2">
-            <Card className={idx.includes(2) ? null : "active"}>
+            <Card className={expanded === 'panel3' ? "active" : null}>
               <Accordion.Toggle
                 as={Card.Header}
                 eventKey="2"
-                onClick={() => {
-                  if (idx.includes(2)) setIdx(idx.filter((i) => i !== 2));
-                  else setIdx([...idx, 2]);
-                }}
-                className={idx.includes(2) ? null : "active"}
+                // onClick={() => {
+                //   if (idx.includes(2)) setIdx(idx.filter((i) => i !== 2));
+                //   else setIdx([2]);
+                // }}
+                // className={idx.includes(2) ? "active" :  null}
+                onClick={handleChange('panel3')}
+                className={expanded === 'panel3' ? "active" : null}
               >
                 <h2 className="SubHdIcon">
                   <i className="mr-2 mb-0">
@@ -639,17 +195,18 @@ function ContractCreate() {
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
-          </Accordion>
-          <Accordion defaultActiveKey="1">
-            <Card className={idx.includes(3) ? null : "active"}>
+
+            <Card className={expanded === 'panel4' ? "active" : null}>
               <Accordion.Toggle
                 as={Card.Header}
                 eventKey="3"
-                onClick={() => {
-                  if (idx.includes(3)) setIdx(idx.filter((i) => i !== 3));
-                  else setIdx([...idx, 3]);
-                }}
-                className={idx.includes(3) ? null : "active"}
+                // onClick={() => {
+                //   if (idx.includes(3)) setIdx(idx.filter((i) => i !== 3));
+                //   else setIdx([3]);
+                // }}
+                // className={idx.includes(3) ? "active" :  null}
+                onClick={handleChange('panel4')}
+                className={expanded === 'panel4' ? "active" : null}
               >
                 <h2 className="SubHdIcon">
                   <i className="mr-2 mb-0">

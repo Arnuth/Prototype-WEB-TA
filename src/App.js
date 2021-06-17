@@ -13,13 +13,13 @@ const App = () => {
   // Moblie first
   const [isOpen, setIsOpen] = useState(true);
   // const [isMobile, setIsMobile] = useState(true);
-  const [previousWidth, setPreviousWidth] = useState(-1);
+  // const [previousWidth, setPreviousWidth] = useState(-1);
 
   const updateWidth = useCallback(() => {
     const width = window.innerWidth;
     const widthLimit = 576;
     const isMobile = width <= widthLimit;
-    const wasMobile = previousWidth <= widthLimit;
+    // const wasMobile = previousWidth <= widthLimit;
 
     // if (isMobile !== wasMobile) {
     //   setIsOpen(!isMobile);
@@ -29,8 +29,8 @@ const App = () => {
       setIsOpen(false);
     }
 
-    setPreviousWidth(width);
-  }, [previousWidth]);
+    // setPreviousWidth(width);
+  }, []);
 
   // const currentURL = window.location.href
   // let navbarComponent = !isFullPageLayout ? <NavBar toggle={toggle} /> : '';

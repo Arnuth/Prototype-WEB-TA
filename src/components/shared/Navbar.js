@@ -39,7 +39,12 @@ const NavBar = ({ toggle }) => {
       <Button variant="outline-dark" className="btn-bars mr-2" onClick={toggle}>
         <FaBars />
       </Button>
-      <h1 className="header-title h6 mb-0"><img src={logo} alt="logo" className="mr-2" height="44" /> <span className="hidden" hidden>Trade Agreement</span></h1>
+      <Link to="/">
+        <h1 className="header-title h6 mb-0">
+          <img src={logo} alt="logo" className="mr-2" height="44" />
+          <span className="hidden" hidden>Trade Agreement</span>
+        </h1>
+      </Link>
       </div>
 
       <Navbar.Collapse id="responsive-navbar-nav">

@@ -1,13 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { 
   FaHome,
   FaBriefcase,
-  FaPaperPlane,
-  FaFileContract,
   FaLock,
-  FaCopy,
-  FaCaretDown, 
-  FaCaretUp,
   FaImage
  } from "react-icons/fa";
 import {CgClose} from "react-icons/cg";
