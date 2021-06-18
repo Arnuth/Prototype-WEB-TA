@@ -14,12 +14,14 @@ import { ImAttachment } from "react-icons/im";
 import { Link } from "react-router-dom";
 import { DropzoneAreaBase } from "material-ui-dropzone";
 import TAConditionCompare from '../components/TAConditionCompare'
+import TASupplier from "../components/TASupplier";
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 // To make rows collapsible
 // import "bootstrap/dist/js/bootstrap.min.js";
 import "bootstrap/js/src/collapse.js";
 import $ from "jquery";
+
 
 // import "../assets/css/accordion.css";
 
@@ -51,16 +53,7 @@ function ContractCreate() {
     setFiles(files.filter((f) => f !== deleted));
   };
 
-  //click call id
-  const eventFire = (el, etype) => {
-    if (el.fireEvent) {
-      el.fireEvent("on" + etype);
-    } else {
-      var evObj = document.createEvent("Events");
-      evObj.initEvent(etype, true, false);
-      el.dispatchEvent(evObj);
-    }
-  };
+
   
   //sync table height
   $(function () {
@@ -113,8 +106,8 @@ function ContractCreate() {
               </Accordion.Toggle>
               <Accordion.Collapse eventKey="0">
                 <Card.Body>
-                  Hello! I'm the body
-                  <Col
+                  <TASupplier />
+                  {/* <Col
                     xs={12}
                     className="d-flex justify-content-end align-items-center p-2 position-sticky"
                     style={{ bottom: "0" }}
@@ -128,7 +121,7 @@ function ContractCreate() {
                       Cancel
                     </Button>
                     <Button variant="success ml-2">Save</Button>
-                  </Col>
+                  </Col> */}
                 </Card.Body>
               </Accordion.Collapse>
             </Card>

@@ -1,0 +1,14 @@
+.wrap-accordion .form-label{font-size: 14px;}
+.wrap-accordion .table thead .th-light th{font-weight: 400; font-size: 14px; color:#646e8b;border: 0;}
+.wrap-accordion .table tbody>tr:first>td{border-top: 0;}
+.wrap-accordion .table tbody>tr>td{padding-top: 5px; padding-bottom: 5px;}
+.display-growth{position: relative;}
+.display-growth .progress{height: 38px;background-color: #f1f1f1;}
+.display-growth .progress .progress-bar{background: #f0ac76;
+  background: -moz-linear-gradient(left,  #f0ac76 0%, #ea873c 100%);
+  background: -webkit-linear-gradient(left,  #f0ac76 0%,#ea873c 100%);
+  background: linear-gradient(to right,  #f0ac76 0%,#ea873c 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0ac76', endColorstr='#ea873c',GradientType=1 );
+  }
+.display-growth>span{ position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px;}
+.wrap-accordion .form-control:disabled{background-color: #f8fafc;}

@@ -142,6 +142,7 @@ a:focus {
   /* background: #313b4c; */
 }
 .sidebar .nav-item .nav-link{color: #fff; font-family: "Sarabun";}
+.sidebar .nav-item .nav-link svg{vertical-align: sub;}
 .sidebar .nav-item button.nav-link{width: 100%; border:0; text-align: left; background-color: transparent; color: #fff;}
 
 .sidebar .nav-item.active,.sidebar .nav-item .nav-link.active {
@@ -404,6 +405,10 @@ a:focus {
 .SubHdIcon>span>*{ display: block;}
 .SubHdIcon>span .head{font-size: 18px; font-weight: 500; margin-bottom: 5px;}
 .SubHdIcon>span .sub-head{font-size: 12px;}
+.wrap-accordion>.accordion>.card .card-body{padding-left: calc(45px + 1.75rem); padding-right: calc(45px + 1.75rem);}
+.wrap-accordion>.accordion>.card .card-body [class*="col"].space{padding: 0; flex-basis: 50px; max-width: 50px;}
+.wrap-accordion .topic-line{font-size: 16px; font-weight: 500; color: #8c96b3; padding-bottom: 10px; margin-bottom: 1rem; border-bottom: 1px solid #eaeaea;}
+
 /*Tables*/
 .footer-bar{background-color: #fff;z-index: 99;}
 .toggle-tb table{margin-bottom: 0;}
