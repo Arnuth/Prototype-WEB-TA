@@ -5,7 +5,9 @@ import {
   FaLock,
  } from "react-icons/fa";
 import {CgClose} from "react-icons/cg";
-import {FiChevronLeft,FiChevronRight, FiImage} from "react-icons/fi";
+import {BsImage} from "react-icons/bs";
+import {FiChevronLeft,FiChevronRight} from "react-icons/fi";
+
 // import SubMenu from "./SubMenu";
 import { Nav, Button } from "react-bootstrap";
 import { NavLink, useLocation } from "react-router-dom";
@@ -45,7 +47,7 @@ const SideBar = ({ toggle, isOpen }) => {
         </Nav.Item>
         <Nav.Item>
           <NavLink className={splitLocation[1] === "contract" ? "active nav-link" : "nav-link"} to="/contract/list">
-            <FiImage className="mr-2" />
+            <BsImage className="mr-3" />
             <span>ใบความต้องการ</span>
           </NavLink>
         </Nav.Item>
@@ -57,49 +59,49 @@ const SideBar = ({ toggle, isOpen }) => {
         </Nav.Item> */}
         <Nav.Item>
           <NavLink className="nav-link" to="/page/2/title/ข้อมูลสาขา">
-            <FiImage className="mr-2" />
+            <BsImage className="mr-3" />
             <span>ข้อมูลสาขา</span>
           </NavLink>
         </Nav.Item>
         <Nav.Item>
           <NavLink className="nav-link" to="/page/3/title/Test Run">
-            <FiImage className="mr-2" />
+            <BsImage className="mr-3" />
             <span>Test Run</span>
           </NavLink>
         </Nav.Item>
         <Nav.Item>
           <NavLink className="nav-link" to="/page/4/title/Report">
-            <FiImage className="mr-2" />
+            <BsImage className="mr-3" />
             <span>Report</span>
           </NavLink>
         </Nav.Item>
         <Nav.Item>
           <NavLink className="nav-link" to="/page/5/title/Settlement">
-            <FiImage className="mr-2" />
+            <BsImage className="mr-3" />
             <span>Settlement</span>
           </NavLink>
         </Nav.Item>
         <Nav.Item>
           <NavLink className="nav-link" to="/page/6/title/User Management">
-            <FiImage className="mr-2" />
+            <BsImage className="mr-3" />
             <span>User Management</span>
           </NavLink>
         </Nav.Item>
         <Nav.Item>
           <NavLink className="nav-link" to="/page/7/title/Owner/Parter">
-            <FiImage className="mr-2" />
+            <BsImage className="mr-3" />
             <span>Owner/Parter</span>
           </NavLink>
         </Nav.Item>
         <Nav.Item>
           <NavLink className="nav-link" to="/page/8/title/ค่ากระจายสินค้า">
-            <FiImage className="mr-2" />
+            <BsImage className="mr-3" />
             <span>ค่ากระจายสินค้า</span>
           </NavLink>
         </Nav.Item>
         <Nav.Item>
           <NavLink className="nav-link" to="/page/9/title/GL Account">
-            <FiImage className="mr-2" />
+            <BsImage className="mr-3" />
             <span>G/L Account</span>
           </NavLink>
         </Nav.Item>
@@ -128,14 +130,14 @@ const SideBar = ({ toggle, isOpen }) => {
         </Nav.Item> */}
         <Nav.Item className="border-top border-secondary mt-2 pt-2">
           <NavLink className="nav-link" to="/login">
-            <FaBriefcase className="mr-2" />
+            <FaBriefcase className="mr-3" />
             <span>Login</span>
           </NavLink>
         </Nav.Item>
 
         <Nav.Item>
           <NavLink className="nav-link" to="/forgotpassword">
-            <FaLock className="mr-2" />
+            <FaLock className="mr-3" />
             <span>Forgot Password</span>
           </NavLink>
         </Nav.Item>

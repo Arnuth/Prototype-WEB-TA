@@ -142,7 +142,7 @@ a:focus {
   /* background: #313b4c; */
 }
 .sidebar .nav-item .nav-link{color: #fff; font-family: "Sarabun";}
-.sidebar .nav-item .nav-link svg{vertical-align: sub;}
+.sidebar .nav-item .nav-link svg{vertical-align: sub; font-size: 20px;}
 .sidebar .nav-item button.nav-link{width: 100%; border:0; text-align: left; background-color: transparent; color: #fff;}
 
 .sidebar .nav-item.active,.sidebar .nav-item .nav-link.active {
