@@ -1,8 +1,18 @@
-import React,{ useState, useEffect } from "react";
-import { Row, Col, Button, Form, InputGroup, FormControl, Table, ProgressBar } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import {
+  Row,
+  Col,
+  Button,
+  Form,
+  InputGroup,
+  FormControl,
+  Table,
+  ProgressBar,
+} from "react-bootstrap";
 import "../assets/css/ta-supplier.css";
-import NumberFormat from 'react-number-format';
+import NumberFormat from "react-number-format";
 // import NumberBox from 'devextreme-react/number-box';
+import { BiTrashAlt } from "react-icons/bi";
 
 const TASupplier = () => {
   //click call id
@@ -16,12 +26,17 @@ const TASupplier = () => {
     }
   };
 
+  const [supplierCode, setSupplierCode] = useState(null);
   const [valueGrowth1, setValueGrowth1] = useState(null);
   const [valueGrowth2, setValueGrowth2] = useState(null);
-  const yearOrder = 1000000
-  const yearSale = 1000000
+  const yearOrder = 1000000;
+  const yearSale = 1000000;
   const [valueCalGrowth1, setValueCalGrowth1] = useState(0);
   const [valueCalGrowth2, setValueCalGrowth2] = useState(0);
+
+  const handleSrhSupplier = (event) => {
+    setSupplierCode(event.target.value);
+  }
 
   // const handleCalGrowth1 = (event) => {
   //   setValueGrowth1(event.target.value);
@@ -29,36 +44,52 @@ const TASupplier = () => {
   // const handleCalGrowth2 = (event) => {
   //   setValueGrowth2(event.target.value);
   // }
-  
+
   useEffect(() => {
-    let valuePercent = ( ((parseInt(valueGrowth1)*100)/yearOrder)  - 100 ).toFixed(2)
-    let valuePercent2 = ( ((parseInt(valueGrowth2)*100)/yearSale)  - 100 ).toFixed(2)
+    let valuePercent = (
+      (parseInt(valueGrowth1) * 100) / yearOrder -
+      100
+    ).toFixed(2);
+    let valuePercent2 = (
+      (parseInt(valueGrowth2) * 100) / yearSale -
+      100
+    ).toFixed(2);
     setValueCalGrowth1(valuePercent >= 0 ? valuePercent : 0);
     setValueCalGrowth2(valuePercent2 >= 0 ? valuePercent2 : 0);
   }, [valueGrowth1, valueGrowth2]);
 
   return (
     <>
-      <Row>
+      <Row className="z-supplier">
         <Col md={6} xl>
           <h3 className="topic-line">ข้อมูลคู่ค้า</h3>
           <Form.Group className="mb-3" controlId="supplier">
-            <Form.Label htmlFor="basic-url">ผู้ขายสินค้า</Form.Label>
+            <InputGroup className="mb-0">
+              <Form.Label htmlFor="supplier_title_id" className="col-4 p-0">รหัสผู้ขายสินค้า</Form.Label>
+              <InputGroup.Append className="col p-0"><Form.Label htmlFor="supplier_title_name">ชื่อผู้ขายสินค้า</Form.Label></InputGroup.Append>
+            </InputGroup>
             <InputGroup className="mb-3">
-            <InputGroup.Prepend>
-              <InputGroup.Text id="basic-addon3" className="bg-white">
-              รหัสผู้ขายสินค้า
-              </InputGroup.Text>
-            </InputGroup.Prepend>
-            <FormControl id="basic-url" aria-describedby="basic-addon3" value="00064120021" disabled  />
-          </InputGroup>
+              <FormControl
+                id="supplier_name"
+                aria-describedby="basic-addon3"
+                placeholder="รหัสผู้ขายสินค้า"
+                value={supplierCode}
+                onChange={handleSrhSupplier}
+                className="col-4"
+              />
+              <InputGroup.Append className="col p-0">
+                
+                <InputGroup.Text id="basic-addon3" className="bg-disabled d-block w-100 text-left">
+                  บริษัท เนสท์เล่ (ไทย) จำกัด
+                </InputGroup.Text>
+              </InputGroup.Append>
+            </InputGroup>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="managerBuyer">
             <Form.Label htmlFor="managerBuyer">ผู้จัดการจัดซื้อ</Form.Label>
-            <Form.Control type="text" value="Patricia Good" disabled  />
+            <Form.Control type="text" value="Patricia Good" disabled />
           </Form.Group>
-
         </Col>
         <Col xl={1} className="d-none d-xl-block space"></Col>
         <Col md={6} xl>
@@ -66,20 +97,28 @@ const TASupplier = () => {
           <Form.Row>
             <Form.Group as={Col} controlId="yearOrder1">
               <Form.Label htmlFor="yearOrder1">ยอดสั่งซื้อปี 2562</Form.Label>
-              {/* <Form.Control type="text" value={yearOrder} disabled  /> */}
-              <NumberFormat className="form-control" value={yearOrder} thousandSeparator={true} disabled /> {/* prefix={'฿'} */}
+              <NumberFormat
+                className="form-control"
+                value={yearOrder}
+                thousandSeparator={true}
+                disabled
+              />{" "}
+              {/* prefix={'฿'} */}
             </Form.Group>
 
             <Form.Group as={Col} controlId="currentOrader1">
-              <Form.Label htmlFor="currentOrader1">เป้าหมายการสั่งซื้อปี 2563</Form.Label>
-              <NumberFormat 
-              className="form-control"
-              thousandSeparator={true}
-              value={valueGrowth1}
-              type={'text'}
-              onValueChange={values => {
-                setValueGrowth1(values.floatValue);
-              }} />
+              <Form.Label htmlFor="currentOrader1">
+                เป้าหมายการสั่งซื้อปี 2563
+              </Form.Label>
+              <NumberFormat
+                className="form-control"
+                thousandSeparator={true}
+                value={valueGrowth1}
+                type={"text"}
+                onValueChange={(values) => {
+                  setValueGrowth1(values.floatValue);
+                }}
+              />
               {/* <Form.Control 
                 type="text"
                 onChange={handleCalGrowth1}
@@ -101,25 +140,32 @@ const TASupplier = () => {
             <Form.Group as={Col} controlId="yearSale1">
               <Form.Label htmlFor="yearSale1">ยอดขายออกปี 2562</Form.Label>
               {/* <Form.Control type="text" value={yearSale} disabled /> */}
-              <NumberFormat className="form-control" value={yearSale} thousandSeparator={true} disabled />
+              <NumberFormat
+                className="form-control"
+                value={yearSale}
+                thousandSeparator={true}
+                disabled
+              />
             </Form.Group>
 
             <Form.Group as={Col} controlId="currentSale1">
-              <Form.Label htmlFor="currentSale1">เป้าหมายยอดขายออกปี 2563</Form.Label>
+              <Form.Label htmlFor="currentSale1">
+                เป้าหมายยอดขายออกปี 2563
+              </Form.Label>
               {/* <Form.Control 
               type="text" 
               onChange={handleCalGrowth2}
               value={valueGrowth2}
               /> */}
-              <NumberFormat 
-              className="form-control"
-              thousandSeparator={true}
-              // onChange={handleCalGrowth2}
-              value={valueGrowth2}
-              type={'text'}
-              onValueChange={values => {
-                setValueGrowth2(values.floatValue);
-              }}
+              <NumberFormat
+                className="form-control"
+                thousandSeparator={true}
+                // onChange={handleCalGrowth2}
+                value={valueGrowth2}
+                type={"text"}
+                onValueChange={(values) => {
+                  setValueGrowth2(values.floatValue);
+                }}
               />
             </Form.Group>
 
@@ -142,21 +188,40 @@ const TASupplier = () => {
               <tr className="th-light">
                 <th width="50">#</th>
                 <th>Category</th>
-                <th width="20%" className="text-right">Current %GP</th>
-                <th width="20%" className="text-right">Expected %GP</th>
-                {/* <th>Tools</th> */}
+                <th width="20%" className="text-right">
+                  Current %GP
+                </th>
+                <th width="20%" className="text-right">
+                  Expected %GP
+                </th>
+                <th>&nbsp;</th>
               </tr>
             </thead>
             <tbody>
               {Array.from({ length: 14 }).map((_, index) => (
-              <tr key={index}>
-                <td>{index+1}</td>
-                <td>Category Name {index+1}</td>
-                <td className="text-right">{(index+1*1.09).toFixed(2)}%</td>
-                <td className="text-right">{(index+1*1.09).toFixed(2)}%</td>
-              </tr>
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>Category Name {index + 1}</td>
+                  <td className="text-right">
+                    {(index + 1 * 1.09).toFixed(2)}%
+                  </td>
+                  <td className="text-right">
+                    {(index + 1 * 1.09).toFixed(2)}%
+                  </td>
+                  <td className="ctrl-btn">
+                    <Button
+                      variant="light"
+                      size="sm"
+                      className="pt-0 pb-0 pl-1 pr-1"
+                      onClick={() => {
+                        alert("Confirm Delete");
+                      }}
+                    >
+                      <BiTrashAlt />
+                    </Button>
+                  </td>
+                </tr>
               ))}
-              
             </tbody>
           </Table>
         </Col>

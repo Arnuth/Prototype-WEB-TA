@@ -2,10 +2,12 @@
   --primary: #122F60;
   --primary-active: #3B99FC;
   --primary-hover: #A1CEFF;
-  --black: #333;
+  --black: #111;
   --red: #c10;
   --text-primary: #404040;
-  --text-gray: #97A3AE;
+  --text-topic: #8B96B6;
+  --text-gray: #7E90AF;
+  --text-placeholder: #B8BCCA;
   --text-blue: #3B99FC;
   --bg-gr:linear-gradient(0deg, #122F60, #122F60), #194793;
 }
@@ -403,11 +405,11 @@ a:focus {
 .SubHdIcon{display: flex; flex-flow: row nowrap; align-items: center; font-family: "Sarabun";}
 .SubHdIcon i{ display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; background-color: #fff; color: #3B99FC;box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.06), 0px 2px 6px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);border-radius: 100%;}
 .SubHdIcon>span>*{ display: block;}
-.SubHdIcon>span .head{font-size: 18px; font-weight: 500; margin-bottom: 5px;}
-.SubHdIcon>span .sub-head{font-size: 12px;}
+.SubHdIcon>span .head{font-size: 24px; font-weight: 600; margin-bottom: 5px; color: var(--black);}
+.SubHdIcon>span .sub-head{font-size: 12px;color: #515151;}
 .wrap-accordion>.accordion>.card .card-body{padding-left: calc(45px + 1.75rem); padding-right: calc(45px + 1.75rem);}
 .wrap-accordion>.accordion>.card .card-body [class*="col"].space{padding: 0; flex-basis: 50px; max-width: 50px;}
-.wrap-accordion .topic-line{font-size: 16px; font-weight: 500; color: #8c96b3; padding-bottom: 10px; margin-bottom: 1rem; border-bottom: 1px solid #eaeaea;}
+.wrap-accordion .topic-line{font-size: 16px; font-weight: 500; color: var(--text-topic); padding-bottom: 10px; margin-bottom: 1rem; border-bottom: 1px solid #EBEBF4;}
 
 /*Tables*/
 .footer-bar{background-color: #fff;z-index: 99;}
