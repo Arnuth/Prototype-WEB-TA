@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { withRouter } from "react-router-dom";
+import { BrowserRouter as Router} from "react-router-dom";
 import SideBar from "./components/shared/SideBar";
 import NavBar from "./components/shared/Navbar";
 import { Container } from "react-bootstrap";
@@ -89,7 +89,7 @@ const App = () => {
   };
 
   return (
-    <>
+    <Router>
       <div className="App">
         {!isFullPageLayout && <NavBar toggle={toggle} />}
         <div className="page-body-wrapper">
@@ -103,11 +103,11 @@ const App = () => {
           </Container>
         </div>
       </div>
-    </>
+    </Router>
   );
 };
 
-export default withRouter(App);
+export default App;
 
 // class App extends React.Component {
 //   constructor(props) {

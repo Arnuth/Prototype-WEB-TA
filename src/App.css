@@ -1,7 +1,7 @@
 :root {
   --primary: #122F60;
-  --primart-active: #3B99FC;
-  --primart-hover: #A1CEFF;
+  --primary-active: #3B99FC;
+  --primary-hover: #A1CEFF;
   --black: #333;
   --red: #c10;
   --text-primary: #404040;
@@ -106,7 +106,7 @@ a:focus {
   transition: 0.5s all ease;
   position: relative;
 }
-/* .sidebar:hover{box-shadow: -5px 0 0 var(--primart-hover) inset;} */
+/* .sidebar:hover{box-shadow: -5px 0 0 var(--primary-hover) inset;} */
 .sidebar-header {
   background: var(--primary);
   color: #adb5bd;
@@ -147,11 +147,11 @@ a:focus {
 
 .sidebar .nav-item.active,.sidebar .nav-item .nav-link.active {
   color: #e9ecef;
-  background: var(--primart-active) !important;
+  background: var(--primary-active) !important;
 }
 
 .sidebar .nav-item:hover,.sidebar .collapse.show .nav-link:hover {
-  background: var(--primart-hover);
+  background: var(--primary-hover);
   color: #fff;
   transition: .2s;
 }
@@ -178,7 +178,7 @@ a:focus {
   z-index: 99;
 }
 .header .btn-bars{display: none;}
-.sidebar .sw-sidebar,.sw-actual{display:block; position: fixed; top: calc(50vh - 16px);left:57px; transform: translateX(-50%); z-index: 200; width: 32px; height: 32px; border-radius: 5rem; background: var(--primart-hover);border: 1px solid rgba(255,255,255,0.2); transition: .5s all ease;}
+.sidebar .sw-sidebar,.sw-actual{display:block; position: fixed; top: calc(50vh - 16px);left:57px; transform: translateX(-50%); z-index: 200; width: 32px; height: 32px; border-radius: 5rem; background: var(--primary-hover);border: 1px solid rgba(255,255,255,0.2); transition: .5s all ease;}
 .sidebar .sw-sidebar{opacity: 0;}
 .sidebar:hover .sw-sidebar{opacity: 1;}
 .sidebar .sw-sidebar svg{position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%); width: 20px; height: 20px; font-size: 20px;}
@@ -186,7 +186,7 @@ a:focus {
 /* .sidebar .sw-sidebar:before,.sw-actual:before{content: ""; display: block; position: absolute; width: 10px; height: 10px; border-left: 2px solid #194793; border-bottom: 2px solid #194793; transform: rotate(-135deg);margin-top: -5px;  margin-left: 3px; transition: .2s all ease;} */
 .sidebar.is-open .sw-sidebar:before,.open .sw-actual:before{transform: rotate(45deg);margin-left: 8px;}
 .sidebar .sw-sidebar:after{content: "";display: block; position: fixed; top: 0; right:11px;height: 100vh;
-  transform: translateY(-47%);  z-index: -1; border-left: 6px solid var(--primart-hover);}
+  transform: translateY(-47%);  z-index: -1; border-left: 6px solid var(--primary-hover);}
 
 @media screen and (max-width: 576px) {
 .header .btn-bars{display: inline-block;}
@@ -215,7 +215,7 @@ a:focus {
   }
   .sidebar:not(.is-open) .nav-item .nav-link svg{display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 18px; height: 18px; margin-right: 0!important;}
   .sidebar:not(.is-open) .nav-item .nav-link>span{display: flex;visibility: hidden; opacity: 0; text-indent: -9999px; position: absolute; left: -100%; white-space: nowrap; min-width: 0;overflow: hidden;transition: .2s all ease}
-  .sidebar:not(.is-open) .nav-item .nav-link:hover>span{display: flex;visibility: visible; opacity: 1; align-items: center; position: absolute; top: 0; left: 100%; background-color: var(--primart-hover); color: #fff; padding:5px 10px; text-indent: 0; min-width: 150px;min-height: 40px;}
+  .sidebar:not(.is-open) .nav-item .nav-link:hover>span{display: flex;visibility: visible; opacity: 1; align-items: center; position: absolute; top: 0; left: 100%; background-color: var(--primary-hover); color: #fff; padding:5px 10px; text-indent: 0; min-width: 150px;min-height: 40px;}
   .sidebar:not(.is-open) .accordion .nav-link svg.float-right{ width: 12px; height: 12px; left: auto; right: 3px;transform: translate(0,-50%);}
   .sidebar:not(.is-open) .accordion>div{position: absolute; top: 0; left: 100%; width: 200px;}
   .sidebar:not(.is-open) .accordion>div>.nav .nav-link{text-indent: 0; width: auto; height: auto; padding:10px 15px!important}
@@ -396,7 +396,7 @@ a:focus {
 
 /*Create TA*/
 .wrap-accordion>.accordion>.card{ margin-bottom: 1rem; box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.06), 0px 2px 6px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04); border: none; border-radius: 10px;}
-.wrap-accordion>.accordion>.card.active{box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.06), 0 0 0 1.5px var(--primart-hover) inset;}
+.wrap-accordion>.accordion>.card.active{box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.06), 0 0 0 1.5px var(--primary-hover) inset;}
 .wrap-ta .accordion>.card>.card-header{position: relative;border: none;background: none;}
 .wrap-ta .accordion>.card>.card-header:after{content:""; display: block; position: absolute; right: 30px; top: 50%; width: 10px; height: 10px; margin-top: -5px; border-left: 2px solid #999; border-bottom: 2px solid #999; transform: rotate(-45deg); transition: .2s all ease;}
 .wrap-ta .accordion>.card>.card-header.active:after{transform: rotate(135deg);}
