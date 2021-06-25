@@ -1,10 +1,6 @@
 import React, { useState } from "react";
-import { Breadcrumb, Row, Col, Accordion, Card, Button, Table } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCloudUploadAlt } from "@fortawesome/free-solid-svg-icons";
-import { FiEdit, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { Breadcrumb, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import classNames from "classnames";
 import demo from "../assets/imgs/demo-ta.png";
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";

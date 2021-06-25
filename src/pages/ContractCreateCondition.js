@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Breadcrumb, Button, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
@@ -81,6 +81,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ContractCreateCondition = () => {
   const classes = useStyles();
+  const history = useHistory();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -134,7 +135,12 @@ const ContractCreateCondition = () => {
             className="footer-bar d-flex justify-content-end align-items-center pt-2 pb-2 pl-3 pr-3 position-sticky"
             style={{ bottom: "0" }}
           >
-            <Button variant="success">Save</Button>
+            <Button 
+              variant="success"
+              onClick={() => {
+                history.replace("/contract/create");
+              }}
+            >Save</Button>
             <Button variant="outline-secondary ml-2">Cancel</Button>
           </Col>
         </TabPanel>
@@ -154,7 +160,12 @@ const ContractCreateCondition = () => {
             className="footer-bar d-flex justify-content-end align-items-center pt-2 pb-2 pl-3 pr-3 position-sticky"
             style={{ bottom: "0" }}
           >
-            <Button variant="success">Save</Button>
+            <Button 
+              variant="success"
+              onClick={() => {
+                history.replace("/contract/create");
+              }}
+            >Save</Button>
             <Button variant="outline-secondary ml-2">Cancel</Button>
           </Col>
         </TabPanel>
