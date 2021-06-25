@@ -17,7 +17,7 @@ const ContractList = () => {
         >
           <h3 className="h3">Contract List</h3>
           <div className="text-center">
-              <Link className="btn btn-success ml-2 btn-lg" to="/contract/create/">Create TA</Link>
+              <Link className="btn btn-success ml-2 btn-lg" to="/contract/create/">บริษัท เนสท์เล่ (ไทย) จำกัด</Link>
           </div>
 
         </Col>

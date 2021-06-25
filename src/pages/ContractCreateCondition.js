@@ -7,7 +7,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import { BsImage } from "react-icons/bs";
+import { FaRegFileImage } from "react-icons/fa";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
       textAlign: "left",
       lineHeight: '120%',
       fontFamily: 'Sarabun',
-      "& svg": { fontSize: '1.2rem' }
+      "& svg": { fontSize: '1.5rem' }
     },
     "& .MuiTab-labelIcon": {
       minHeight: '50px',
@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ContractCreateCondition = () => {
   const classes = useStyles();
-  const [value, setValue] = useState(0);
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -108,19 +108,19 @@ const ContractCreateCondition = () => {
           aria-label="Menu Condition"
           className={classes.tabs}
         >
-          <Tab label="ภาพรวม" icon={<BsImage className="mr-3 mb-0" />} {...a11yProps(0)} />
-          <Tab label="% ยอดซื้อเติบโต" icon={<BsImage className="mr-3 mb-0" />} {...a11yProps(1)} />
-          <Tab label="% ยอดซื้อเติบโต เฉพาะกลุ่ม" icon={<BsImage className="mr-3 mb-0" />} {...a11yProps(2)} />
-          <Tab label="เป้ายอดซื้อ (บาท)" icon={<BsImage className="mr-3 mb-0" />} {...a11yProps(3)} />
-          <Tab label="เป้ายอดซื้อ (บาท) เฉพาะกลุ่ม" icon={<BsImage className="mr-3 mb-0" />} {...a11yProps(4)} />
-          <Tab label="บาทต่อหน่วยซื้อ" icon={<BsImage className="mr-3 mb-0" />} {...a11yProps(5)} />
-          <Tab label="บาทต่อหน่วยซื้อ เฉพาะกลุ่ม" icon={<BsImage className="mr-3 mb-0" />} {...a11yProps(6)} />
-          <Tab label="เหมาจ่าย" icon={<BsImage className="mr-3 mb-0" />} {...a11yProps(7)} />
+          <Tab label="ภาพรวม" icon={<FaRegFileImage className="mr-2 mb-0" />} {...a11yProps(0)} />
+          <Tab label="% ยอดซื้อเติบโต" icon={<FaRegFileImage className="mr-2 mb-0" />} {...a11yProps(1)} />
+          <Tab label="% ยอดซื้อเติบโต เฉพาะกลุ่ม" icon={<FaRegFileImage className="mr-2 mb-0" />} {...a11yProps(2)} />
+          <Tab label="เป้ายอดซื้อ (บาท)" icon={<FaRegFileImage className="mr-2 mb-0" />} {...a11yProps(3)} />
+          <Tab label="เป้ายอดซื้อ (บาท) เฉพาะกลุ่ม" icon={<FaRegFileImage className="mr-2 mb-0" />} {...a11yProps(4)} />
+          <Tab label="บาทต่อหน่วยซื้อ" icon={<FaRegFileImage className="mr-2 mb-0" />} {...a11yProps(5)} />
+          <Tab label="บาทต่อหน่วยซื้อ เฉพาะกลุ่ม" icon={<FaRegFileImage className="mr-2 mb-0" />} {...a11yProps(6)} />
+          <Tab label="เหมาจ่าย" icon={<FaRegFileImage className="mr-2 mb-0" />} {...a11yProps(7)} />
         </Tabs>
         <div className={classes.contenttabs}>
         <TabPanel value={value} index={0}>
           <h2 className="SubHdIcon">
-            <i className="mr-2 mb-0"><BsImage size="1.2rem" /></i>
+            <i className="mr-2 mb-0"><FaRegFileImage size="1.5rem" /></i>
             <span>
               <b className="head">Over all Conditions</b>
               <small className="sub-head">ภาพรวม</small>
@@ -140,7 +140,7 @@ const ContractCreateCondition = () => {
         </TabPanel>
         <TabPanel value={value} index={1}>
           <h2 className="SubHdIcon">
-            <i className="mr-2 mb-0"><BsImage size="1.2rem" /></i>
+            <i className="mr-2 mb-0"><FaRegFileImage size="1.5rem" /></i>
             <span>
               <b className="head">Conditions</b>
               <small className="sub-head">% ยอดซื้อเติบโต</small>
@@ -160,7 +160,7 @@ const ContractCreateCondition = () => {
         </TabPanel>
         <TabPanel value={value} index={2}>
           <h2 className="SubHdIcon">
-            <i className="mr-2 mb-0"><BsImage size="1.2rem" /></i>
+            <i className="mr-2 mb-0"><FaRegFileImage size="1.5rem" /></i>
             <span>
               <b className="head">Conditions</b>
               <small className="sub-head">% ยอดซื้อเติบโต เฉพาะกลุ่ม</small>
@@ -169,7 +169,7 @@ const ContractCreateCondition = () => {
         </TabPanel>
         <TabPanel value={value} index={3}>
           <h2 className="SubHdIcon">
-            <i className="mr-2 mb-0"><BsImage size="1.2rem" /></i>
+            <i className="mr-2 mb-0"><FaRegFileImage size="1.5rem" /></i>
             <span>
               <b className="head">Conditions</b>
               <small className="sub-head">เป้ายอดซื้อ (บาท)</small>
@@ -178,7 +178,7 @@ const ContractCreateCondition = () => {
         </TabPanel>
         <TabPanel value={value} index={4}>
           <h2 className="SubHdIcon">
-            <i className="mr-2 mb-0"><BsImage size="1.2rem" /></i>
+            <i className="mr-2 mb-0"><FaRegFileImage size="1.5rem" /></i>
             <span>
               <b className="head">Conditions</b>
               <small className="sub-head">เป้ายอดซื้อ (บาท) เฉพาะกลุ่ม</small>
@@ -187,7 +187,7 @@ const ContractCreateCondition = () => {
         </TabPanel>
         <TabPanel value={value} index={5}>
           <h2 className="SubHdIcon">
-            <i className="mr-2 mb-0"><BsImage size="1.2rem" /></i>
+            <i className="mr-2 mb-0"><FaRegFileImage size="1.5rem" /></i>
             <span>
               <b className="head">Conditions</b>
               <small className="sub-head">บาทต่อหน่วยซื้อ</small>
@@ -196,7 +196,7 @@ const ContractCreateCondition = () => {
         </TabPanel>
         <TabPanel value={value} index={6}>
           <h2 className="SubHdIcon">
-            <i className="mr-2 mb-0"><BsImage size="1.2rem" /></i>
+            <i className="mr-2 mb-0"><FaRegFileImage size="1.5rem" /></i>
             <span>
               <b className="head">Conditions</b>
               <small className="sub-head">บาทต่อหน่วยซื้อ เฉพาะกลุ่ม</small>
@@ -205,7 +205,7 @@ const ContractCreateCondition = () => {
         </TabPanel>
         <TabPanel value={value} index={7}>
           <h2 className="SubHdIcon">
-            <i className="mr-2 mb-0"><BsImage size="1.2rem" /></i>
+            <i className="mr-2 mb-0"><FaRegFileImage size="1.5rem" /></i>
             <span>
               <b className="head">Conditions</b>
               <small className="sub-head">เหมาจ่าย</small>
