@@ -37,7 +37,7 @@ const SideBar = ({ toggle, isOpen }) => {
         </Button>
       </div>
       <button className="sw-sidebar" onClick={toggle}>{isOpen ? <FiChevronLeft /> : <FiChevronRight />}</button>
-      <Nav className="flex-column pt-1">
+      <Nav className="flex-column">
         
         <Nav.Item>
           <NavLink className="nav-link" to="/" exact>

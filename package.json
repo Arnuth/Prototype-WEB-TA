@@ -9,6 +9,7 @@
     "classnames": "^2.2.6",
     "jquery": "^3.6.0",
     "material-ui-dropzone": "^3.5.0",
+    "notistack": "^1.0.9",
     "popper.js": "^1.16.1",
     "react": "^16.8.6",
     "react-bootstrap": "^1.6.0",

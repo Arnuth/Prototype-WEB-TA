@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import { DropzoneAreaBase } from "material-ui-dropzone";
 import TAConditionCompare from '../components/TAConditionCompare'
 import TASupplier from "../components/TASupplier";
+import iconSupplier from "../assets/imgs/icons/ic-supplier.svg"
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 // To make rows collapsible
@@ -94,7 +95,7 @@ function ContractCreate() {
               >
                 <h2 className="SubHdIcon">
                   <i className="mr-2 mb-0">
-                    <FaRegFileImage size="1.5rem" />
+                    <img src={iconSupplier} alt="Supplier" />
                   </i>
                   <span>
                     <b className="head">Supplier</b>
@@ -221,13 +222,13 @@ function ContractCreate() {
         </Col>
         <Col
           xs={12}
-          className="footer-bar d-flex justify-content-end align-items-center pt-2 pb-2 pl-3 pr-3 position-sticky"
+          className="footer-bar ctrl-btn d-flex justify-content-end align-items-center pt-2 pb-2 pl-3 pr-3 position-sticky"
           style={{ bottom: "0" }}
         >
           <Button variant="secondary">Delete</Button>
           <Button variant="success ml-2">Save Draft</Button>
           <Button variant="warning ml-2">Preview</Button>
-          <Button variant="primary ml-2">Publish</Button>
+          {/* <Button variant="primary ml-2">Publish</Button> */}
         </Col>
       </Row>
     </div>

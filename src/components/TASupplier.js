@@ -6,13 +6,15 @@ import {
   Form,
   InputGroup,
   FormControl,
-  Table,
   ProgressBar,
 } from "react-bootstrap";
 import "../assets/css/ta-supplier.css";
 import NumberFormat from "react-number-format";
 // import NumberBox from 'devextreme-react/number-box';
-import { BiTrashAlt } from "react-icons/bi";
+import { HiOutlineSave } from "react-icons/hi";
+import { useSnackbar } from 'notistack';
+
+import TASupplierCategory from "./TASupplierCategory";
 
 const TASupplier = () => {
   //click call id
@@ -45,6 +47,12 @@ const TASupplier = () => {
   //   setValueGrowth2(event.target.value);
   // }
 
+  const { enqueueSnackbar } = useSnackbar();
+  const handleClickVariant = (variant) => () => {
+    // variant could be success, error, warning, info, or default
+    enqueueSnackbar('ทำการบันทึกเรียบร้อยค่ะ!', { variant });
+  };
+
   useEffect(() => {
     let valuePercent = (
       (parseInt(valueGrowth1) * 100) / yearOrder -
@@ -54,13 +62,27 @@ const TASupplier = () => {
       (parseInt(valueGrowth2) * 100) / yearSale -
       100
     ).toFixed(2);
-    setValueCalGrowth1(valuePercent >= 0 ? valuePercent : 0);
-    setValueCalGrowth2(valuePercent2 >= 0 ? valuePercent2 : 0);
+    // setValueCalGrowth1(valuePercent >= 0 ? valuePercent : 0);
+    setValueCalGrowth1(valuePercent);
+    setValueCalGrowth2(valuePercent2);
   }, [valueGrowth1, valueGrowth2]);
 
   return (
     <>
       <Row className="z-supplier">
+        <Col md={12} xl={12} className="mb-3">
+        <Form.Group controlId="exampleForm.ControlSelect1" className="col-12 col-sm-6 col-md-2 pl-0">
+          <Form.Label>ปีที่ทำใบความต้องการ</Form.Label>
+          <Form.Control as="select" className="form-select">
+            <option value="2564">2564</option>
+            <option value="2565">2565</option>
+            <option value="2566">2566</option>
+          </Form.Control>
+        </Form.Group>
+        <Form.Group controlId="formBasicCheckbox">
+          <Form.Check type="checkbox" label="Check me out" />
+        </Form.Group>
+        </Col>
         <Col md={6} xl>
           <h3 className="topic-line">ข้อมูลคู่ค้า</h3>
           <Form.Group className="mb-3" controlId="supplier">
@@ -88,7 +110,7 @@ const TASupplier = () => {
 
           <Form.Group className="mb-3" controlId="managerBuyer">
             <Form.Label htmlFor="managerBuyer">ผู้จัดการจัดซื้อ</Form.Label>
-            <Form.Control type="text" value="Patricia Good" disabled />
+            <Form.Control type="text" value="ศิริวัฒนาภา ปฏิมาประกร" disabled />
           </Form.Group>
         </Col>
         <Col xl={1} className="d-none d-xl-block space"></Col>
@@ -101,6 +123,7 @@ const TASupplier = () => {
                 className="form-control"
                 value={yearOrder}
                 thousandSeparator={true}
+                suffix={' บ.'}
                 disabled
               />{" "}
               {/* prefix={'฿'} */}
@@ -115,6 +138,7 @@ const TASupplier = () => {
                 thousandSeparator={true}
                 value={valueGrowth1}
                 type={"text"}
+                suffix={' บ.'}
                 onValueChange={(values) => {
                   setValueGrowth1(values.floatValue);
                 }}
@@ -126,13 +150,13 @@ const TASupplier = () => {
                /> */}
             </Form.Group>
 
-            <Form.Group as={Col} md={2} controlId="growth1">
+            <Form.Group as={Col} md={3} controlId="growth1">
               <Form.Label htmlFor="growth1">Growth</Form.Label>
               {/* <Form.Control type="text" disabled /> */}
               <div className="display-growth">
                 <ProgressBar now={valueCalGrowth1} />
-                <span>{valueCalGrowth1}%</span>
-              </div>
+                <span>{valueCalGrowth1 !== 'NaN' ? valueCalGrowth1 : 0}%</span>
+              </div> 
             </Form.Group>
           </Form.Row>
 
@@ -144,6 +168,7 @@ const TASupplier = () => {
                 className="form-control"
                 value={yearSale}
                 thousandSeparator={true}
+                suffix={' บ.'}
                 disabled
               />
             </Form.Group>
@@ -163,18 +188,19 @@ const TASupplier = () => {
                 // onChange={handleCalGrowth2}
                 value={valueGrowth2}
                 type={"text"}
+                suffix={' บ.'}
                 onValueChange={(values) => {
                   setValueGrowth2(values.floatValue);
                 }}
               />
             </Form.Group>
 
-            <Form.Group as={Col} md={2} controlId="growth2">
+            <Form.Group as={Col} md={3} controlId="growth2">
               <Form.Label htmlFor="growth2">Growth</Form.Label>
               {/* <Form.Control type="text" disabled /> */}
               <div className="display-growth">
                 <ProgressBar now={valueCalGrowth2} />
-                <span>{valueCalGrowth2}%</span>
+                <span>{valueCalGrowth2 !== 'NaN' ? valueCalGrowth2 : 0}%</span>
               </div>
             </Form.Group>
           </Form.Row>
@@ -182,53 +208,12 @@ const TASupplier = () => {
       </Row>
       <Row className="mt-5">
         <Col xs={12}>
-          <h3 className="topic-line">หมวดหมู่สินค้า (Category)</h3>
-          <Table responsive>
-            <thead>
-              <tr className="th-light">
-                <th width="50">#</th>
-                <th>Category</th>
-                <th width="20%" className="text-right">
-                  Current %GP
-                </th>
-                <th width="20%" className="text-right">
-                  Expected %GP
-                </th>
-                <th>&nbsp;</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Array.from({ length: 14 }).map((_, index) => (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td>Category Name {index + 1}</td>
-                  <td className="text-right">
-                    {(index + 1 * 1.09).toFixed(2)}%
-                  </td>
-                  <td className="text-right">
-                    {(index + 1 * 1.09).toFixed(2)}%
-                  </td>
-                  <td className="ctrl-btn">
-                    <Button
-                      variant="light"
-                      size="sm"
-                      className="pt-0 pb-0 pl-1 pr-1"
-                      onClick={() => {
-                        alert("Confirm Delete");
-                      }}
-                    >
-                      <BiTrashAlt />
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+          <TASupplierCategory />
         </Col>
       </Row>
       <Col
         xs={12}
-        className="d-flex justify-content-end align-items-center pt-2 pb-2 pl-0 pr-0 position-sticky"
+        className="ctrl-btn d-flex justify-content-end align-items-center pt-2 pb-2 pl-0 pr-0 position-sticky"
         style={{ bottom: "0" }}
       >
         <Button
@@ -239,7 +224,7 @@ const TASupplier = () => {
         >
           Cancel
         </Button>
-        <Button variant="success ml-2">Save</Button>
+        <Button variant="warning ml-2" onClick={handleClickVariant('success')}>Save the supplier <HiOutlineSave /></Button>
       </Col>
     </>
   );

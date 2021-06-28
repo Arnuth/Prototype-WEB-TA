@@ -7,6 +7,7 @@ import NavBar from "./components/shared/Navbar";
 import { Container } from "react-bootstrap";
 import classNames from "classnames";
 import AppRoutes from "./AppRoutes";
+import { SnackbarProvider } from 'notistack';
 // import Content from "./components/content/Content";
 
 const App = () => {
@@ -89,6 +90,7 @@ const App = () => {
   };
 
   return (
+    <SnackbarProvider maxSnack={3}>
     <Router>
       <div className="App">
         {!isFullPageLayout && <NavBar toggle={toggle} />}
@@ -104,6 +106,7 @@ const App = () => {
         </div>
       </div>
     </Router>
+    </SnackbarProvider>
   );
 };
 
