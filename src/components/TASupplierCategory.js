@@ -12,7 +12,7 @@ const TASupplierCategory = () => {
   const { enqueueSnackbar } = useSnackbar();
   const handleClickVariant = (variant) => () => {
     // variant could be success, error, warning, info, or default
-    enqueueSnackbar('ลบรายการสำเร็จ!', { variant });
+    enqueueSnackbar('เพิ่มรายการสำเร็จ!', { variant });
   };
   //   const [modalData, setModalData] = React.useState({});
 
@@ -136,6 +136,7 @@ const TASupplierCategory = () => {
       }
       return { list, allChecked };
     });
+    enqueueSnackbar('เพิ่มรายการสำเร็จ!', 'success')
   };
 
   const addDataModal = (h) => {

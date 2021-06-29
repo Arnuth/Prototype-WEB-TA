@@ -79,9 +79,6 @@ const TASupplier = () => {
             <option value="2566">2566</option>
           </Form.Control>
         </Form.Group>
-        <Form.Group controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
         </Col>
         <Col md={6} xl>
           <h3 className="topic-line">ข้อมูลคู่ค้า</h3>
@@ -206,7 +203,7 @@ const TASupplier = () => {
           </Form.Row>
         </Col>
       </Row>
-      <Row className="mt-5">
+      <Row className="z-supplier-tb mt-5">
         <Col xs={12}>
           <TASupplierCategory />
         </Col>
