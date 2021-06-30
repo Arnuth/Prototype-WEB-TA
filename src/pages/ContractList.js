@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { Breadcrumb, Row, Col ,Table, Button, Form, InputGroup, FormControl } from "react-bootstrap";
 import { VscOpenPreview } from "react-icons/vsc";
@@ -14,6 +14,8 @@ import "datatables.net-dt/css/jquery.dataTables.css";
 // import 'datatables.net-bs4/css/dataTables.bootstrap4.css'
 
 const ContractList = () => {
+  
+  
   const dataSet = [
     { vid:"100043", vname:"บริษัท เนสท์เล่ (ไทย) จำกัด", year:"2564", manager:"ศิริวัฒนาภา ปฏิมาประกร", status:"เสร็จแล้ว", docNum:"RD001/64" },
     { vid:"100044", vname:"บริษัท เอฟแอนด์เอ็น แดรี่ส์(ประเทศไทย) จำกัด", year:"2564", manager:"ศิริวัฒนาภา ปฏิมาประกร", status:"เสร็จแล้ว", docNum:"RD001/64" },
@@ -35,8 +37,16 @@ const ContractList = () => {
     { vid:"100944", vname:"บริษัท III จำกัด", year:"2564", manager:"ศิริวัฒนาภา ปฏิมาประกร", status:"เสร็จแล้ว", docNum:"RD001/64" },
     { vid:"101043", vname:"บริษัท JJJ จำกัด", year:"2564", manager:"ศิริวัฒนาภา ปฏิมาประกร", status:"เสร็จแล้ว", docNum:"RD001/64" },
     { vid:"101044", vname:"บริษัท KKK จำกัด", year:"2564", manager:"ศิริวัฒนาภา ปฏิมาประกร", status:"ฉบับร่าง", docNum:"RD001/64" },
-    
-  ]
+  ];
+
+  const [dataFilter, setDataFilter] = useState(dataSet);
+
+  const dataDraft = dataSet.filter((item) => item.status === "ฉบับร่าง");
+  const dataSuccess = dataSet.filter((item) => item.status === "เสร็จแล้ว");
+  const dataPending = dataSet.filter((item) => item.status === "รออนุมัติ");
+
+  
+  
 
   const syncTable = () => {
     $(".display").DataTable().destroy();
@@ -69,7 +79,7 @@ const ContractList = () => {
     });  
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
 
     // const getData = async () => {
     //   try {
@@ -87,11 +97,43 @@ const ContractList = () => {
     // };
 
     syncTable();
-    // cloneSearch();
 
     return () => {
     };
   }, []);
+
+  const [filter, setFilter] = useState("all");
+  
+
+  console.log(dataFilter);
+  console.log(filter);
+  // console.log(dataDraft)
+  // console.log(dataSuccess)
+  // console.log(dataPending)
+
+  const handleChangeFilter = (event) => {
+    setFilter(event.target.value);
+    // filter==="all" ? setDataFilter(dataSet) :
+    // filter==="success" ? setDataFilter(dataSuccess) :
+    // filter==="draft" ? setDataFilter(dataDraft) :
+    // filter==="pending" && setDataFilter(dataPending) 
+  };
+
+  useEffect(() => {
+    filter==="all" ? setDataFilter(dataSet) :
+    filter==="success" ? setDataFilter(dataSuccess) :
+    filter==="draft" ? setDataFilter(dataDraft) :
+    filter==="pending" && setDataFilter(dataPending) 
+    // setTimeout(
+    //     // proxy callback to `this` rather than `window`
+    //     $.proxy(function(){ 
+            
+    //     },this)
+    // ,1000);
+    // setTimeout( syncTable() ,1000);
+    // $(".display").DataTable().reload();
+    
+  }, [filter]);
 
   return (
     <div className="wrap-ta pt-1 pl-1 pr-1">
@@ -109,11 +151,17 @@ const ContractList = () => {
             <Col md>
               <Row>
                 <Col md="auto">
-                <Form.Group controlId="exampleForm.ControlSelect1">
-                  <Form.Control as="select" className="form-select">
+                <Form.Group controlId="filterType">
+                  <Form.Control 
+                    as="select" 
+                    value={filter}
+                    onChange={handleChangeFilter}
+                    className="form-select"
+                  >
                     <option value="all">ทั้งหมด</option>
-                    <option value="draft">ฉบับร่าง</option>
                     <option value="success">เสร็จแล้ว</option>
+                    <option value="draft">ฉบับร่าง</option>
+                    <option value="pending">รออนุมัติ</option>
                   </Form.Control>
                 </Form.Group>
                 </Col>
@@ -153,8 +201,10 @@ const ContractList = () => {
 
           <div className="card p-3">
           <h3 className="h6">
-            ผลการค้นหา
-            <span className="text-gray ml-2 font-weight-lighter">9 รายการ</span>
+            ทั้งหมด
+            <span className="text-gray ml-2 font-weight-lighter">{dataFilter.length} รายการ</span>
+            {/* ผลการค้นหา
+            <span className="text-gray ml-2 font-weight-lighter">9 รายการ</span> */}
           </h3>
 
           <Table
@@ -200,10 +250,6 @@ const ContractList = () => {
                     </tbody>
                   </Table>
                   </div>
-          {/* <h3 className="h3">Contract List</h3>
-          <div className="text-center">
-              <Link className="btn btn-success ml-2 btn-lg" to="/contract/create/">Create TA</Link>
-          </div> */}
 
         </Col>
       </Row>

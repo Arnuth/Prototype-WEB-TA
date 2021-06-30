@@ -80,6 +80,13 @@ const useStyles = makeStyles((theme) => ({
   contenttabs: {
     flex: "1 1 0",
   },
+  HeadTab: {
+    margin: theme.spacing(-3),
+    padding: theme.spacing(3),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(1.5),
+    marginBottom: theme.spacing(3),
+  }
 }));
 
 const ContractCreateCondition = () => {
@@ -136,7 +143,7 @@ const ContractCreateCondition = () => {
     calPayforSum();
   }, [valuePayforQ1 , valuePayforQ2 , valuePayforQ3 , valuePayforQ4]);
   
-
+  console.log(valuePayforAmount);
   return (
     <>
       <div className="wrap-ta pt-1 pl-1 pr-1">
@@ -195,84 +202,59 @@ const ContractCreateCondition = () => {
             </Tabs>
             <div className={classes.contenttabs}>
               <TabPanel value={value} index={0}>
-                <h2 className="SubHdIcon">
-                  <i className="mr-2 mb-0">
-                    <BsImage size="1.2rem" />
-                  </i>
-                  <span>
-                    <b className="head">Over all Conditions</b>
-                    <small className="sub-head">ภาพรวม</small>
-                  </span>
+                <h2 className={`HdCondition ${classes.HeadTab}`}>
+                  <b className="head">ภาพรวม</b>
+                  <small className="d-block">
+                    <span>Amount 1%</span> |
+                    <span>Total Amount 100,000.00 บาท</span> |
+                    <span>เป้ายอดซื้อ TA 10,000,000.00 บ.</span>
+                  </small>
                 </h2>
-                <Col
-                  xs={12}
-                  className="card-body"
-                  style={{ minHeight: "300px" }}
-                >
-                  Field form
-                </Col>
-                <Col
-                  xs={12}
-                  className="footer-bar d-flex justify-content-end align-items-center pt-2 pb-2 pl-3 pr-3 position-sticky"
-                  style={{ bottom: "0" }}
-                >
-                  <Button variant="success">Save</Button>
-                  <Button variant="outline-secondary ml-2">Cancel</Button>
-                </Col>
               </TabPanel>
               <TabPanel value={value} index={1}>
-                <h2 className="SubHdIcon">
-                  <i className="mr-2 mb-0">
-                    <BsImage size="1.2rem" />
-                  </i>
-                  <span>
-                    <b className="head">Conditions</b>
-                    <small className="sub-head">% จากยอดซื้อ</small>
-                  </span>
+                <h2 className={`HdCondition ${classes.HeadTab}`}>
+                  <b className="head">% จากยอดซื้อ</b>
+                  <small className="d-block">
+                    <span>Amount 1%</span> |
+                    <span>Total Amount 100,000.00 บาท</span> |
+                    <span>เป้ายอดซื้อ TA 10,000,000.00 บ.</span>
+                  </small>
                 </h2>
-                <Col
-                  xs={12}
-                  className="card-body"
-                  style={{ minHeight: "300px" }}
-                >
-                  Field form
-                </Col>
-                <Col
-                  xs={12}
-                  className="footer-bar d-flex justify-content-end align-items-center pt-2 pb-2 pl-3 pr-3 position-sticky"
-                  style={{ bottom: "0" }}
-                >
-                  <Button variant="success">Save</Button>
-                  <Button variant="outline-secondary ml-2">Cancel</Button>
-                </Col>
               </TabPanel>
               <TabPanel value={value} index={2}>
-                <h2 className="SubHdIcon">
-                  <i className="mr-2 mb-0">
-                    <BsImage size="1.2rem" />
-                  </i>
-                  <span>
-                    <b className="head">Conditions</b>
-                    <small className="sub-head">% จากยอดซื้อ เฉพาะกลุ่ม</small>
-                  </span>
+                <h2 className={`HdCondition ${classes.HeadTab}`}>
+                  <b className="head">% จากยอดซื้อ เฉพาะกลุ่ม</b>
+                  <small className="d-block">
+                    <span>Amount 1%</span> |
+                    <span>Total Amount 100,000.00 บาท</span> |
+                    <span>เป้ายอดซื้อ TA 10,000,000.00 บ.</span>
+                  </small>
                 </h2>
               </TabPanel>
               <TabPanel value={value} index={3}>
-                <h2 className="SubHdIcon">
-                  <i className="mr-2 mb-0">
-                    <BsImage size="1.2rem" />
-                  </i>
-                  <span>
-                    <b className="head">Conditions</b>
-                    <small className="sub-head">% จากยอดขาย</small>
-                  </span>
+                <h2 className={`HdCondition ${classes.HeadTab}`}>
+                  <b className="head">% จากยอดขาย</b>
+                  <small className="d-block">
+                    <span>Amount 1%</span> |
+                    <span>Total Amount 100,000.00 บาท</span> |
+                    <span>เป้ายอดซื้อ TA 10,000,000.00 บ.</span>
+                  </small>
                 </h2>
               </TabPanel>
               <TabPanel value={value} index={4}>
-                <h2 className="HdCondition">
+                <h2 className={`HdCondition ${classes.HeadTab}`}>
                   <b className="head">เหมาจ่าย</b>
                   <small className="d-block">
-                    <span>Total Amount 100,000.00 บาท</span> |
+                    <span>
+                      Total Amount 
+                      <NumberFormat
+                          thousandSeparator={true}
+                          className="ml-2"
+                          displayType={'text'}
+                          value={valuePayforAmount === "" ? 0 : valuePayforAmount}
+                          suffix={" บาท"}
+                        />
+                    </span> |
                     <span>เป้ายอดซื้อ TA 10,000,000.00 บ.</span>
                   </small>
                 </h2>
@@ -349,6 +331,10 @@ const ContractCreateCondition = () => {
                                   <NumberFormat
                                     className="form-control text-right"
                                     disabled={!state.checkedQuarter}
+                                    readOnly
+                                    className={`form-control text-right
+                                    ${state.checkedQuarter === true ? 'bg-white' : 'bg-disabled'}
+                                    `}
                                     // id="payfor_equalamount"
                                     thousandSeparator={true}
                                     placeholder="ยอดเรียกเก็บ บ."
@@ -406,87 +392,7 @@ const ContractCreateCondition = () => {
                               </Col>
                             </Row>
                             ))}
-                            {/* <Row className="ml-n2 mr-n2">
-                              <Col className="pl-2 pr-2" md={6}>
-                                <InputGroup className="mb-2">
-                                <InputGroup.Prepend className="col p-0">
-                                    <InputGroup.Text class="input-group-text px-2 form-control bg-disabled">ไตรมาส 2</InputGroup.Text>
-                                  </InputGroup.Prepend>
-                                  <InputGroup.Append className="col p-0">
-                                    <InputGroup.Text class="input-group-text px-2 form-control bg-disabled">เม.ย. - มิ.ย.</InputGroup.Text>
-                                  </InputGroup.Append>
-                                </InputGroup>
-                              </Col>
-                              <Col className="pl-2 pr-2" md={6}>
-                                <Form.Group controlId="payfor_q2_amount" className="mb-2">
-                                  <NumberFormat
-                                    className="form-control text-right"
-                                    // id="payfor_q2_amount"
-                                    thousandSeparator={true}
-                                    value={valuePayforQ2}
-                                    type={"text"}
-                                    suffix={" บ."}
-                                    onValueChange={(values) => {
-                                      setValuePayforQ2(values.floatValue);
-                                    }}
-                                  />
-                                </Form.Group>
-                              </Col>
-                            </Row>
-                            <Row className="ml-n2 mr-n2">
-                              <Col className="pl-2 pr-2" md={6}>
-                                <InputGroup className="mb-2">
-                                <InputGroup.Prepend className="col p-0">
-                                    <InputGroup.Text class="input-group-text px-2 form-control bg-disabled">ไตรมาส 3</InputGroup.Text>
-                                  </InputGroup.Prepend>
-                                  <InputGroup.Append className="col p-0">
-                                    <InputGroup.Text class="input-group-text px-2 form-control bg-disabled">ก.ค. - ก.ย.</InputGroup.Text>
-                                  </InputGroup.Append>
-                                </InputGroup>
-                              </Col>
-                              <Col className="pl-2 pr-2" md={6}>
-                                <Form.Group controlId="payfor_q3_amount" className="mb-2">
-                                  <NumberFormat
-                                    className="form-control text-right"
-                                    // id="payfor_q3_amount"
-                                    thousandSeparator={true}
-                                    value={valuePayforQ3}
-                                    type={"text"}
-                                    suffix={" บ."}
-                                    onValueChange={(values) => {
-                                      setValuePayforQ3(values.floatValue);
-                                    }}
-                                  />
-                                </Form.Group>
-                              </Col>
-                            </Row>
-                            <Row className="ml-n2 mr-n2">
-                              <Col className="pl-2 pr-2" md={6}>
-                                <InputGroup className="mb-2">
-                                <InputGroup.Prepend className="col p-0">
-                                    <InputGroup.Text class="input-group-text px-2 form-control bg-disabled">ไตรมาส 4</InputGroup.Text>
-                                  </InputGroup.Prepend>
-                                  <InputGroup.Append className="col p-0">
-                                    <InputGroup.Text class="input-group-text px-2 form-control bg-disabled">ต.ค. - ธ.ค.</InputGroup.Text>
-                                  </InputGroup.Append>
-                                </InputGroup>
-                              </Col>
-                              <Col className="pl-2 pr-2" md={6}>
-                                <Form.Group controlId="payfor_q4_amount" className="mb-2">
-                                  <NumberFormat
-                                    className="form-control text-right"
-                                    // id="payfor_q4_amount"
-                                    thousandSeparator={true}
-                                    value={valuePayforQ4}
-                                    type={"text"}
-                                    suffix={" บ."}
-                                    onValueChange={(values) => {
-                                      setValuePayforQ4(values.floatValue);
-                                    }}
-                                  />
-                                </Form.Group>
-                              </Col>
-                            </Row> */}
+                            
                             <Row className="ml-n2 mr-n2">
                               <Col className="pl-2 pr-2" md={6}>
                                 <Form.Group
@@ -544,10 +450,10 @@ const ContractCreateCondition = () => {
                       </Form.Group>
                     </Col>
                   </Row>
-                  <Row>
+    
                     <Col
                       xs={12}
-                      className="footer-bar ctrl-btn d-flex justify-content-end align-items-center pt-2 pb-2 pl-3 pr-3 position-sticky"
+                      className="footer-bar ctrl-btn d-flex justify-content-end align-items-center pt-2 pb-2 pl-0 pr-0 position-sticky"
                       style={{ bottom: "0" }}
                     >
                       <Button
@@ -563,18 +469,17 @@ const ContractCreateCondition = () => {
                         <HiOutlineSave className="mr-2 mt-n1" /> บันทึก
                       </Button>
                     </Col>
-                  </Row>
+
                 </div>
               </TabPanel>
               <TabPanel value={value} index={5}>
-                <h2 className="SubHdIcon">
-                  <i className="mr-2 mb-0">
-                    <BsImage size="1.2rem" />
-                  </i>
-                  <span>
-                    <b className="head">Conditions</b>
-                    <small className="sub-head">% On invoice ยอดซื้อ</small>
-                  </span>
+                <h2 className={`HdCondition ${classes.HeadTab}`}>
+                  <b className="head">% On invoice ยอดซื้อ</b>
+                  <small className="d-block">
+                    <span>Amount 1%</span> |
+                    <span>Total Amount 100,000.00 บาท</span> |
+                    <span>เป้ายอดซื้อ TA 10,000,000.00 บ.</span>
+                  </small>
                 </h2>
               </TabPanel>
             </div>
