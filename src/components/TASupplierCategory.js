@@ -202,7 +202,6 @@ const TASupplierCategory = () => {
                                 enqueueSnackbar('ลบรายการสำเร็จ!', 'secondary');
                                 // alert("ลบรายการสำเร็จ!")
                             }
-                            
                         }}
                     >
                       <BiTrashAlt />

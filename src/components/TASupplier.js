@@ -73,7 +73,7 @@ const TASupplier = () => {
       <Row className="z-supplier">
         <Col md={12} xl={12} className="mb-3">
         <Form.Group className="col-12 col-sm-6 col-md-2 pl-0">
-          <Form.Label>ปีที่ทำใบความต้องการ</Form.Label>
+          <Form.Label className="text-dark">ปีที่ทำใบความต้องการ</Form.Label>
           <Form.Control as="select" className="form-select">
             <option value="2564">2564</option>
             <option value="2565">2565</option>
@@ -85,7 +85,7 @@ const TASupplier = () => {
           <h3 className="topic-line">ข้อมูลคู่ค้า</h3>
           <Form.Group className="mb-3">
             <InputGroup className="mb-0">
-              <Form.Label htmlFor="supplier_title_id" className="col-4 p-0">รหัสผู้ขายสินค้า</Form.Label>
+              <Form.Label htmlFor="supplier_title_id" className="col-4 p-0 text-dark">รหัสผู้ขายสินค้า</Form.Label>
               <InputGroup.Append className="col p-0"><Form.Label htmlFor="supplier_title_name">ชื่อผู้ขายสินค้า</Form.Label></InputGroup.Append>
             </InputGroup>
             <InputGroup className="mb-3">
@@ -129,7 +129,7 @@ const TASupplier = () => {
             </Form.Group>
 
             <Form.Group as={Col}>
-              <Form.Label htmlFor="currentOrader1">
+              <Form.Label htmlFor="currentOrader1" className="text-dark">
                 เป้าหมายการสั่งซื้อปี 2564
               </Form.Label>
               <NumberFormat
@@ -176,14 +176,9 @@ const TASupplier = () => {
             </Form.Group>
 
             <Form.Group as={Col}>
-              <Form.Label htmlFor="currentSale1">
+              <Form.Label htmlFor="currentSale1" className="text-dark">
                 เป้าหมายยอดขายออกปี 2564
               </Form.Label>
-              {/* <Form.Control 
-              type="text" 
-              onChange={handleCalGrowth2}
-              value={valueGrowth2}
-              /> */}
               <NumberFormat
                 className="form-control"
                 id="currentSale1"
