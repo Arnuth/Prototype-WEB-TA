@@ -12,6 +12,7 @@ import "../assets/css/ta-supplier.css";
 import NumberFormat from "react-number-format";
 // import NumberBox from 'devextreme-react/number-box';
 import { HiOutlineSave } from "react-icons/hi";
+import { CgCloseO } from "react-icons/cg";
 import { useSnackbar } from 'notistack';
 
 import TASupplierCategory from "./TASupplierCategory";
@@ -28,9 +29,9 @@ const TASupplier = () => {
     }
   };
 
-  const [supplierCode, setSupplierCode] = useState(null);
-  const [valueGrowth1, setValueGrowth1] = useState(null);
-  const [valueGrowth2, setValueGrowth2] = useState(null);
+  const [supplierCode, setSupplierCode] = useState("");
+  const [valueGrowth1, setValueGrowth1] = useState("");
+  const [valueGrowth2, setValueGrowth2] = useState("");
   const yearOrder = 1000000;
   const yearSale = 1000000;
   const [valueCalGrowth1, setValueCalGrowth1] = useState(0);
@@ -71,7 +72,7 @@ const TASupplier = () => {
     <>
       <Row className="z-supplier">
         <Col md={12} xl={12} className="mb-3">
-        <Form.Group controlId="exampleForm.ControlSelect1" className="col-12 col-sm-6 col-md-2 pl-0">
+        <Form.Group className="col-12 col-sm-6 col-md-2 pl-0">
           <Form.Label>ปีที่ทำใบความต้องการ</Form.Label>
           <Form.Control as="select" className="form-select">
             <option value="2564">2564</option>
@@ -82,7 +83,7 @@ const TASupplier = () => {
         </Col>
         <Col md={6} xl>
           <h3 className="topic-line">ข้อมูลคู่ค้า</h3>
-          <Form.Group className="mb-3" controlId="supplier">
+          <Form.Group className="mb-3">
             <InputGroup className="mb-0">
               <Form.Label htmlFor="supplier_title_id" className="col-4 p-0">รหัสผู้ขายสินค้า</Form.Label>
               <InputGroup.Append className="col p-0"><Form.Label htmlFor="supplier_title_name">ชื่อผู้ขายสินค้า</Form.Label></InputGroup.Append>
@@ -99,25 +100,26 @@ const TASupplier = () => {
               <InputGroup.Append className="col p-0">
                 
                 <InputGroup.Text id="basic-addon3" className="bg-disabled d-block w-100 text-left">
-                  บริษัท เนสท์เล่ (ไทย) จำกัด
+                บริษัท เอฟแอนด์เอ็น แดรี่ส์(ประเทศไทย) จำกัด
                 </InputGroup.Text>
               </InputGroup.Append>
             </InputGroup>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="managerBuyer">
+          <Form.Group className="mb-3">
             <Form.Label htmlFor="managerBuyer">ผู้จัดการจัดซื้อ</Form.Label>
-            <Form.Control type="text" value="ศิริวัฒนาภา ปฏิมาประกร" disabled />
+            <Form.Control type="text" id="managerBuyer" value="ศิริวัฒนาภา ปฏิมาประกร" disabled />
           </Form.Group>
         </Col>
         <Col xl={1} className="d-none d-xl-block space"></Col>
         <Col md={6} xl>
           <h3 className="topic-line">ยอดและเป้าหมาย</h3>
           <Form.Row>
-            <Form.Group as={Col} controlId="yearOrder1">
-              <Form.Label htmlFor="yearOrder1">ยอดสั่งซื้อปี 2562</Form.Label>
+            <Form.Group as={Col}>
+              <Form.Label htmlFor="yearOrder1">ยอดสั่งซื้อปี 2563</Form.Label>
               <NumberFormat
                 className="form-control"
+                id="yearOrder1"
                 value={yearOrder}
                 thousandSeparator={true}
                 suffix={' บ.'}
@@ -126,13 +128,15 @@ const TASupplier = () => {
               {/* prefix={'฿'} */}
             </Form.Group>
 
-            <Form.Group as={Col} controlId="currentOrader1">
+            <Form.Group as={Col}>
               <Form.Label htmlFor="currentOrader1">
-                เป้าหมายการสั่งซื้อปี 2563
+                เป้าหมายการสั่งซื้อปี 2564
               </Form.Label>
               <NumberFormat
                 className="form-control"
+                id="currentOrader1"
                 thousandSeparator={true}
+                placeholder="เป้ายอดสั่งซื้อสินค้า  บ."
                 value={valueGrowth1}
                 type={"text"}
                 suffix={' บ.'}
@@ -147,7 +151,7 @@ const TASupplier = () => {
                /> */}
             </Form.Group>
 
-            <Form.Group as={Col} md={3} controlId="growth1">
+            <Form.Group as={Col} md={3}>
               <Form.Label htmlFor="growth1">Growth</Form.Label>
               {/* <Form.Control type="text" disabled /> */}
               <div className="display-growth">
@@ -158,11 +162,12 @@ const TASupplier = () => {
           </Form.Row>
 
           <Form.Row>
-            <Form.Group as={Col} controlId="yearSale1">
-              <Form.Label htmlFor="yearSale1">ยอดขายออกปี 2562</Form.Label>
+            <Form.Group as={Col}>
+              <Form.Label htmlFor="yearSale1">ยอดขายออกปี 2563</Form.Label>
               {/* <Form.Control type="text" value={yearSale} disabled /> */}
               <NumberFormat
                 className="form-control"
+                id="yearSale1"
                 value={yearSale}
                 thousandSeparator={true}
                 suffix={' บ.'}
@@ -170,9 +175,9 @@ const TASupplier = () => {
               />
             </Form.Group>
 
-            <Form.Group as={Col} controlId="currentSale1">
+            <Form.Group as={Col}>
               <Form.Label htmlFor="currentSale1">
-                เป้าหมายยอดขายออกปี 2563
+                เป้าหมายยอดขายออกปี 2564
               </Form.Label>
               {/* <Form.Control 
               type="text" 
@@ -181,8 +186,10 @@ const TASupplier = () => {
               /> */}
               <NumberFormat
                 className="form-control"
+                id="currentSale1"
                 thousandSeparator={true}
                 // onChange={handleCalGrowth2}
+                placeholder="เป้ายอดขายสินค้า  บ."
                 value={valueGrowth2}
                 type={"text"}
                 suffix={' บ.'}
@@ -192,7 +199,7 @@ const TASupplier = () => {
               />
             </Form.Group>
 
-            <Form.Group as={Col} md={3} controlId="growth2">
+            <Form.Group as={Col} md={3}>
               <Form.Label htmlFor="growth2">Growth</Form.Label>
               {/* <Form.Control type="text" disabled /> */}
               <div className="display-growth">
@@ -214,14 +221,15 @@ const TASupplier = () => {
         style={{ bottom: "0" }}
       >
         <Button
-          variant="secondary"
+          variant="outline-secondary"
           onClick={() => {
             eventFire(document.getElementById("btn-supplier"), "click");
           }}
         >
-          Cancel
+          <CgCloseO className="mr-2 mt-n1" />
+          ยกเลิก
         </Button>
-        <Button variant="warning ml-2" onClick={handleClickVariant('success')}>Save the supplier <HiOutlineSave /></Button>
+        <Button variant="warning ml-2" onClick={handleClickVariant('success')}><HiOutlineSave className="mr-2 mt-n1" /> บันทึก</Button>
       </Col>
     </>
   );

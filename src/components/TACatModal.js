@@ -23,11 +23,12 @@ const TACatModal = (props, {toggle}) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton className="border-bottom-0">
+      <Modal.Header className="topic-line pb-1 modal-header mx-2 mb-0">
         <Modal.Title>หมวดหมู่สินค้า (Category)</Modal.Title>
       </Modal.Header>
-      <Modal.Body className="wrap-accordion text-center p-2">
-        <Table responsive hover className="mb-0">
+      <Modal.Body className="wrap-accordion px-2 pt-0 pb-0">
+        <div className="z-supplier-tb">
+        <Table responsive hover className="mb-0 tb-supplier-cat">
           <thead>
             <tr className="th-light">
               <th width="50"></th>
@@ -65,6 +66,7 @@ const TACatModal = (props, {toggle}) => {
               ))}
           </tbody>
         </Table>
+        </div>
       </Modal.Body>
       <Modal.Footer className="ctrl-btn border-top-0">
         <Button

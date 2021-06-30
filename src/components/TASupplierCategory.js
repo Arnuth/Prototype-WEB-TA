@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Button, Table, Modal } from "react-bootstrap";
 import { useSnackbar } from 'notistack';
 import "../assets/css/ta-supplier.css";
 import { BiTrashAlt } from "react-icons/bi";
-import { HiPlus, HiOutlineSave } from "react-icons/hi";
+import { HiPlus } from "react-icons/hi";
+import { CgCloseO } from "react-icons/cg";
 // import TACatModal from "./TACatModal";
 
 const TASupplierCategory = () => {
   //modal
   const [modalShow, setModalShow] = React.useState(false);
   const { enqueueSnackbar } = useSnackbar();
-  const handleClickVariant = (variant) => () => {
-    // variant could be success, error, warning, info, or default
-    enqueueSnackbar('เพิ่มรายการสำเร็จ!', { variant });
-  };
   //   const [modalData, setModalData] = React.useState({});
 
   const [checkBoxList, setCheckBoxList] = React.useState({
@@ -94,28 +91,28 @@ const TASupplierCategory = () => {
         name: "Category Name 11",
         current: "6.99%",
         expected: "6.99%",
-        isChecked: false,
+        isChecked: true,
       },
       {
         id: 12,
         name: "Category Name 12",
         current: "5.99%",
         expected: "5.99%",
-        isChecked: false,
+        isChecked: true,
       },
       {
         id: 13,
         name: "Category Name 13",
         current: "9.99%",
         expected: "9.99%",
-        isChecked: false,
+        isChecked: true,
       },
       {
         id: 14,
         name: "Category Name 14",
         current: "8.99%",
         expected: "8.99%",
-        isChecked: false,
+        isChecked: true,
       },
     ],
   });
@@ -139,21 +136,17 @@ const TASupplierCategory = () => {
     enqueueSnackbar('เพิ่มรายการสำเร็จ!', 'success')
   };
 
-  const addDataModal = (h) => {
-    // console.log(p)
-    const Content = {
-      code: h.code,
-      name: h.h_name,
-    };
-    //call action
-    // setModalData(Content);
-  };
 
   return (
     <>
+      <h3 className="topic-line">
+        หมวดหมู่สินค้า (Category)
+      </h3>
       <div className="card p-3 mb-4">
-        <h3 className="topic-line">
-          หมวดหมู่สินค้า (Category)
+        <h3 className="font-weight-semibold h6">
+          <span className="text-dark ">บริษัท เอฟแอนด์เอ็น แดรี่ส์(ประเทศไทย) จำกัด</span>
+          <span className="text-gray ml-2 font-weight-lighter">{checkBoxList.list.length} รายการ</span>
+          {checkBoxList.list.filter((item) => item.isChecked === false).length > 0 ?
           <Button
             variant="warning"
             size="sm"
@@ -165,6 +158,7 @@ const TASupplierCategory = () => {
           >
             <HiPlus size="1.2rem" color="#404040" />
           </Button>
+          : null }
         </h3>
         <Table responsive>
           <thead>
@@ -232,7 +226,8 @@ const TASupplierCategory = () => {
         <Modal.Header className="topic-line pb-1 modal-header mx-2 mb-0"> {/*closeButton */}
           <Modal.Title className="mb-0 h6">หมวดหมู่สินค้า (Category)</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="text-center px-2 pt-0 pb-0">
+        <Modal.Body className="wrap-accordion px-2 pt-0 pb-0">
+        <div className="z-supplier-tb">
           <Table responsive hover className="mb-0 tb-supplier-cat">
             <thead>
               <tr className="th-light">
@@ -264,21 +259,23 @@ const TASupplierCategory = () => {
                         />
                       </div>
                     </td>
-                    <td className="text-left"><label htmlFor={`chk${item.id}`} className="mb-0">{item.name}</label></td>
+                    <td className="text-left"><label htmlFor={`chk${item.id}`} className="mb-0" style={{cursor:'pointer'}}>{item.name}</label></td>
                     <td className="text-right">{item.current}</td>
                     <td className="text-right">{item.expected}</td>
                   </tr>
                 ))}
             </tbody>
           </Table>
+          </div>
         </Modal.Body>
         <Modal.Footer className="ctrl-btn border-top-0">
           <Button
-            variant="secondary"
+            variant="outline-secondary"
             className="rounded-pill"
             onClick={() => setModalShow(false)}
           >
-            Close
+            <CgCloseO className="mr-2 mt-n1" />
+            ปิด
           </Button>
           {/* <Button
             variant="warning ml-2"

@@ -7,7 +7,7 @@ import {
   Card,
   Button,
 } from "react-bootstrap";
-import { FaRegFileImage } from "react-icons/fa";
+// import { FaRegFileImage } from "react-icons/fa";
 import { RiFileList3Line } from "react-icons/ri";
 import { BiCommentDots } from "react-icons/bi";
 import { ImAttachment } from "react-icons/im";

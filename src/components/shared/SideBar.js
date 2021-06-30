@@ -128,7 +128,7 @@ const SideBar = ({ toggle, isOpen }) => {
             </Accordion.Collapse>
           </Accordion>
         </Nav.Item> */}
-        <Nav.Item className="border-top border-secondary mt-2 pt-2">
+        {/* <Nav.Item className="border-top border-secondary mt-2 pt-2">
           <NavLink className="nav-link" to="/login">
             <FaBriefcase className="mr-3" />
             <span>Login</span>
@@ -140,7 +140,7 @@ const SideBar = ({ toggle, isOpen }) => {
             <FaLock className="mr-3" />
             <span>Forgot Password</span>
           </NavLink>
-        </Nav.Item>
+        </Nav.Item> */}
       </Nav>
     </div>
   );
