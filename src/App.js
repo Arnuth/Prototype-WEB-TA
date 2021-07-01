@@ -7,7 +7,8 @@ import NavBar from "./components/shared/Navbar";
 import { Container } from "react-bootstrap";
 import classNames from "classnames";
 import AppRoutes from "./AppRoutes";
-import { SnackbarProvider } from 'notistack';
+// import { SnackbarProvider } from 'notistack';
+import { ToastProvider } from 'react-toast-notifications';
 
 const App = () => {
   // Moblie first
@@ -80,7 +81,11 @@ const App = () => {
 
 
   return (
-    <SnackbarProvider maxSnack={3}>
+    <ToastProvider
+      placement="bottom-left"
+      autoDismiss
+      autoDismissTimeout={4000}
+    >
     <Router>
       <div className="App">
         {!isFullPageLayout && <NavBar toggle={toggle} />}
@@ -95,7 +100,7 @@ const App = () => {
         </div>
       </div>
     </Router>
-    </SnackbarProvider>
+    </ToastProvider>
   );
 };
 

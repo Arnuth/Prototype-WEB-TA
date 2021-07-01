@@ -4,7 +4,7 @@ import { Button, Table, Modal } from "react-bootstrap";
 import { useToasts } from 'react-toast-notifications'
 import "../assets/css/ta-supplier.css";
 import { BiTrashAlt } from "react-icons/bi";
-import { HiPlus, HiOutlineSave } from "react-icons/hi";
+import { HiPlus } from "react-icons/hi";
 import { CgCloseO } from "react-icons/cg";
 // import TACatModal from "./TACatModal";
 
@@ -119,22 +119,14 @@ const TASupplierCategory = () => {
     ],
   });
 
-  const [updateCheckBoxList, setUpdateCheckBoxList] = React.useState(checkBoxList);
-  // console.log(checkBoxList)
-  // console.log(updateCheckBoxList)
-
   const handleCheckChange = (e) => {
     let itemName = e.target.name;
     let checked = e.target.checked;
-    setUpdateCheckBoxList((prevState) => {
+    setCheckBoxList((prevState) => {
       let { list, allChecked } = prevState;
       if (itemName === "checkAll") {
         allChecked = checked;
-        if(allChecked===false) {
-
-        } else {
-          list = list/*.filter((item) => item.isChecked === false)*/.map((item) => ({ ...item, isChecked: checked }));
-        }
+        list = list.map((item) => ({ ...item, isChecked: checked }));
       } else {
         list = list.map((item) =>
           item.name === itemName ? { ...item, isChecked: checked } : item
@@ -144,36 +136,9 @@ const TASupplierCategory = () => {
       return { list, allChecked };
     });
     // enqueueSnackbar('ทำการเรียบร้อยค่ะ!', 'success')
-    // addToast('ทำการเพิ่มรายการเรียบร้อยค่ะ', { appearance: 'success' })
+    addToast('ทำการเพิ่มรายการเรียบร้อยค่ะ', { appearance: 'success' })
   };
 
-  // console.log(`Old:`, checkBoxList.list)
-  // console.log(`New:`, updateCheckBoxList.list)
-
-  
-
-  React.useEffect(() => {
-    setUpdateCheckBoxList(checkBoxList);
-  }, [checkBoxList]);
-
-  const handleRemove = (vid) => {
-    setCheckBoxList((prevState) => {
-      let { list, allChecked } = prevState;
-        list = list.map((chk) =>
-        chk.id === vid ? { ...chk, isChecked: false } : chk
-        );
-      return { list, allChecked };
-    });
-    
-    // setUpdateCheckBoxList(checkBoxList);
-    addToast('ลบรายการสำเร็จ', { appearance: 'success' })
-  }
-
-  const handleRestore = () => {
-    setCheckBoxList(updateCheckBoxList);
-    setModalShow(false);
-    addToast('ทำการเพิ่มรายการสำเร็จ', { appearance: 'success' })
-  }
 
   return (
     <>
@@ -191,11 +156,7 @@ const TASupplierCategory = () => {
             className="p-0 rounded-pill ml-2 d-inline-flex align-items-center"
             onClick={() => {
               setModalShow(true);
-              // setUpdateCheckBoxList((prevState) => {
-              //   let { allChecked } = prevState;
-              //   allChecked = false;
-              //   return { allChecked };
-              // });
+              // addDataModal(h)
             }}
           >
             <HiPlus size="1.2rem" color="#404040" />
@@ -234,16 +195,14 @@ const TASupplierCategory = () => {
                             const isConfirm = window.confirm('ต้องการลบข้อมูล ' + item.name + '?')
                             if (isConfirm === true) {
                                 // const resp = await axios.delete(`https://api.codingthailand.com/api/category/${c.id}`)
-                                handleRemove(item.id)
-                                // setCheckBoxList((prevState) => {
-                                //     let { list, allChecked } = prevState;
-                                //       list = list.map((chk) =>
-                                //       chk.id === item.id ? { ...chk, isChecked: false } : chk
-                                //       );
-                                //     return { list, allChecked };
-                                //   });
-                                
-                                // addToast('ลบรายการสำเร็จ', { appearance: 'success' })
+                                setCheckBoxList((prevState) => {
+                                    let { list, allChecked } = prevState;
+                                      list = list.map((chk) =>
+                                      chk.id === item.id ? { ...chk, isChecked: false } : chk
+                                      );
+                                    return { list, allChecked };
+                                  });
+                                  addToast('ลบรายการสำเร็จ', { appearance: 'success' })
                                 // enqueueSnackbar('ลบรายการสำเร็จ!', 'secondary');
                                 // alert("ลบรายการสำเร็จ!")
                             }
@@ -275,17 +234,7 @@ const TASupplierCategory = () => {
           <Table responsive hover className="mb-0 tb-supplier-cat">
             <thead>
               <tr className="th-light">
-                <th width="50">
-                <div className="form-check">
-                  <input
-                    type="checkbox"
-                    className="form-check-input master-chk"
-                    name="checkAll"
-                    checked={updateCheckBoxList.allChecked}
-                    onChange={handleCheckChange}
-                  />
-                  </div>
-                </th>
+                <th width="50"></th>
                 <th className="text-left">Category</th>
                 <th width="20%" className="text-right">
                   Current %GP
@@ -298,7 +247,7 @@ const TASupplierCategory = () => {
             <tbody>
               {checkBoxList.list
                 .filter((item) => item.isChecked === false)
-                .map((item, index) => (
+                .map((item) => (
                   <tr key={item.id}>
                     <td className="text-center">
                       <div className="form-check">
@@ -307,8 +256,8 @@ const TASupplierCategory = () => {
                           className="form-check-input chd-chk"
                           id={`chk${item.id}`}
                           name={item.name}
-                          // value={item.name}
-                          checked={updateCheckBoxList.list[index].isChecked}
+                          value={item.name}
+                          checked={item.isChecked}
                           onChange={handleCheckChange}
                         />
                       </div>
@@ -329,16 +278,15 @@ const TASupplierCategory = () => {
             onClick={() => setModalShow(false)}
           >
             <CgCloseO className="mr-2 mt-n1" />
-            ยกเลิก
+            ปิด
           </Button>
-          <Button
+          {/* <Button
             variant="warning ml-2"
             className="rounded-pill"
-            // onClick={() => setModalShow(false)}
-            onClick={handleRestore}
+            onClick={() => setModalShow(false)}
           >
-            <HiOutlineSave /> Restore 
-          </Button>
+            Restore <HiOutlineSave />
+          </Button> */}
         </Modal.Footer>
       </Modal>
 

@@ -79,10 +79,10 @@ a:focus {
   padding-left: 1.5em;
   margin-bottom: .125rem;
 }
-.form-check-input:checked[type="checkbox"],.tb-supplier-cat .form-check:hover>.form-check-input,.tb-supplier-cat tr:hover .form-check-input  {
+.form-check-input:checked[type="checkbox"]/*,.tb-supplier-cat .form-check:hover>.form-check-input,.tb-supplier-cat tr:hover .form-check-input*/  {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
 }
-.form-check-input:checked,.tb-supplier-cat .form-check:hover>.form-check-input,.tb-supplier-cat tr:hover .form-check-input {
+.form-check-input:checked/*,.tb-supplier-cat .form-check:hover>.form-check-input,.tb-supplier-cat tr:hover .form-check-input*/ {
   background-color: #0d6efd;
   border-color: #0d6efd;
 }
@@ -544,3 +544,4 @@ a:focus {
 .App table.dataTable.display tbody td{border-color: #ECECEC;}
 .App table.dataTable.display tbody tr:hover > .sorting_1,.App table.dataTable.order-column.hover tbody tr:hover > .sorting_1,.App table.dataTable.display tbody tr.odd:hover{background-color: #f6f6f6;}
 .search #tableDisplay_filter{opacity: 0; visibility: hidden; position: absolute;}
+.App table.dataTable.display tbody tr:first-child td.dataTables_empty{font-size: 1.2rem; padding-top: 3rem; padding-bottom: 3rem;}

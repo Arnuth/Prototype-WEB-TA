@@ -13,7 +13,8 @@ import NumberFormat from "react-number-format";
 // import NumberBox from 'devextreme-react/number-box';
 import { HiOutlineSave } from "react-icons/hi";
 import { CgCloseO } from "react-icons/cg";
-import { useSnackbar } from 'notistack';
+// import { useSnackbar } from 'notistack';
+import { useToasts } from 'react-toast-notifications'
 
 import TASupplierCategory from "./TASupplierCategory";
 
@@ -32,6 +33,7 @@ const TASupplier = () => {
   const [supplierCode, setSupplierCode] = useState("");
   const [valueGrowth1, setValueGrowth1] = useState("");
   const [valueGrowth2, setValueGrowth2] = useState("");
+  const [freeText, setFreeText] = useState("ศิริวัฒนาภา ปฏิมาประกร");
   const yearOrder = 1000000;
   const yearSale = 1000000;
   const [valueCalGrowth1, setValueCalGrowth1] = useState(0);
@@ -48,11 +50,13 @@ const TASupplier = () => {
   //   setValueGrowth2(event.target.value);
   // }
 
-  const { enqueueSnackbar } = useSnackbar();
-  const handleClickVariant = (variant) => () => {
-    // variant could be success, error, warning, info, or default
-    enqueueSnackbar('ทำการบันทึกเรียบร้อยค่ะ!', { variant });
-  };
+  const { addToast } = useToasts()
+
+  // const { enqueueSnackbar } = useSnackbar();
+  // const handleClickVariant = (variant) => () => {
+  //   // variant could be success, error, warning, info, or default
+  //   enqueueSnackbar('ทำการบันทึกเรียบร้อยค่ะ!', { variant });
+  // };
 
   useEffect(() => {
     let valuePercent = (
@@ -108,7 +112,16 @@ const TASupplier = () => {
 
           <Form.Group className="mb-3">
             <Form.Label htmlFor="managerBuyer">ผู้จัดการจัดซื้อ</Form.Label>
-            <Form.Control type="text" id="managerBuyer" value="ศิริวัฒนาภา ปฏิมาประกร" disabled />
+            <Form.Control 
+            type="text" 
+            id="managerBuyer" 
+            // value="ศิริวัฒนาภา ปฏิมาประกร" 
+            value={freeText}
+            onChange={(values) => {
+              setFreeText(values.floatValue);
+            }}
+            placeholder="กรอกชื่อผู้จัดการจัดซื้อ"
+            />
           </Form.Group>
         </Col>
         <Col xl={1} className="d-none d-xl-block space"></Col>
@@ -224,7 +237,12 @@ const TASupplier = () => {
           <CgCloseO className="mr-2 mt-n1" />
           ยกเลิก
         </Button>
-        <Button variant="warning ml-2" onClick={handleClickVariant('success')}><HiOutlineSave className="mr-2 mt-n1" /> บันทึก</Button>
+        <Button variant="warning ml-2" 
+        onClick={
+          () => {addToast('ทำการบันทึกเรียบร้อยค่ะ', { appearance: 'success', autoDismiss: false, })}
+          // handleClickVariant('success')
+        }
+        ><HiOutlineSave className="mr-2 mt-n1" /> บันทึก</Button>
       </Col>
     </>
   );

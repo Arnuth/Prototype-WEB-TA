@@ -5,6 +5,7 @@
   /* color: #212529; */
   background-color: #ffe6b5;
 }
+.wrap-accordion .z-supplier-tb .table thead .th-light th .form-check .form-check-input{top: 6px;margin-left: calc(-1.5rem + 4px);}
 .display-growth{position: relative;}
 .display-growth .progress{height: 46px;background-color: #f1f1f1;}
 .display-growth .progress .progress-bar{background: #f0ac76;

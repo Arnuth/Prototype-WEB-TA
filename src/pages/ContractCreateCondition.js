@@ -105,6 +105,7 @@ const ContractCreateCondition = () => {
   const [valuePayforQ2, setValuePayforQ2] = useState("");
   const [valuePayforQ3, setValuePayforQ3] = useState("");
   const [valuePayforQ4, setValuePayforQ4] = useState("");
+  const [valuePayforM, setValuePayforM] = useState("");
   const [valuePayforSum, setValuePayforSum] = useState("");
 
   const handleChangePeriod = (event) => {
@@ -122,19 +123,21 @@ const ContractCreateCondition = () => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
-  console.log(valuePayforQ1 , valuePayforQ2 , valuePayforQ3, valuePayforQ4)
+  // console.log(valuePayforQ1 , valuePayforQ2 , valuePayforQ3, valuePayforQ4)
 
   function calPayforSum() {
     let sumQuarter = valuePayforQ1 + valuePayforQ2 + valuePayforQ3 + valuePayforQ4;
     setValuePayforSum(sumQuarter);
   }
   useEffect(() => {
-    let quarter = parseInt(valuePayforAmount / 4) ;
+    let quarter = parseInt(valuePayforAmount / 4);
+    let month = parseInt(valuePayforAmount / 12);
     
     setValuePayforQ1(quarter);
     setValuePayforQ2(quarter);
     setValuePayforQ3(quarter);
     setValuePayforQ4(quarter);
+    setValuePayforM(month);
     setValuePayforSum(valuePayforAmount);
 
   }, [valuePayforAmount]);
@@ -301,6 +304,112 @@ const ContractCreateCondition = () => {
                             <Row className="ml-n2 mr-n2">
                               <Col className="pl-2 pr-2" md={6}>
                                 <Form.Label className="label-title mb-1">
+                                  รายเดือน
+                                </Form.Label>
+                              </Col>
+                              <Col className="pl-2 pr-2" md={6}>
+                                <Form.Label className="label-title mb-1">
+                                  เรียกเก็บ
+                                </Form.Label>
+                              </Col>
+                            </Row>
+                            <Row className="ml-n2 mr-n2">
+                              <Col className="pl-2 pr-2" md={6}>
+                                <Form.Group
+                                  className="form-control bg-disabled d-flex align-items-center mb-2"
+                                  controlId="equalCheckbox"
+                                >
+                                  <Form.Check
+                                    className="mb-0"
+                                    type="checkbox"
+                                    label="เท่ากันทุกเดือน"
+                                    checked={state.checkedQuarter}
+                                    onChange={handleCheckChange}
+                                    name="checkedQuarter"
+                                  />
+                                </Form.Group>
+                              </Col>
+                              <Col className="pl-2 pr-2" md={6}>
+                                <Form.Group controlId="payfor_equalamount" className="mb-2">
+                                  <NumberFormat
+                                    className="form-control text-right"
+                                    disabled={!state.checkedQuarter}
+                                    readOnly
+                                    className={`form-control text-right
+                                    ${state.checkedQuarter === true ? 'bg-white' : 'bg-disabled'}
+                                    `}
+                                    // id="payfor_equalamount"
+                                    thousandSeparator={true}
+                                    placeholder="ยอดเรียกเก็บ บ."
+                                    value={valuePayforAmount / 12}
+                                    type={"text"}
+                                    suffix={" บ."}
+                                  />
+                                </Form.Group>
+                              </Col>
+                            </Row>
+                            {Array.from({ length: 12 }).map((_, index) => (
+                            <Row className="ml-n2 mr-n2" key={index}>
+                              <Col className="pl-2 pr-2" md={6}>
+                                <InputGroup className="mb-2">
+
+                                    <InputGroup.Text class="input-group-text px-2 form-control bg-disabled">
+                                      {
+                                      index===0 ? "ม.ค." :
+                                      index===1 ? "ก.พ." :
+                                      index===2 ? "มี.ค." :
+                                      index===3 ? "เม.ย." :
+                                      index===4 ? "พ.ค." :
+                                      index===5 ? "มิ.ย." :
+                                      index===6 ? "ก.ค." :
+                                      index===7 ? "ส.ค." :
+                                      index===8 ? "ก.ย." :
+                                      index===9 ? "ต.ค." :
+                                      index===10 ? "พ.ย." :
+                                      index===11 && "ธ.ค."
+                                      }
+                                    </InputGroup.Text>
+        
+                                </InputGroup>
+                              </Col>
+                              <Col className="pl-2 pr-2" md={6}>
+                                <Form.Group controlId={`payfor_q${index+1}_amount`} className="mb-2">
+                                  <NumberFormat
+                                    className={`form-control text-right
+                                    ${state.checkedQuarter === true ? 'bg-disabled' : 'enable'}
+                                    `}
+                                    disabled={state.checkedQuarter}
+                                    thousandSeparator={true}
+                                    value={ valuePayforM
+                                      // index===0 ? valuePayforM :
+                                      // index===1 ? valuePayforM :
+                                      // index===2 ? valuePayforM :
+                                      // index===3 ? valuePayforM : null
+                                    }
+                                    type={"text"}
+                                    suffix={" บ."}
+                                    onValueChange={(values) => {
+                                      index===0 ? setValuePayforQ1(values.floatValue) :
+                                      index===1 ? setValuePayforQ2(values.floatValue) :
+                                      index===2 ? setValuePayforQ3(values.floatValue) :
+                                      index===3 && setValuePayforQ4(values.floatValue)
+
+                                    }}
+                                  />
+                                </Form.Group>
+                              </Col>
+                            </Row>
+                            ))}
+                            
+                            
+                          </div>
+                        )}
+
+                        {period === "2" && (
+                          <div className="card p-3">
+                          <Row className="ml-n2 mr-n2">
+                              <Col className="pl-2 pr-2" md={6}>
+                                <Form.Label className="label-title mb-1">
                                   ไตรมาส
                                 </Form.Label>
                               </Col>
@@ -338,7 +447,7 @@ const ContractCreateCondition = () => {
                                     // id="payfor_equalamount"
                                     thousandSeparator={true}
                                     placeholder="ยอดเรียกเก็บ บ."
-                                    value={valuePayforAmount / 4}
+                                    value={valuePayforAmount / 12}
                                     type={"text"}
                                     suffix={" บ."}
                                   />
@@ -417,10 +526,6 @@ const ContractCreateCondition = () => {
                               </Col>
                             </Row>
                           </div>
-                        )}
-
-                        {period === "2" && (
-                          <div className="card p-3">รายไตรมาส</div>
                         )}
 
                         {period === "3" && (

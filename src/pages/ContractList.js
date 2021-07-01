@@ -4,6 +4,7 @@ import { Breadcrumb, Row, Col ,Table, Button, Form, InputGroup, FormControl } fr
 import { VscOpenPreview } from "react-icons/vsc";
 import { HiOutlineSave } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
+import { useToasts } from 'react-toast-notifications'
 
 import $ from "jquery";
 import "datatables.net";
@@ -15,6 +16,7 @@ import "datatables.net-dt/css/jquery.dataTables.css";
 
 const ContractList = () => {
   
+  const { addToast } = useToasts()
   
   const dataSet = [
     { vid:"100043", vname:"บริษัท เนสท์เล่ (ไทย) จำกัด", year:"2564", manager:"ศิริวัฒนาภา ปฏิมาประกร", status:"เสร็จแล้ว", docNum:"RD001/64" },
@@ -51,6 +53,9 @@ const ContractList = () => {
   const syncTable = () => {
     $(".display").DataTable().destroy();
     var dataTable = $(".display").DataTable({
+      "language": {
+        "zeroRecords": "ไม่พบข้อมูล!",
+        },
       lengthChange: false,
       iDisplayLength: 10,
       //   stateSave: true,
@@ -240,7 +245,11 @@ const ContractList = () => {
                               variant="light"
                               size="sm"
                               className="pt-0 pb-0 pl-1 pr-1"
-                              onClick={() => {alert('coming soon')}}>
+                              onClick={
+                                // () => {alert('coming soon')}
+                                () => {addToast('coming soon', { placement : 'bottom-center', appearance: 'info', autoDismiss: false,})}
+                                
+                              }>
                                 <VscOpenPreview />
                               </Button>
                             </td>
