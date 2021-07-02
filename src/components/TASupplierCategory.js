@@ -131,7 +131,8 @@ const TASupplierCategory = () => {
       if (itemName === "checkAll") {
         allChecked = checked;
         if(allChecked===false) {
-
+          // list = list.filter((i) => i.isChecked === false).map((item) => ({ ...item, isChecked: checked }));
+          console.log(list = list.filter((i) => i.isChecked === false))
         } else {
           list = list/*.filter((item) => item.isChecked === false)*/.map((item) => ({ ...item, isChecked: checked }));
         }

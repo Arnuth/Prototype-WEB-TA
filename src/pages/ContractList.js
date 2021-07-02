@@ -17,6 +17,7 @@ import "datatables.net-dt/css/jquery.dataTables.css";
 const ContractList = () => {
   
   const { addToast } = useToasts()
+  // const history = useHistory()
   
   const dataSet = [
     { vid:"100043", vname:"บริษัท เนสท์เล่ (ไทย) จำกัด", year:"2564", manager:"ศิริวัฒนาภา ปฏิมาประกร", status:"เสร็จแล้ว", docNum:"RD001/64" },
@@ -75,7 +76,7 @@ const ContractList = () => {
           // "visible": false,
           "searchable": false
         },
-        { targets: [0, 7], orderable: false},
+        { targets: [0, 3, 7], orderable: false},
         // { targets: '_all', orderable: false }
     ],
     });
@@ -101,7 +102,7 @@ const ContractList = () => {
     //   }
     // };
 
-    syncTable();
+    // syncTable();
 
     return () => {
     };
@@ -122,6 +123,7 @@ const ContractList = () => {
     // filter==="success" ? setDataFilter(dataSuccess) :
     // filter==="draft" ? setDataFilter(dataDraft) :
     // filter==="pending" && setDataFilter(dataPending) 
+    // history.go(0)
   };
 
   useEffect(() => {
@@ -137,6 +139,8 @@ const ContractList = () => {
     // ,1000);
     // setTimeout( syncTable() ,1000);
     // $(".display").DataTable().reload();
+    
+    syncTable()
     
   }, [filter]);
 
@@ -172,28 +176,21 @@ const ContractList = () => {
                 </Col>
                 <Col className="pl-0" md>
                   <InputGroup className="col p-0">
+                    <InputGroup.Prepend>
+                      <InputGroup.Text className="bg-white pr-0"><BiSearch size="1.3rem" color="#B8BCCA" className="mr-2" /></InputGroup.Text>
+                    </InputGroup.Prepend>
                     <FormControl
+                      className="pl-0 border-left-0"
                       placeholder="รหัสผู้ขายสินค้า / ชื่อผู้ขายสินค้า / ผู้จัดทำเอกสาร"
                       aria-label="รหัสผู้ขายสินค้า / ชื่อผู้ขายสินค้า / ผู้จัดทำเอกสาร"
                       aria-describedby="customSearch"
                       id="text-search"
                     />
-                    <InputGroup.Append>
+                    {/* <InputGroup.Append>
                       <Button 
                         variant="light"
-                      //   onClick={
-                      //     // $("#tableDisplay_filter label").click()
-                      //   //   () => {
-                      //   //   eventFire(document.getElementById( 'tableDisplay_filter' ).getElementsByTagName( 'label' )[0], "click");
-                      //   // }
-                      // }
                       > <BiSearch className="mr-2" /> ค้นหา
                       </Button>
-                    </InputGroup.Append>
-                    {/* <InputGroup.Append>
-                      <InputGroup.Text id="customSearch">
-                        <BiSearch className="mr-3" /> ค้นหา
-                      </InputGroup.Text>
                     </InputGroup.Append> */}
                   </InputGroup>
                 </Col>

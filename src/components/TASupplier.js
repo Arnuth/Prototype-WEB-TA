@@ -19,6 +19,7 @@ import { useToasts } from 'react-toast-notifications'
 import TASupplierCategory from "./TASupplierCategory";
 
 const TASupplier = () => {
+  const { addToast } = useToasts()
   //click call id
   const eventFire = (el, etype) => {
     if (el.fireEvent) {
@@ -50,7 +51,6 @@ const TASupplier = () => {
   //   setValueGrowth2(event.target.value);
   // }
 
-  const { addToast } = useToasts()
 
   // const { enqueueSnackbar } = useSnackbar();
   // const handleClickVariant = (variant) => () => {

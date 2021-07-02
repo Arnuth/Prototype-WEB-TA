@@ -1,9 +1,5 @@
 import React from "react";
-import { 
-  FaHome,
-  FaBriefcase,
-  FaLock,
- } from "react-icons/fa";
+import {FaHome} from "react-icons/fa";
 import {CgClose} from "react-icons/cg";
 import {BsImage} from "react-icons/bs";
 import {FiChevronLeft,FiChevronRight} from "react-icons/fi";

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Breadcrumb, Button, Row, Col, Form, InputGroup, FormControl } from "react-bootstrap";
+import { Breadcrumb, Button, Row, Col, Form, InputGroup } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
+import { useToasts } from 'react-toast-notifications'
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import NumberFormat from "react-number-format";
@@ -92,26 +93,35 @@ const useStyles = makeStyles((theme) => ({
 const ContractCreateCondition = () => {
   const classes = useStyles();
   const history = useHistory();
+  const { addToast } = useToasts()
+
   // Tabs
   const [value, setValue] = useState(4);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   // Form
-  const [period, setPeriod] = useState("1");
-  const [valuePayforAmount, setValuePayforAmount] = useState("");
+  const [period, setPeriod] = useState("Month");
+  const [valuePayforAmount, setValuePayforAmount] = useState("0");
   
   const [valuePayforQ1, setValuePayforQ1] = useState("");
   const [valuePayforQ2, setValuePayforQ2] = useState("");
   const [valuePayforQ3, setValuePayforQ3] = useState("");
   const [valuePayforQ4, setValuePayforQ4] = useState("");
   const [valuePayforM, setValuePayforM] = useState("");
+  const [valuePayforHaft, setValuePayforHaft] = useState("");
+  const [valuePayforHaft2, setValuePayforHaft2] = useState("");
+  const [valuePayforYear, setValuePayforYear] = useState("");
+  // const [valuePayforOnce, setValuePayforOnce] = useState("");
   const [valuePayforSum, setValuePayforSum] = useState("");
+  const [filterMonth, setFilterMonth] = useState("1");
+  
+  const handleChangeFilterMonth = (event) => {
+    setFilterMonth(event.target.value);
+  };
 
   const handleChangePeriod = (event) => {
     setPeriod(event.target.value);
-    // setSelectedStartDate("15-06-2564");
-    // setSelectedEndDate("20-06-2564");
   };
   //checkbox
   const [state, setState] = useState({
@@ -129,15 +139,21 @@ const ContractCreateCondition = () => {
     let sumQuarter = valuePayforQ1 + valuePayforQ2 + valuePayforQ3 + valuePayforQ4;
     setValuePayforSum(sumQuarter);
   }
+
   useEffect(() => {
-    let quarter = parseInt(valuePayforAmount / 4);
     let month = parseInt(valuePayforAmount / 12);
+    let quarter = parseInt(valuePayforAmount / 4);
+    let haft = parseInt(valuePayforAmount / 2);
+    let year = parseInt(valuePayforAmount);
     
     setValuePayforQ1(quarter);
     setValuePayforQ2(quarter);
     setValuePayforQ3(quarter);
     setValuePayforQ4(quarter);
     setValuePayforM(month);
+    setValuePayforHaft(haft);
+    setValuePayforHaft2(haft);
+    setValuePayforYear(year);
     setValuePayforSum(valuePayforAmount);
 
   }, [valuePayforAmount]);
@@ -146,7 +162,7 @@ const ContractCreateCondition = () => {
     calPayforSum();
   }, [valuePayforQ1 , valuePayforQ2 , valuePayforQ3 , valuePayforQ4]);
   
-  console.log(valuePayforAmount);
+  // console.log(valuePayforAmount);
   return (
     <>
       <div className="wrap-ta pt-1 pl-1 pr-1">
@@ -290,21 +306,21 @@ const ContractCreateCondition = () => {
                           value={period}
                           onChange={handleChangePeriod}
                         >
-                          <option value={1}>รายเดือน</option>
-                          <option value={2}>รายไตรมาส</option>
-                          <option value={3}>รายครึ่งปี</option>
-                          <option value={4}>รายปี</option>
-                          <option value={5}>ครั้งเดียว</option>
+                          <option value="Month">รายเดือน</option>
+                          <option value="Quarter">รายไตรมาส</option>
+                          <option value="Haft">รายครึ่งปี</option>
+                          <option value="Year">รายปี</option>
+                          <option value="Once">ครั้งเดียว</option>
                         </Form.Control>
                       </Form.Group>
 
                       <div className="z-option-period mb-4">
-                        {period === "1" && (
+                        {period === "Month" && (
                           <div className="card p-3">
                             <Row className="ml-n2 mr-n2">
                               <Col className="pl-2 pr-2" md={6}>
                                 <Form.Label className="label-title mb-1">
-                                  รายเดือน
+                                  เดือนที่เรียกเก็บ
                                 </Form.Label>
                               </Col>
                               <Col className="pl-2 pr-2" md={6}>
@@ -389,10 +405,8 @@ const ContractCreateCondition = () => {
                                     type={"text"}
                                     suffix={" บ."}
                                     onValueChange={(values) => {
-                                      index===0 ? setValuePayforQ1(values.floatValue) :
-                                      index===1 ? setValuePayforQ2(values.floatValue) :
-                                      index===2 ? setValuePayforQ3(values.floatValue) :
-                                      index===3 && setValuePayforQ4(values.floatValue)
+      
+                                      setValuePayforM(values.floatValue)
 
                                     }}
                                   />
@@ -405,7 +419,7 @@ const ContractCreateCondition = () => {
                           </div>
                         )}
 
-                        {period === "2" && (
+                        {period === "Quarter" && (
                           <div className="card p-3">
                           <Row className="ml-n2 mr-n2">
                               <Col className="pl-2 pr-2" md={6}>
@@ -447,7 +461,7 @@ const ContractCreateCondition = () => {
                                     // id="payfor_equalamount"
                                     thousandSeparator={true}
                                     placeholder="ยอดเรียกเก็บ บ."
-                                    value={valuePayforAmount / 12}
+                                    value={valuePayforAmount / 4}
                                     type={"text"}
                                     suffix={" บ."}
                                   />
@@ -528,16 +542,221 @@ const ContractCreateCondition = () => {
                           </div>
                         )}
 
-                        {period === "3" && (
-                          <div className="card p-3">รายครึ่งปี</div>
+                        {period === "Haft" && (
+                          <div className="card p-3">
+                          <Row className="ml-n2 mr-n2">
+                              <Col className="pl-2 pr-2" md={6}>
+                                <Form.Label className="label-title mb-1">
+                                  เดือนที่เรียกเก็บ
+                                </Form.Label>
+                              </Col>
+                              <Col className="pl-2 pr-2" md={6}>
+                                <Form.Label className="label-title mb-1">
+                                  เรียกเก็บ
+                                </Form.Label>
+                              </Col>
+                            </Row>
+                            <Row className="ml-n2 mr-n2">
+                              <Col className="pl-2 pr-2" md={6}>
+                                <Form.Group
+                                  className="form-control bg-disabled d-flex align-items-center mb-2"
+                                  controlId="equalCheckbox"
+                                >
+                                  <Form.Check
+                                    className="mb-0"
+                                    type="checkbox"
+                                    label="เท่ากันรายครึ่งปี"
+                                    checked={state.checkedQuarter}
+                                    onChange={handleCheckChange}
+                                    name="checkedQuarter"
+                                  />
+                                </Form.Group>
+                              </Col>
+                              <Col className="pl-2 pr-2" md={6}>
+                                <Form.Group controlId="payfor_equalamount" className="mb-2">
+                                  <NumberFormat
+                                    className="form-control text-right"
+                                    disabled={!state.checkedQuarter}
+                                    readOnly
+                                    className={`form-control text-right
+                                    ${state.checkedQuarter === true ? 'bg-white' : 'bg-disabled'}
+                                    `}
+                                    // id="payfor_equalamount"
+                                    thousandSeparator={true}
+                                    placeholder="ยอดเรียกเก็บ บ."
+                                    value={valuePayforAmount / 2}
+                                    type={"text"}
+                                    suffix={" บ."}
+                                  />
+                                </Form.Group>
+                              </Col>
+                            </Row>
+                            {Array.from({ length: 2 }).map((_, index) => (
+                            <Row className="ml-n2 mr-n2" key={index}>
+                              <Col className="pl-2 pr-2" md={6}>
+                                <InputGroup className="mb-2">
+                                  <InputGroup.Prepend className="col p-0">
+                                    <InputGroup.Text class="input-group-text px-2 form-control bg-disabled">
+                                      {
+                                      index===0 ? "ครึ่งปีแรก" :
+                                      index===1 && "ครึ่งปีหลัง"
+                                      }
+                                    </InputGroup.Text>
+                                  </InputGroup.Prepend>
+                                  <InputGroup.Append className="col p-0">
+                                    <InputGroup.Text class="input-group-text px-2 form-control bg-disabled">
+                                      {
+                                      index===0 ? " ม.ค - มิ.ย." :
+                                      index===1 && " ก.ค. - ธ.ค."
+                                      }
+                                    </InputGroup.Text>
+                                  </InputGroup.Append>
+                                </InputGroup>
+                              </Col>
+                              <Col className="pl-2 pr-2" md={6}>
+                                <Form.Group controlId={`payfor_q${index+1}_amount`} className="mb-2">
+                                  <NumberFormat
+                                    className={`form-control text-right
+                                    ${state.checkedQuarter === true ? 'bg-disabled' : 'enable'}
+                                    `}
+                                    disabled={state.checkedQuarter}
+                                    thousandSeparator={true}
+                                    value={
+                                      index===0 ? valuePayforHaft :
+                                      index===1 && valuePayforHaft2
+                                      
+                                    }
+                                    type={"text"}
+                                    suffix={" บ."}
+                                    onValueChange={(values) => {
+                                      index===0 ? setValuePayforHaft(values.floatValue) :
+                                      index===1 && setValuePayforHaft2(values.floatValue)
+
+                                    }}
+                                  />
+                                </Form.Group>
+                              </Col>
+                            </Row>
+                            ))}
+                            
+                          </div>
                         )}
 
-                        {period === "4" && (
-                          <div className="card p-3">รายปี</div>
+                        {period === "Year" && (
+                          <div className="card p-3">
+                            <Row className="ml-n2 mr-n2">
+                              <Col className="pl-2 pr-2" md={6}>
+                                <Form.Label className="label-title mb-1">
+                                  เดือนที่เรียกเก็บ
+                                </Form.Label>
+                              </Col>
+                              <Col className="pl-2 pr-2" md={6}>
+                                <Form.Label className="label-title mb-1">
+                                  เรียกเก็บ
+                                </Form.Label>
+                              </Col>
+                            </Row>
+                            
+                            {Array.from({ length: 1 }).map((_, index) => (
+                            <Row className="ml-n2 mr-n2" key={index}>
+                              <Col className="pl-2 pr-2" md={6}>
+                                <InputGroup className="mb-2">
+                                    <InputGroup.Text class="input-group-text px-2 form-control bg-disabled">
+                                     เก็บเดือน ม.ค. ปีถัดไป
+                                    </InputGroup.Text>
+                                </InputGroup>
+                              </Col>
+                              <Col className="pl-2 pr-2" md={6}>
+                                <Form.Group controlId={`payfor_q${index+1}_amount`} className="mb-2">
+                                  <NumberFormat
+                                    className={`form-control text-right
+                                    ${state.checkedQuarter === true ? 'bg-disabled' : 'enable'}
+                                    `}
+                                    disabled={state.checkedQuarter}
+                                    thousandSeparator={true}
+                                    value={
+                                      valuePayforYear                                      
+                                    }
+                                    type={"text"}
+                                    suffix={" บ."}
+                                    onValueChange={(values) => {
+                                      setValuePayforYear(values.floatValue)
+                                    }}
+                                  />
+                                </Form.Group>
+                              </Col>
+                            </Row>
+                            ))}
+
+                          </div>
                         )}
 
-                        {period === "5" && (
-                          <div className="card p-3">ครั้งเดียว</div>
+                        {period === "Once" && (
+                          <div className="card p-3">
+                            <Row className="ml-n2 mr-n2">
+                              <Col className="pl-2 pr-2" md={6}>
+                                <Form.Label className="label-title mb-1">
+                                  เดือนที่เรียกเก็บ
+                                </Form.Label>
+                              </Col>
+                              <Col className="pl-2 pr-2" md={6}>
+                                <Form.Label className="label-title mb-1">
+                                  เรียกเก็บ
+                                </Form.Label>
+                              </Col>
+                            </Row>
+                            
+                            {Array.from({ length: 1 }).map((_, index) => (
+                            <Row className="ml-n2 mr-n2" key={index}>
+                              <Col className="pl-2 pr-2" md={6}>
+                                {/* <InputGroup className="mb-2">
+                                    <InputGroup.Text class="input-group-text px-2 form-control">
+                                     เก็บเดือน ม.ค. ปีถัดไป
+                                    </InputGroup.Text>
+                                </InputGroup> */}
+                                <Form.Group controlId="filterMonth" className="mb-2">
+                                  <Form.Control 
+                                    as="select" 
+                                    value={filterMonth}
+                                    onChange={handleChangeFilterMonth}
+                                    className="form-select"
+                                  >
+                                    <option value={1}>ม.ค.</option>
+                                    <option value={2}>ก.พ.</option>
+                                    <option value={3}>มี.ค.</option>
+                                    <option value={4}>เม.ย.</option>
+                                    <option value={5}>พ.ค.</option>
+                                    <option value={6}>มิ.ย.</option>
+                                    <option value={7}>ก.ค.</option>
+                                    <option value={8}>ส.ค.</option>
+                                    <option value={9}>ก.ย.</option>
+                                    <option value={10}>ต.ค.</option>
+                                    <option value={11}>พ.ย.</option>
+                                    <option value={12}>ธ.ค.</option>
+                                  </Form.Control>
+                                </Form.Group>
+                              </Col>
+                              <Col className="pl-2 pr-2" md={6}>
+                                <Form.Group controlId={`payfor_q${index+1}_amount`} className="mb-2">
+                                  <NumberFormat
+                                    className={`form-control text-right bg-disabled}
+                                    `}
+                                    disabled
+                                    thousandSeparator={true}
+                                    value={
+                                      valuePayforAmount                    
+                                    }
+                                    type={"text"}
+                                    suffix={" บ."}
+                                    // onValueChange={(values) => {
+                                    //   setValuePayforYear(values.floatValue)
+                                    // }}
+                                  />
+                                </Form.Group>
+                              </Col>
+                            </Row>
+                            ))}
+                          </div>
                         )}
                       </div>
                     </Col>
@@ -570,7 +789,12 @@ const ContractCreateCondition = () => {
                         <CgCloseO className="mr-2 mt-n1" />
                         ยกเลิก
                       </Button>
-                      <Button variant="warning ml-2">
+                      <Button 
+                        variant="warning ml-2"
+                        onClick={
+                          () => {addToast('ทำการบันทึกเรียบร้อยค่ะ', { appearance: 'success'/*, autoDismiss: false,*/})}
+                        }
+                      >
                         <HiOutlineSave className="mr-2 mt-n1" /> บันทึก
                       </Button>
                     </Col>
