@@ -108,21 +108,6 @@ function ContractCreate() {
               <Accordion.Collapse eventKey="0">
                 <Card.Body>
                   <TASupplier />
-                  {/* <Col
-                    xs={12}
-                    className="d-flex justify-content-end align-items-center p-2 position-sticky"
-                    style={{ bottom: "0" }}
-                  >
-                    <Button
-                      variant="secondary"
-                      onClick={() => {
-                        eventFire( document.getElementById("btn-supplier"), "click" );
-                      }}
-                    >
-                      Cancel
-                    </Button>
-                    <Button variant="success ml-2">Save</Button>
-                  </Col> */}
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
@@ -152,7 +137,9 @@ function ContractCreate() {
               </Accordion.Toggle>
               <Accordion.Collapse eventKey="1">
                 <Card.Body>
-                  <TAConditionCompare />
+                  {/* <TAConditionCompare /> */}
+                  <h3 className="text-center h6">ยังไม่มีข้อมูล!</h3>
+                  <div className="text-center ctrl-btn"><Link className="btn btn-success" to="/contract/condition">สร้าง Condition</Link></div>
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
