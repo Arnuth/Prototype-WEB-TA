@@ -14,7 +14,7 @@
   background: linear-gradient(to right,  #f0ac76 0%,#ea873c 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0ac76', endColorstr='#ea873c',GradientType=1 );
   }
-.display-growth>span{ position: absolute; top: 50%; right:.5rem; transform: translateY(-50%); font-size: 11px;}
+.display-growth>span{ position: absolute; top: 50%; right:.5rem; transform: translateY(-50%); font-size: 15px;}
 
 .wrap-ta .form-label{font-size: 12px; color: var(--text-gray);}
 .wrap-ta .form-control{min-height: 46px;}
