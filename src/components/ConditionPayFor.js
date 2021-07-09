@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Row, Col, Form, InputGroup } from "react-bootstrap";
 import NumberFormat from "react-number-format";
