@@ -16,7 +16,9 @@
   }
 .display-growth>span{ position: absolute; top: 50%; right:.5rem; transform: translateY(-50%); font-size: 15px;}
 
-.wrap-ta .form-label{font-size: 12px; color: var(--text-gray);}
+.wrap-ta .form-label{font-size: 13px; color: var(--text-gray);}
+.wrap-ta .f-large{font-size: 17px;}
+.wrap-ta .period-box .form-label{ color: var(--text-gray2);}
 .wrap-ta .form-control{min-height: 46px;}
 .wrap-ta .input-group-text{ line-height: 32px;}
 .wrap-ta .form-control,.wrap-accordion .input-group-text{font-size: 15px;}
@@ -25,5 +27,5 @@
 
 /* condition */
 .HdCondition{background: #F9F9F9; columns: #515151;font-size: 24px; line-height: 120%;}
-.HdCondition small{font-size: 14px; color: #AEAEAE; margin-left: -10px; margin-left: -10px;}
+.HdCondition small{font-size: 14px; color: var(--text-gray2); margin-left: -10px; margin-left: -10px;}
 .HdCondition small>span{display: inline-block; padding: 0 10px;}

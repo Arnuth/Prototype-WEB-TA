@@ -2,7 +2,7 @@ import React,{useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { Breadcrumb, Row, Col ,Table, Button, Form, InputGroup, FormControl } from "react-bootstrap";
 import { VscOpenPreview } from "react-icons/vsc";
-import { HiOutlineSave } from "react-icons/hi";
+import { BsPlus } from "react-icons/bs";
 import { BiSearch } from "react-icons/bi";
 import { useToasts } from 'react-toast-notifications'
 
@@ -197,7 +197,8 @@ const ContractList = () => {
               </Row>
             </Col>
             <Col md="auto ctrl-btn">
-              <Link className="btn btn-warning" to="/contract/create/"><HiOutlineSave className="mr-2 mt-n1" /> สร้างใบความต้องการ</Link>
+              <Link className="btn btn-warning" to="/contract/create/">
+                <BsPlus size="1.7rem" className="mt-n1" /> สร้างใบความต้องการ</Link>
             </Col>
           </Row>
 

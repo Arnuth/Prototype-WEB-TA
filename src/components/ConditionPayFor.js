@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: theme.spacing(1.5),
       marginBottom: theme.spacing(3),
     }
-  }));
+}));
 
 const ConditionPayFor = () => {
   const classes = useStyles();
@@ -24,8 +24,8 @@ const ConditionPayFor = () => {
   const history = useHistory();
 
   // Form
-  const [period, setPeriod] = useState("Month");
-  const [valuePayforAmount, setValuePayforAmount] = useState("0");
+  const [period, setPeriod] = useState(0);
+  const [valuePayforAmount, setValuePayforAmount] = useState("");
 
   const [valuePayforQ1, setValuePayforQ1] = useState("");
   const [valuePayforQ2, setValuePayforQ2] = useState("");
@@ -104,7 +104,7 @@ const ConditionPayFor = () => {
         </small>
       </h2>
       <div className="tabDetail">
-        <h3 class="topic-line">ยอดซื้อ</h3>
+        <h3 class="topic-line">ข้อมูลส่วนที่ 1: รายการเรียกเก็บ</h3>
         <Row>
           <Col md={8} lg={7} xl={6}>
             <Form.Group>
@@ -112,7 +112,7 @@ const ConditionPayFor = () => {
                 ยอดเรียกเก็บ
               </Form.Label>
               <NumberFormat
-                className="form-control"
+                className="form-control text-right"
                 id="payfor_amount"
                 thousandSeparator={true}
                 placeholder="ยอดเรียกเก็บ บ."
@@ -125,25 +125,99 @@ const ConditionPayFor = () => {
               />
             </Form.Group>
 
+            <Form.Group controlId="moreDetail">
+              <Form.Label htmlFor="payfor_amount" className="text-dark">
+                รายละเอียดเพิ่มเติม <span className="text-gray font-italic">(Optional)</span>
+              </Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="กรอกรายละเอียด..."
+              />
+            </Form.Group>
+
+            
+          </Col>
+        </Row>
+
+        <h3 class="topic-line mt-4">ข้อมูลส่วนที่ 2: ระยะเวลาที่เรียกเก็บ</h3>
+        <Row>
+          <Col md={8} lg={7} xl={6}>
+          <div className="card p-3 mb-4">
             <Form.Group controlId="payfor_collect">
-              <Form.Label className="text-dark">Period เรียกเก็บ</Form.Label>
+              <Form.Label className="text-dark f-large mb-2">Period เรียกเก็บ</Form.Label>
               <Form.Control
                 as="select"
                 value={period}
                 onChange={handleChangePeriod}
-              >
-                <option value="Month">รายเดือน</option>
-                <option value="Quarter">รายไตรมาส</option>
-                <option value="Haft">รายครึ่งปี</option>
+              > 
+                <option value={0}>กรุณาระบุ</option>
                 <option value="Year">รายปี</option>
+                <option value="Haft">รายครึ่งปี</option>
+                <option value="Quarter">รายไตรมาส</option>
+                <option value="Month">รายเดือน</option>
                 <option value="Once">ครั้งเดียว</option>
               </Form.Control>
             </Form.Group>
 
-            <div className="z-option-period mb-4">
-              {period === "Month" && (
-                <div className="card p-3">
-                  <Row className="ml-n2 mr-n2">
+            <div className="z-option-period">
+              {period === "Year" && (
+                <div className="period-box">
+                  <Row className="ml-n2 mr-n2 mb-2">
+                    <Col className="pl-2 pr-2" md={6}>
+                      <Form.Label className="label-title mb-1">
+                        เดือนที่เรียกเก็บ
+                      </Form.Label>
+                    </Col>
+                    <Col className="pl-2 pr-2" md={6}>
+                      <Form.Label className="label-title mb-1">
+                        เรียกเก็บ
+                      </Form.Label>
+                    </Col>
+                  </Row>
+
+                  {Array.from({ length: 1 }).map((_, index) => (
+                    <Row className="ml-n2 mr-n2" key={index}>
+                      <Col className="pl-2 pr-2" md={6}>
+                        <InputGroup className="mb-2">
+                          <InputGroup.Text class="input-group-text px-2 form-control bg-disabled">
+                            เก็บเดือน ม.ค. ปีถัดไป
+                          </InputGroup.Text>
+                        </InputGroup>
+                      </Col>
+                      <Col className="pl-2 pr-2" md={6}>
+                        <Form.Group
+                          controlId={`payfor_q${index + 1}_amount`}
+                          className="mb-2"
+                        >
+                          <NumberFormat
+                            className={`form-control text-right
+                                    ${
+                                      state.checkedQuarter === true
+                                        ? "bg-disabled"
+                                        : "enable"
+                                    }
+                                    `}
+                            disabled={true}
+                            thousandSeparator={true}
+                            value={valuePayforYear}
+                            type={"text"}
+                            suffix={" บ."}
+                            placeholder="บ."
+                            onValueChange={(values) => {
+                              setValuePayforYear(values.floatValue);
+                            }}
+                          />
+                        </Form.Group>
+                      </Col>
+                    </Row>
+                  ))}
+                </div>
+              )}
+
+              {period === "Haft" && (
+                <div className="period-box">
+                  <Row className="ml-n2 mr-n2 mb-2">
                     <Col className="pl-2 pr-2" md={6}>
                       <Form.Label className="label-title mb-1">
                         เดือนที่เรียกเก็บ
@@ -164,7 +238,7 @@ const ConditionPayFor = () => {
                         <Form.Check
                           className="mb-0"
                           type="checkbox"
-                          label="เท่ากันทุกเดือน"
+                          label="เท่ากันรายครึ่งปี"
                           checked={state.checkedQuarter}
                           onChange={handleCheckChange}
                           name="checkedQuarter"
@@ -190,42 +264,31 @@ const ConditionPayFor = () => {
                           // id="payfor_equalamount"
                           thousandSeparator={true}
                           placeholder="ยอดเรียกเก็บ บ."
-                          value={valuePayforAmount / 12}
+                          value={valuePayforAmount / 2}
                           type={"text"}
                           suffix={" บ."}
                         />
                       </Form.Group>
                     </Col>
                   </Row>
-                  {Array.from({ length: 12 }).map((_, index) => (
+                  {Array.from({ length: 2 }).map((_, index) => (
                     <Row className="ml-n2 mr-n2" key={index}>
                       <Col className="pl-2 pr-2" md={6}>
                         <InputGroup className="mb-2">
-                          <InputGroup.Text class="input-group-text px-2 form-control bg-disabled">
-                            {index === 0
-                              ? "ม.ค."
-                              : index === 1
-                              ? "ก.พ."
-                              : index === 2
-                              ? "มี.ค."
-                              : index === 3
-                              ? "เม.ย."
-                              : index === 4
-                              ? "พ.ค."
-                              : index === 5
-                              ? "มิ.ย."
-                              : index === 6
-                              ? "ก.ค."
-                              : index === 7
-                              ? "ส.ค."
-                              : index === 8
-                              ? "ก.ย."
-                              : index === 9
-                              ? "ต.ค."
-                              : index === 10
-                              ? "พ.ย."
-                              : index === 11 && "ธ.ค."}
-                          </InputGroup.Text>
+                          <InputGroup.Prepend className="col p-0">
+                            <InputGroup.Text class="input-group-text px-2 form-control bg-disabled">
+                              {index === 0
+                                ? "ครึ่งปีแรก"
+                                : index === 1 && "ครึ่งปีหลัง"}
+                            </InputGroup.Text>
+                          </InputGroup.Prepend>
+                          <InputGroup.Append className="col p-0">
+                            <InputGroup.Text class="input-group-text px-2 form-control bg-disabled">
+                              {index === 0
+                                ? " ม.ค - มิ.ย."
+                                : index === 1 && " ก.ค. - ธ.ค."}
+                            </InputGroup.Text>
+                          </InputGroup.Append>
                         </InputGroup>
                       </Col>
                       <Col className="pl-2 pr-2" md={6}>
@@ -244,28 +307,53 @@ const ConditionPayFor = () => {
                             disabled={state.checkedQuarter}
                             thousandSeparator={true}
                             value={
-                              valuePayforM
-                              // index===0 ? valuePayforM :
-                              // index===1 ? valuePayforM :
-                              // index===2 ? valuePayforM :
-                              // index===3 ? valuePayforM : null
+                              index === 0
+                                ? valuePayforHaft
+                                : index === 1 && valuePayforHaft2
                             }
                             type={"text"}
                             suffix={" บ."}
                             onValueChange={(values) => {
-                              setValuePayforM(values.floatValue);
+                              index === 0
+                                ? setValuePayforHaft(values.floatValue)
+                                : index === 1 &&
+                                  setValuePayforHaft2(values.floatValue);
                             }}
                           />
                         </Form.Group>
                       </Col>
                     </Row>
                   ))}
+                  <Row className="ml-n2 mr-n2">
+                    <Col className="pl-2 pr-2" md={6}>
+                      <Form.Group className="form-control bg-disabled d-flex align-items-center mb-2">
+                        รวม
+                      </Form.Group>
+                    </Col>
+                    <Col className="pl-2 pr-2" md={6}>
+                      <Form.Group
+                        controlId="payfor_sum_amount"
+                        className="mb-2"
+                      >
+                        <NumberFormat
+                          className="form-control text-right"
+                          disabled={true}
+                          // id="payfor_sum_amount"
+                          thousandSeparator={true}
+                          placeholder="ยอดเรียกเก็บ บ."
+                          value={valuePayforHaft + valuePayforHaft2}
+                          type={"text"}
+                          suffix={" บ."}
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
                 </div>
               )}
 
               {period === "Quarter" && (
-                <div className="card p-3">
-                  <Row className="ml-n2 mr-n2">
+                <div className="period-box">
+                  <Row className="ml-n2 mr-n2 mb-2">
                     <Col className="pl-2 pr-2" md={6}>
                       <Form.Label className="label-title mb-1">
                         ไตรมาส
@@ -412,9 +500,9 @@ const ConditionPayFor = () => {
                 </div>
               )}
 
-              {period === "Haft" && (
-                <div className="card p-3">
-                  <Row className="ml-n2 mr-n2">
+              {period === "Month" && (
+                <div className="period-box">
+                  <Row className="ml-n2 mr-n2 mb-2">
                     <Col className="pl-2 pr-2" md={6}>
                       <Form.Label className="label-title mb-1">
                         เดือนที่เรียกเก็บ
@@ -435,7 +523,7 @@ const ConditionPayFor = () => {
                         <Form.Check
                           className="mb-0"
                           type="checkbox"
-                          label="เท่ากันรายครึ่งปี"
+                          label="เท่ากันทุกเดือน"
                           checked={state.checkedQuarter}
                           onChange={handleCheckChange}
                           name="checkedQuarter"
@@ -461,90 +549,41 @@ const ConditionPayFor = () => {
                           // id="payfor_equalamount"
                           thousandSeparator={true}
                           placeholder="ยอดเรียกเก็บ บ."
-                          value={valuePayforAmount / 2}
+                          value={valuePayforAmount / 12}
                           type={"text"}
                           suffix={" บ."}
                         />
                       </Form.Group>
                     </Col>
                   </Row>
-                  {Array.from({ length: 2 }).map((_, index) => (
-                    <Row className="ml-n2 mr-n2" key={index}>
-                      <Col className="pl-2 pr-2" md={6}>
-                        <InputGroup className="mb-2">
-                          <InputGroup.Prepend className="col p-0">
-                            <InputGroup.Text class="input-group-text px-2 form-control bg-disabled">
-                              {index === 0
-                                ? "ครึ่งปีแรก"
-                                : index === 1 && "ครึ่งปีหลัง"}
-                            </InputGroup.Text>
-                          </InputGroup.Prepend>
-                          <InputGroup.Append className="col p-0">
-                            <InputGroup.Text class="input-group-text px-2 form-control bg-disabled">
-                              {index === 0
-                                ? " ม.ค - มิ.ย."
-                                : index === 1 && " ก.ค. - ธ.ค."}
-                            </InputGroup.Text>
-                          </InputGroup.Append>
-                        </InputGroup>
-                      </Col>
-                      <Col className="pl-2 pr-2" md={6}>
-                        <Form.Group
-                          controlId={`payfor_q${index + 1}_amount`}
-                          className="mb-2"
-                        >
-                          <NumberFormat
-                            className={`form-control text-right
-                                    ${
-                                      state.checkedQuarter === true
-                                        ? "bg-disabled"
-                                        : "enable"
-                                    }
-                                    `}
-                            disabled={state.checkedQuarter}
-                            thousandSeparator={true}
-                            value={
-                              index === 0
-                                ? valuePayforHaft
-                                : index === 1 && valuePayforHaft2
-                            }
-                            type={"text"}
-                            suffix={" บ."}
-                            onValueChange={(values) => {
-                              index === 0
-                                ? setValuePayforHaft(values.floatValue)
-                                : index === 1 &&
-                                  setValuePayforHaft2(values.floatValue);
-                            }}
-                          />
-                        </Form.Group>
-                      </Col>
-                    </Row>
-                  ))}
-                </div>
-              )}
-
-              {period === "Year" && (
-                <div className="card p-3">
-                  <Row className="ml-n2 mr-n2">
-                    <Col className="pl-2 pr-2" md={6}>
-                      <Form.Label className="label-title mb-1">
-                        เดือนที่เรียกเก็บ
-                      </Form.Label>
-                    </Col>
-                    <Col className="pl-2 pr-2" md={6}>
-                      <Form.Label className="label-title mb-1">
-                        เรียกเก็บ
-                      </Form.Label>
-                    </Col>
-                  </Row>
-
-                  {Array.from({ length: 1 }).map((_, index) => (
+                  {Array.from({ length: 12 }).map((_, index) => (
                     <Row className="ml-n2 mr-n2" key={index}>
                       <Col className="pl-2 pr-2" md={6}>
                         <InputGroup className="mb-2">
                           <InputGroup.Text class="input-group-text px-2 form-control bg-disabled">
-                            เก็บเดือน ม.ค. ปีถัดไป
+                            {index === 0
+                              ? "ม.ค."
+                              : index === 1
+                              ? "ก.พ."
+                              : index === 2
+                              ? "มี.ค."
+                              : index === 3
+                              ? "เม.ย."
+                              : index === 4
+                              ? "พ.ค."
+                              : index === 5
+                              ? "มิ.ย."
+                              : index === 6
+                              ? "ก.ค."
+                              : index === 7
+                              ? "ส.ค."
+                              : index === 8
+                              ? "ก.ย."
+                              : index === 9
+                              ? "ต.ค."
+                              : index === 10
+                              ? "พ.ย."
+                              : index === 11 && "ธ.ค."}
                           </InputGroup.Text>
                         </InputGroup>
                       </Col>
@@ -563,23 +602,55 @@ const ConditionPayFor = () => {
                                     `}
                             disabled={state.checkedQuarter}
                             thousandSeparator={true}
-                            value={valuePayforYear}
+                            value={
+                              valuePayforM
+                              // index===0 ? valuePayforM :
+                              // index===1 ? valuePayforM :
+                              // index===2 ? valuePayforM :
+                              // index===3 ? valuePayforM : null
+                            }
                             type={"text"}
                             suffix={" บ."}
                             onValueChange={(values) => {
-                              setValuePayforYear(values.floatValue);
+                              setValuePayforM(values.floatValue);
                             }}
                           />
                         </Form.Group>
                       </Col>
                     </Row>
                   ))}
+                  <Row className="ml-n2 mr-n2">
+                    <Col className="pl-2 pr-2" md={6}>
+                      <Form.Group className="form-control bg-disabled d-flex align-items-center mb-2">
+                        รวมทุกเดือน
+                      </Form.Group>
+                    </Col>
+                    <Col className="pl-2 pr-2" md={6}>
+                      <Form.Group
+                        controlId="payfor_sum_amount"
+                        className="mb-2"
+                      >
+                        <NumberFormat
+                          className="form-control text-right"
+                          disabled={true}
+                          // id="payfor_sum_amount"
+                          thousandSeparator={true}
+                          placeholder="ยอดเรียกเก็บ บ."
+                          value={valuePayforM * 12}
+                          type={"text"}
+                          suffix={" บ."}
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
                 </div>
               )}
 
+              
+
               {period === "Once" && (
-                <div className="card p-3">
-                  <Row className="ml-n2 mr-n2">
+                <div className="period-box">
+                  <Row className="ml-n2 mr-n2 mb-2">
                     <Col className="pl-2 pr-2" md={6}>
                       <Form.Label className="label-title mb-1">
                         เดือนที่เรียกเก็บ
@@ -634,10 +705,8 @@ const ConditionPayFor = () => {
                             thousandSeparator={true}
                             value={valuePayforAmount}
                             type={"text"}
+                            placeholder="บ."
                             suffix={" บ."}
-                            // onValueChange={(values) => {
-                            //   setValuePayforYear(values.floatValue)
-                            // }}
                           />
                         </Form.Group>
                       </Col>
@@ -646,19 +715,7 @@ const ConditionPayFor = () => {
                 </div>
               )}
             </div>
-          </Col>
-        </Row>
-
-        <h3 class="topic-line">รายละเอียดเพิ่มเติม</h3>
-        <Row>
-          <Col>
-            <Form.Group controlId="moreDetail">
-              <Form.Control
-                as="textarea"
-                rows={3}
-                placeholder="กรอกรายละเอียด..."
-              />
-            </Form.Group>
+            </div>
           </Col>
         </Row>
 
@@ -684,7 +741,7 @@ const ConditionPayFor = () => {
               });
             }}
           >
-            <HiOutlineSave className="mr-2 mt-n1" /> บันทึก
+            <HiOutlineSave className="mr-1 mt-n1" /> บันทึก
           </Button>
         </Col>
       </div>

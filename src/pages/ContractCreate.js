@@ -13,11 +13,17 @@ import { BiCommentDots } from "react-icons/bi";
 import { ImAttachment } from "react-icons/im";
 import { Link } from "react-router-dom";
 import { DropzoneAreaBase } from "material-ui-dropzone";
+import { useToasts } from 'react-toast-notifications'
+
 import TAConditionCompare from '../components/TAConditionCompare'
 import TASupplier from "../components/TASupplier";
 import iconSupplier from "../assets/imgs/icons/ic-supplier.svg"
+import iconApprove from "../assets/imgs/icons/ic-approve.svg"
+import { HiOutlineSave } from "react-icons/hi";
+import { BiTrashAlt } from "react-icons/bi";
+
 // Bootstrap CSS
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 // To make rows collapsible
 // import "bootstrap/dist/js/bootstrap.min.js";
 import "bootstrap/js/src/collapse.js";
@@ -29,6 +35,7 @@ import $ from "jquery";
 
 function ContractCreate() {
 
+  const { addToast } = useToasts()
   //check class active accordion
   const [expanded, setExpanded] = useState('panel1');
   const handleChange = (panel) => (event, newExpanded) => {
@@ -225,9 +232,14 @@ function ContractCreate() {
           className="footer-bar ctrl-btn d-flex justify-content-end align-items-center pt-2 pb-2 pl-3 pr-3 position-sticky"
           style={{ bottom: "0" }}
         >
-          <Button variant="secondary">Delete</Button>
-          <Button variant="success ml-2">Save Draft</Button>
-          <Button variant="warning ml-2">Preview</Button>
+          <Button variant="warning ml-2"><BiTrashAlt className="mr-2 mt-n1" /> ลบใบความต้องการ</Button>
+          <Button variant="warning ml-2"><img src={iconApprove} alt="Approve" className="mr-2 mt-n1" /> ส่งอนุมัติ</Button>
+          <Button 
+           variant="warning ml-2"
+           onClick={
+              () => {addToast('ทำการบันทึกเรียบร้อยค่ะ', { appearance: 'success', autoDismiss: false, })}
+            }
+          ><HiOutlineSave className="mr-2 mt-n1" /> บันทึกใบความต้องการ</Button>
           {/* <Button variant="primary ml-2">Publish</Button> */}
         </Col>
       </Row>

@@ -11,8 +11,8 @@ import {
 import "../assets/css/ta-supplier.css";
 import NumberFormat from "react-number-format";
 // import NumberBox from 'devextreme-react/number-box';
-import { HiOutlineSave } from "react-icons/hi";
-import { CgCloseO } from "react-icons/cg";
+// import { HiOutlineSave } from "react-icons/hi";
+// import { CgCloseO } from "react-icons/cg";
 // import { useSnackbar } from 'notistack';
 import { useToasts } from 'react-toast-notifications'
 
@@ -223,7 +223,7 @@ const TASupplier = () => {
           <TASupplierCategory />
         </Col>
       </Row>
-      <Col
+      {/* <Col
         xs={12}
         className="ctrl-btn d-flex justify-content-end align-items-center pt-2 pb-2 pl-0 pr-0 position-sticky"
         style={{ bottom: "0" }}
@@ -240,10 +240,9 @@ const TASupplier = () => {
         <Button variant="warning ml-2" 
         onClick={
           () => {addToast('ทำการบันทึกเรียบร้อยค่ะ', { appearance: 'success', autoDismiss: false, })}
-          // handleClickVariant('success')
         }
-        ><HiOutlineSave className="mr-2 mt-n1" /> บันทึก</Button>
-      </Col>
+        ><HiOutlineSave className="mr-1 mt-n1" /> บันทึก</Button>
+      </Col> */}
     </>
   );
 };

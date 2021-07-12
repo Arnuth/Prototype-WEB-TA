@@ -423,7 +423,7 @@ const TAConditionCompare = () => {
                                 <td width="100">x.xx%</td>
                                 <td>xx,xxx.xx บาท</td>
                                 <td width="110">
-                                  <Link to="/contract/condition">
+                                  <Link to="/contract/uncondition">
                                     <FiEdit /> เพิ่มเงื่อนไข
                                   </Link>
                                 </td>
@@ -432,7 +432,7 @@ const TAConditionCompare = () => {
                                 <td>x.xx%</td>
                                 <td>xx,xxx.xx บาท</td>
                                 <td>
-                                  <Link to="/contract/condition">
+                                  <Link to="/contract/uncondition">
                                     <FiEdit /> เพิ่มเงื่อนไข
                                   </Link>
                                 </td>
@@ -476,7 +476,7 @@ const TAConditionCompare = () => {
                                 <td width="100">x.xx%</td>
                                 <td>xx,xxx.xx บาท</td>
                                 <td width="110">
-                                  <Link to="/contract/condition">
+                                  <Link to="/contract/uncondition">
                                     <FiEdit /> เพิ่มเงื่อนไข
                                   </Link>
                                 </td>
@@ -485,7 +485,7 @@ const TAConditionCompare = () => {
                                 <td>x.xx%</td>
                                 <td>xx,xxx.xx บาท</td>
                                 <td>
-                                  <Link to="/contract/condition">
+                                  <Link to="/contract/uncondition">
                                     <FiEdit /> เพิ่มเงื่อนไข
                                   </Link>
                                 </td>

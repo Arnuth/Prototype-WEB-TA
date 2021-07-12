@@ -8,6 +8,7 @@ import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
 import { BsImage } from "react-icons/bs";
 import ConditionPayFor from "../components/ConditionPayFor";
+import ConditionPurchaseAmount from "../components/ConditionPurchaseAmount";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -133,39 +134,29 @@ const ContractCreateCondition = () => {
                 {...a11yProps(0)}
               />
               <Tab
-                label="% ยอดซื้อเติบโต"
+                label="% จากยอดซื้อ"
                 icon={<BsImage className="mr-3 mb-0" />}
                 {...a11yProps(1)}
               />
               <Tab
-                label="% ยอดซื้อเติบโต เฉพาะกลุ่ม"
+                label="% จากยอดซื้อ เฉพาะกลุ่ม"
                 icon={<BsImage className="mr-3 mb-0" />}
                 {...a11yProps(2)}
               />
               <Tab
-                label="เป้ายอดซื้อ (บาท)"
+                label="% จากยอดขาย"
                 icon={<BsImage className="mr-3 mb-0" />}
                 {...a11yProps(3)}
               />
               <Tab
-                label="เป้ายอดซื้อ (บาท) เฉพาะกลุ่ม"
+                label="เหมาจ่าย"
                 icon={<BsImage className="mr-3 mb-0" />}
                 {...a11yProps(4)}
               />
               <Tab
-                label="บาทต่อหน่วยซื้อ"
+                label="% On invoice ยอดซื้อ"
                 icon={<BsImage className="mr-3 mb-0" />}
                 {...a11yProps(5)}
-              />
-              <Tab
-                label="บาทต่อหน่วยซื้อ เฉพาะกลุ่ม"
-                icon={<BsImage className="mr-3 mb-0" />}
-                {...a11yProps(6)}
-              />
-              <Tab
-                label="เหมาจ่าย"
-                icon={<BsImage className="mr-3 mb-0" />}
-                {...a11yProps(7)}
               />
             </Tabs>
             <div className={classes.contenttabs}>
@@ -180,18 +171,11 @@ const ContractCreateCondition = () => {
                 </h2>
               </TabPanel>
               <TabPanel value={value} index={1}>
-                <h2 className={`HdCondition ${classes.HeadTab}`}>
-                  <b className="head">% ยอดซื้อเติบโต</b>
-                  <small className="d-block">
-                    <span>Amount 1%</span> |
-                    <span>Total Amount 100,000.00 บาท</span> |
-                    <span>เป้ายอดซื้อ TA 10,000,000.00 บ.</span>
-                  </small>
-                </h2>
+                <ConditionPurchaseAmount />
               </TabPanel>
               <TabPanel value={value} index={2}>
                 <h2 className={`HdCondition ${classes.HeadTab}`}>
-                  <b className="head">% ยอดซื้อเติบโต เฉพาะกลุ่ม</b>
+                  <b className="head">% จากยอดซื้อ เฉพาะกลุ่ม</b>
                   <small className="d-block">
                     <span>Amount 1%</span> |
                     <span>Total Amount 100,000.00 บาท</span> |
@@ -201,7 +185,7 @@ const ContractCreateCondition = () => {
               </TabPanel>
               <TabPanel value={value} index={3}>
                 <h2 className={`HdCondition ${classes.HeadTab}`}>
-                  <b className="head">เป้ายอดซื้อ (บาท)</b>
+                  <b className="head">% จากยอดขาย</b>
                   <small className="d-block">
                     <span>Amount 1%</span> |
                     <span>Total Amount 100,000.00 บาท</span> |
@@ -210,38 +194,17 @@ const ContractCreateCondition = () => {
                 </h2>
               </TabPanel>
               <TabPanel value={value} index={4}>
-                <h2 className={`HdCondition ${classes.HeadTab}`}>
-                  <b className="head">เป้ายอดซื้อ (บาท) เฉพาะกลุ่ม</b>
-                  <small className="d-block">
-                    <span>Amount 1%</span> |
-                    <span>Total Amount 100,000.00 บาท</span> |
-                    <span>เป้ายอดซื้อ TA 10,000,000.00 บ.</span>
-                  </small>
-                </h2>
+                <ConditionPayFor />
               </TabPanel>
               <TabPanel value={value} index={5}>
                 <h2 className={`HdCondition ${classes.HeadTab}`}>
-                  <b className="head">บาทต่อหน่วยซื้อ</b>
+                  <b className="head">% On invoice ยอดซื้อ</b>
                   <small className="d-block">
                     <span>Amount 1%</span> |
                     <span>Total Amount 100,000.00 บาท</span> |
                     <span>เป้ายอดซื้อ TA 10,000,000.00 บ.</span>
                   </small>
                 </h2>
-              </TabPanel>
-              <TabPanel value={value} index={6}>
-                <h2 className={`HdCondition ${classes.HeadTab}`}>
-                  <b className="head">บาทต่อหน่วยซื้อ เฉพาะกลุ่ม</b>
-                  <small className="d-block">
-                    <span>Amount 1%</span> |
-                    <span>Total Amount 100,000.00 บาท</span> |
-                    <span>เป้ายอดซื้อ TA 10,000,000.00 บ.</span>
-                  </small>
-                </h2>
-              </TabPanel>
-              
-              <TabPanel value={value} index={7}>
-                <ConditionPayFor />
               </TabPanel>
             </div>
           </div>
