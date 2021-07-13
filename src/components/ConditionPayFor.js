@@ -115,6 +115,8 @@ const ConditionPayFor = () => {
                 className="form-control text-right"
                 id="payfor_amount"
                 thousandSeparator={true}
+decimalSeparator={'.'} 
+decimalScale={2}
                 placeholder="ยอดเรียกเก็บ บ."
                 value={valuePayforAmount}
                 type={"text"}
@@ -200,6 +202,8 @@ const ConditionPayFor = () => {
                                     `}
                             disabled={true}
                             thousandSeparator={true}
+decimalSeparator={'.'} 
+decimalScale={2}
                             value={valuePayforYear}
                             type={"text"}
                             suffix={" บ."}
@@ -263,6 +267,8 @@ const ConditionPayFor = () => {
                                     `}
                           // id="payfor_equalamount"
                           thousandSeparator={true}
+decimalSeparator={'.'} 
+decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
                           value={valuePayforAmount / 2}
                           type={"text"}
@@ -306,6 +312,8 @@ const ConditionPayFor = () => {
                                     `}
                             disabled={state.checkedQuarter}
                             thousandSeparator={true}
+decimalSeparator={'.'} 
+decimalScale={2}
                             value={
                               index === 0
                                 ? valuePayforHaft
@@ -340,6 +348,8 @@ const ConditionPayFor = () => {
                           disabled={true}
                           // id="payfor_sum_amount"
                           thousandSeparator={true}
+decimalSeparator={'.'} 
+decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
                           value={valuePayforHaft + valuePayforHaft2}
                           type={"text"}
@@ -399,6 +409,8 @@ const ConditionPayFor = () => {
                                     `}
                           // id="payfor_equalamount"
                           thousandSeparator={true}
+decimalSeparator={'.'} 
+decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
                           value={valuePayforAmount / 4}
                           type={"text"}
@@ -444,6 +456,8 @@ const ConditionPayFor = () => {
                                     `}
                             disabled={state.checkedQuarter}
                             thousandSeparator={true}
+decimalSeparator={'.'} 
+decimalScale={2}
                             value={
                               index === 0
                                 ? valuePayforQ1
@@ -489,6 +503,8 @@ const ConditionPayFor = () => {
                           disabled={true}
                           // id="payfor_sum_amount"
                           thousandSeparator={true}
+decimalSeparator={'.'} 
+decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
                           value={valuePayforSum}
                           type={"text"}
@@ -548,6 +564,8 @@ const ConditionPayFor = () => {
                                     `}
                           // id="payfor_equalamount"
                           thousandSeparator={true}
+decimalSeparator={'.'} 
+decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
                           value={valuePayforAmount / 12}
                           type={"text"}
@@ -602,6 +620,8 @@ const ConditionPayFor = () => {
                                     `}
                             disabled={state.checkedQuarter}
                             thousandSeparator={true}
+decimalSeparator={'.'} 
+decimalScale={2}
                             value={
                               valuePayforM
                               // index===0 ? valuePayforM :
@@ -635,6 +655,8 @@ const ConditionPayFor = () => {
                           disabled={true}
                           // id="payfor_sum_amount"
                           thousandSeparator={true}
+decimalSeparator={'.'} 
+decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
                           value={valuePayforM * 12}
                           type={"text"}
@@ -703,6 +725,8 @@ const ConditionPayFor = () => {
                                     `}
                             disabled
                             thousandSeparator={true}
+decimalSeparator={'.'} 
+decimalScale={2}
                             value={valuePayforAmount}
                             type={"text"}
                             placeholder="บ."

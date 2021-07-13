@@ -29,3 +29,4 @@
 .HdCondition{background: #F9F9F9; columns: #515151;font-size: 24px; line-height: 120%;}
 .HdCondition small{font-size: 14px; color: var(--text-gray2); margin-left: -10px; margin-left: -10px;}
 .HdCondition small>span{display: inline-block; padding: 0 10px;}
+.dsID{display: block; height: 15px; white-space: nowrap; color: #B8BCCA;}

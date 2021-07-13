@@ -83,9 +83,15 @@ a:focus {
 .form-check-input:checked[type="checkbox"]/*,.tb-supplier-cat .form-check:hover>.form-check-input,.tb-supplier-cat tr:hover .form-check-input*/  {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
 }
+.form-check-input:checked[type="radio"]{background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%230d6efd'/%3e%3c/svg%3e")}
 .form-check-input:checked/*,.tb-supplier-cat .form-check:hover>.form-check-input,.tb-supplier-cat tr:hover .form-check-input*/ {
   background-color: #0d6efd;
   border-color: #0d6efd;
+}
+.form-check-input:checked[type="radio"]{background-color: #fff;}
+.form-check-input[type="radio"] {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
 }
 .form-check-input:active {
   filter: brightness(90%);
