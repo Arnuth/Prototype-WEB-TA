@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Row, Col, Form, InputGroup, FormControl, Table } from "react-bootstrap";
@@ -26,8 +26,8 @@ const ConditionSalesAmount = () => {
 
   // Form
   const [period, setPeriod] = useState(0);
-  const [valuePurchaseAmount, setvaluePurchaseAmount] = useState("");
-  const purchaseTarget = 10000000.00;
+  const [valueSalesAmount, setValueSalesAmount] = useState("");
+  const salesTarget = 10000000.00;
 
   const [filterMonth, setFilterMonth] = useState("1");
 
@@ -41,26 +41,18 @@ const ConditionSalesAmount = () => {
   //checkbox
   const [state, setState] = useState({
     checkedQuarter: true,
-    // checkedMonth: true,
-    // checkedHaftYear: true,
+    checkedMonth: true,
+    checkedHaftYear: true,
   });
-  // const handleCheckChange = (event) => {
-  //   setState({ ...state, [event.target.name]: event.target.checked });
-  // };
+  const handleCheckChange = (event) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
+  };
 
   //Search Article Table
   const [qValue, setQValue] = useState('');
   const [radioValue, setRadioValue] = useState('article');
 
   const handleRemove = (vid) => {
-    // setCheckBoxList((prevState) => {
-    //   let { list, allChecked } = prevState;
-    //     list = list.map((chk) =>
-    //     chk.id === vid ? { ...chk, isChecked: false } : chk
-    //     );
-    //   return { list, allChecked };
-    // });
-    
     alert("ลบรายการสำเร็จ")
   }
 
@@ -77,7 +69,7 @@ const ConditionSalesAmount = () => {
               thousandSeparator={true}
               className="ml-2"
               displayType={"text"}
-              value={valuePurchaseAmount}
+              value={valueSalesAmount}
               suffix={" %"}
             />
           </span> |
@@ -87,18 +79,18 @@ const ConditionSalesAmount = () => {
               thousandSeparator={true}
               className="ml-2"
               displayType={"text"}
-              value={(purchaseTarget * valuePurchaseAmount) / 100+".00"}
+              value={(salesTarget * valueSalesAmount) / 100+".00"}
               suffix={" บาท"}
             />
           </span>{" "} |
           <span>
             เป้ายอดขาย TA 
-            {/* {purchaseTarget} บ. */}
+            {/* {salesTarget} บ. */}
             <NumberFormat
               thousandSeparator={true}
               className="ml-2"
               displayType={"text"}
-              value={purchaseTarget+".00"}
+              value={salesTarget+".00"}
               suffix={" บ."}
               // format={'##,###,###.00'}
             />
@@ -121,16 +113,16 @@ const ConditionSalesAmount = () => {
                   decimalSeparator={'.'} 
                   decimalScale={2}
                   placeholder="ยอดเรียกเก็บ %"
-                  value={valuePurchaseAmount}
+                  value={valueSalesAmount}
                   type={"text"}
                   suffix={" %"}
                   // format="#.##%"
                   onValueChange={(values) => {
-                    setvaluePurchaseAmount(values.floatValue);
+                    setValueSalesAmount(values.floatValue);
                   }}
                 />
                 <InputGroup.Append>
-                  <InputGroup.Text id="from-purchase" className="bg-disabled">จากยอดซื้อ</InputGroup.Text>
+                  <InputGroup.Text id="from-purchase" className="bg-disabled">จากยอดขาย</InputGroup.Text>
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
@@ -149,7 +141,7 @@ const ConditionSalesAmount = () => {
                 decimalSeparator={'.'} 
                 decimalScale={2}
                 placeholder="ยอดเรียกเก็บ บ."
-                value={(purchaseTarget * valuePurchaseAmount) / 100}
+                value={(salesTarget * valueSalesAmount) / 100}
                 type={"text"}
                 suffix={" บ."}
               />
@@ -412,7 +404,7 @@ const ConditionSalesAmount = () => {
                             thousandSeparator={true}
                             decimalSeparator={'.'} 
                             decimalScale={2}
-                            value={valuePurchaseAmount}
+                            value={valueSalesAmount}
                             type={"text"}
                             suffix={" %"}
                             placeholder="%"
@@ -442,16 +434,16 @@ const ConditionSalesAmount = () => {
                     <Col className="pl-2 pr-2" md={6}>
                       <Form.Group
                         className="form-control bg-disabled d-flex align-items-center mb-2"
-                        controlId="equalCheckbox"
+                        controlId="checkedHaftYear"
                       >
                         <Form.Check
                           className="mb-0"
                           type="checkbox"
                           label="เท่ากันรายครึ่งปี"
-                          checked={true}
-                          // onChange={handleCheckChange}
-                          onClick={() => alert('สามารถระบุค่า "เท่ากันรายครึ่งปี" เท่านั้นค่ะ')}
-                          name="checkedQuarter"
+                          checked={state.checkedHaftYear}
+                          onChange={handleCheckChange}
+                          // onClick={() => alert('สามารถระบุค่า "เท่ากันรายครึ่งปี" เท่านั้นค่ะ')}
+                          name="checkedHaftYear"
                         />
                       </Form.Group>
                     </Col>
@@ -462,11 +454,11 @@ const ConditionSalesAmount = () => {
                       >
                         <NumberFormat
                           className="form-control text-right"
-                          disabled={!state.checkedQuarter}
+                          disabled={!state.checkedHaftYear}
                           readOnly
                           className={`form-control text-right
                                     ${
-                                      state.checkedQuarter === true
+                                      state.checkedHaftYear === true
                                         ? "bg-white"
                                         : "bg-disabled"
                                     }
@@ -476,7 +468,7 @@ const ConditionSalesAmount = () => {
                           decimalSeparator={'.'} 
                           decimalScale={2}
                           placeholder="ยอดเรียกเก็บ %"
-                          value={valuePurchaseAmount}
+                          value={valueSalesAmount}
                           type={"text"}
                           suffix={" %"}
                         />
@@ -511,16 +503,16 @@ const ConditionSalesAmount = () => {
                           <NumberFormat
                             className={`form-control text-right
                                     ${
-                                      state.checkedQuarter === true
+                                      state.checkedHaftYear === true
                                         ? "bg-disabled"
                                         : "enable"
                                     }
                                     `}
-                            disabled={state.checkedQuarter}
+                            disabled={state.checkedHaftYear}
                             thousandSeparator={true}
                             decimalSeparator={'.'} 
                             decimalScale={2}
-                            value={valuePurchaseAmount}
+                            value={valueSalesAmount}
                             type={"text"}
                             suffix={" %"}
                           />
@@ -550,16 +542,15 @@ const ConditionSalesAmount = () => {
                     <Col className="pl-2 pr-2" md={6}>
                       <Form.Group
                         className="form-control bg-disabled d-flex align-items-center mb-2"
-                        controlId="equalCheckbox"
+                        controlId="checkedQuarter"
                       >
                         <Form.Check
                           className="mb-0"
                           type="checkbox"
                           label="เท่ากันทุกไตรมาส"
-                          // checked={state.checkedQuarter}
-                          checked={true}
-                          // onChange={handleCheckChange}
-                          onClick={() => alert('สามารถระบุค่า "เท่ากันทุกไตรมาส" เท่านั้นค่ะ')}
+                          checked={state.checkedQuarter}
+                          onChange={handleCheckChange}
+                          // onClick={() => alert('สามารถระบุค่า "เท่ากันรายครึ่งปี" เท่านั้นค่ะ')}
                           name="checkedQuarter"
                         />
                       </Form.Group>
@@ -585,7 +576,7 @@ const ConditionSalesAmount = () => {
                           decimalSeparator={'.'} 
                           decimalScale={2}
                           placeholder="ยอดเรียกเก็บ %"
-                          value={valuePurchaseAmount}
+                          value={valueSalesAmount}
                           type={"text"}
                           suffix={" %"}
                         />
@@ -631,7 +622,7 @@ const ConditionSalesAmount = () => {
                             thousandSeparator={true}
                             decimalSeparator={'.'} 
                             decimalScale={2}
-                            value={valuePurchaseAmount}
+                            value={valueSalesAmount}
                             type={"text"}
                             suffix={" %"}
                             
@@ -663,17 +654,16 @@ const ConditionSalesAmount = () => {
                     <Col className="pl-2 pr-2" md={6}>
                       <Form.Group
                         className="form-control bg-disabled d-flex align-items-center mb-2"
-                        controlId="equalCheckbox"
+                        controlId="checkedMonth"
                       >
                         <Form.Check
                           className="mb-0"
                           type="checkbox"
                           label="เท่ากันทุกเดือน"
-                          // checked={state.checkedQuarter}
-                          checked={true}
-                          // onChange={handleCheckChange}
-                          onClick={() => alert('สามารถระบุค่า "เท่ากันทุกเดือน" เท่านั้นค่ะ')}
-                          name="checkedQuarter"
+                          checked={state.checkedMonth}
+                          onChange={handleCheckChange}
+                          // onClick={() => alert('สามารถระบุค่า "เท่ากันรายครึ่งปี" เท่านั้นค่ะ')}
+                          name="checkedMonth"
                         />
                       </Form.Group>
                     </Col>
@@ -684,11 +674,11 @@ const ConditionSalesAmount = () => {
                       >
                         <NumberFormat
                           className="form-control text-right"
-                          disabled={!state.checkedQuarter}
+                          disabled={!state.checkedMonth}
                           readOnly
                           className={`form-control text-right
                                     ${
-                                      state.checkedQuarter === true
+                                      state.checkedMonth === true
                                         ? "bg-white"
                                         : "bg-disabled"
                                     }
@@ -698,7 +688,7 @@ const ConditionSalesAmount = () => {
                           decimalSeparator={'.'} 
                           decimalScale={2}
                           placeholder="ยอดเรียกเก็บ %"
-                          value={valuePurchaseAmount}
+                          value={valueSalesAmount}
                           type={"text"}
                           suffix={" %"}
                         />
@@ -744,16 +734,16 @@ const ConditionSalesAmount = () => {
                           <NumberFormat
                             className={`form-control text-right
                                     ${
-                                      state.checkedQuarter === true
+                                      state.checkedMonth === true
                                         ? "bg-disabled"
                                         : "enable"
                                     }
                                     `}
-                            disabled={state.checkedQuarter}
+                            disabled={state.checkedMonth}
                             thousandSeparator={true}
                             decimalSeparator={'.'} 
                             decimalScale={2}
-                            value={valuePurchaseAmount}
+                            value={valueSalesAmount}
                             type={"text"}
                             suffix={" %"}
                           />
@@ -824,7 +814,7 @@ const ConditionSalesAmount = () => {
                             thousandSeparator={true}
                             decimalSeparator={'.'} 
                             decimalScale={2}
-                            value={valuePurchaseAmount}
+                            value={valueSalesAmount}
                             type={"text"}
                             placeholder="%"
                             suffix={" %"}

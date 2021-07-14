@@ -10,6 +10,7 @@ import { BsImage } from "react-icons/bs";
 import ConditionPayFor from "../components/ConditionPayFor";
 import ConditionPurchaseAmount from "../components/ConditionPurchaseAmount";
 import ConditionSalesAmount from "../components/ConditionSalesAmount";
+import ConditionOnInvoice from "../components/ConditionOnInvoice";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -199,14 +200,15 @@ const ContractCreateCondition = () => {
                 <ConditionPayFor />
               </TabPanel>
               <TabPanel value={value} index={5}>
-                <h2 className={`HdCondition ${classes.HeadTab}`}>
+                {/* <h2 className={`HdCondition ${classes.HeadTab}`}>
                   <b className="head">% On invoice ยอดซื้อ</b>
                   <small className="d-block">
                     <span>Amount 1%</span> |
                     <span>Total Amount 100,000.00 บาท</span> |
                     <span>เป้ายอดซื้อ TA 10,000,000.00 บ.</span>
                   </small>
-                </h2>
+                </h2> */}
+                <ConditionOnInvoice />
               </TabPanel>
             </div>
           </div>

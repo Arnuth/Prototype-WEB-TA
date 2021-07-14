@@ -159,6 +159,14 @@ function ContractCreate() {
               </Accordion.Toggle>
               <Accordion.Collapse eventKey="1">
                 <Card.Body>
+                  {/* <div className="d-flex justify-content-center align-items-center">
+                  <Link className="btn btn-success mx-2" to="/contract/uncondition/">
+                    <BsPlus size="1.7rem" className="mt-n1" /> Uncondition
+                  </Link>
+                  <Link className="btn btn-warning mx-2" to="/contract/condition/">
+                    <BsPlus size="1.7rem" className="mt-n1" /> Condition
+                  </Link>
+                  </div> */}
                   <TAConditionCompare />
                 </Card.Body>
               </Accordion.Collapse>
