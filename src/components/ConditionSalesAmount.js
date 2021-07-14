@@ -122,7 +122,7 @@ const ConditionSalesAmount = () => {
                   }}
                 />
                 <InputGroup.Append>
-                  <InputGroup.Text id="from-purchase" className="bg-disabled">จากยอดซื้อ</InputGroup.Text>
+                  <InputGroup.Text id="from-purchase" className="bg-disabled">จากยอดขาย</InputGroup.Text>
                 </InputGroup.Append>
               </InputGroup>
             </Form.Group>
