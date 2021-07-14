@@ -115,8 +115,8 @@ const ConditionPayFor = () => {
                 className="form-control text-right"
                 id="payfor_amount"
                 thousandSeparator={true}
-decimalSeparator={'.'} 
-decimalScale={2}
+                          decimalSeparator={'.'} 
+                          decimalScale={2}
                 placeholder="ยอดเรียกเก็บ บ."
                 value={valuePayforAmount}
                 type={"text"}
@@ -202,8 +202,8 @@ decimalScale={2}
                                     `}
                             disabled={true}
                             thousandSeparator={true}
-decimalSeparator={'.'} 
-decimalScale={2}
+                          decimalSeparator={'.'} 
+                          decimalScale={2}
                             value={valuePayforYear}
                             type={"text"}
                             suffix={" บ."}
@@ -267,8 +267,8 @@ decimalScale={2}
                                     `}
                           // id="payfor_equalamount"
                           thousandSeparator={true}
-decimalSeparator={'.'} 
-decimalScale={2}
+                          decimalSeparator={'.'} 
+                          decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
                           value={valuePayforAmount / 2}
                           type={"text"}
@@ -312,8 +312,8 @@ decimalScale={2}
                                     `}
                             disabled={state.checkedQuarter}
                             thousandSeparator={true}
-decimalSeparator={'.'} 
-decimalScale={2}
+                          decimalSeparator={'.'} 
+                          decimalScale={2}
                             value={
                               index === 0
                                 ? valuePayforHaft
@@ -348,8 +348,8 @@ decimalScale={2}
                           disabled={true}
                           // id="payfor_sum_amount"
                           thousandSeparator={true}
-decimalSeparator={'.'} 
-decimalScale={2}
+                          decimalSeparator={'.'} 
+                          decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
                           value={valuePayforHaft + valuePayforHaft2}
                           type={"text"}
@@ -409,8 +409,8 @@ decimalScale={2}
                                     `}
                           // id="payfor_equalamount"
                           thousandSeparator={true}
-decimalSeparator={'.'} 
-decimalScale={2}
+                          decimalSeparator={'.'} 
+                          decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
                           value={valuePayforAmount / 4}
                           type={"text"}
@@ -456,8 +456,8 @@ decimalScale={2}
                                     `}
                             disabled={state.checkedQuarter}
                             thousandSeparator={true}
-decimalSeparator={'.'} 
-decimalScale={2}
+                          decimalSeparator={'.'} 
+                          decimalScale={2}
                             value={
                               index === 0
                                 ? valuePayforQ1
@@ -503,8 +503,8 @@ decimalScale={2}
                           disabled={true}
                           // id="payfor_sum_amount"
                           thousandSeparator={true}
-decimalSeparator={'.'} 
-decimalScale={2}
+                          decimalSeparator={'.'} 
+                          decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
                           value={valuePayforSum}
                           type={"text"}
@@ -564,8 +564,8 @@ decimalScale={2}
                                     `}
                           // id="payfor_equalamount"
                           thousandSeparator={true}
-decimalSeparator={'.'} 
-decimalScale={2}
+                          decimalSeparator={'.'} 
+                          decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
                           value={valuePayforAmount / 12}
                           type={"text"}
@@ -620,8 +620,8 @@ decimalScale={2}
                                     `}
                             disabled={state.checkedQuarter}
                             thousandSeparator={true}
-decimalSeparator={'.'} 
-decimalScale={2}
+                          decimalSeparator={'.'} 
+                          decimalScale={2}
                             value={
                               valuePayforM
                               // index===0 ? valuePayforM :
@@ -655,8 +655,8 @@ decimalScale={2}
                           disabled={true}
                           // id="payfor_sum_amount"
                           thousandSeparator={true}
-decimalSeparator={'.'} 
-decimalScale={2}
+                          decimalSeparator={'.'} 
+                          decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
                           value={valuePayforM * 12}
                           type={"text"}
@@ -725,8 +725,8 @@ decimalScale={2}
                                     `}
                             disabled
                             thousandSeparator={true}
-decimalSeparator={'.'} 
-decimalScale={2}
+                          decimalSeparator={'.'} 
+                          decimalScale={2}
                             value={valuePayforAmount}
                             type={"text"}
                             placeholder="บ."

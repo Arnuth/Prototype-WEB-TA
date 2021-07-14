@@ -53,14 +53,6 @@ const ConditionPurchaseAmount = () => {
   const [radioValue, setRadioValue] = useState('article');
 
   const handleRemove = (vid) => {
-    // setCheckBoxList((prevState) => {
-    //   let { list, allChecked } = prevState;
-    //     list = list.map((chk) =>
-    //     chk.id === vid ? { ...chk, isChecked: false } : chk
-    //     );
-    //   return { list, allChecked };
-    // });
-    
     alert("ลบรายการสำเร็จ")
   }
 
