@@ -9,6 +9,7 @@ import Box from "@material-ui/core/Box";
 import { BsImage } from "react-icons/bs";
 import ConditionPayFor from "../components/ConditionPayFor";
 import ConditionPurchaseAmount from "../components/ConditionPurchaseAmount";
+import ConditionSalesAmount from "../components/ConditionSalesAmount";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -94,7 +95,7 @@ const ContractCreateCondition = () => {
 
 
   // Tabs
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -184,14 +185,15 @@ const ContractCreateCondition = () => {
                 </h2>
               </TabPanel>
               <TabPanel value={value} index={3}>
-                <h2 className={`HdCondition ${classes.HeadTab}`}>
+                {/* <h2 className={`HdCondition ${classes.HeadTab}`}>
                   <b className="head">% จากยอดขาย</b>
                   <small className="d-block">
                     <span>Amount 1%</span> |
                     <span>Total Amount 100,000.00 บาท</span> |
                     <span>เป้ายอดซื้อ TA 10,000,000.00 บ.</span>
                   </small>
-                </h2>
+                </h2> */}
+                <ConditionSalesAmount />
               </TabPanel>
               <TabPanel value={value} index={4}>
                 <ConditionPayFor />
