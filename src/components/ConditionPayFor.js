@@ -26,6 +26,7 @@ const ConditionPayFor = () => {
   // Form
   const [period, setPeriod] = useState(0);
   const [valuePayforAmount, setValuePayforAmount] = useState("");
+  const purchaseTarget = 10000000;
 
   const [valuePayforQ1, setValuePayforQ1] = useState("");
   const [valuePayforQ2, setValuePayforQ2] = useState("");
@@ -65,10 +66,10 @@ const ConditionPayFor = () => {
   }
 
   useEffect(() => {
-    let month = parseInt(valuePayforAmount / 12);
-    let quarter = parseInt(valuePayforAmount / 4);
-    let haft = parseInt(valuePayforAmount / 2);
-    let year = parseInt(valuePayforAmount);
+    let month = parseFloat(valuePayforAmount / 12).toFixed(2);
+    let quarter = parseFloat(valuePayforAmount / 4).toFixed(2);
+    let haft = parseFloat(valuePayforAmount / 2).toFixed(2);
+    let year = parseFloat(valuePayforAmount).toFixed(2);
 
     setValuePayforQ1(quarter);
     setValuePayforQ2(quarter);
@@ -99,8 +100,17 @@ const ConditionPayFor = () => {
               value={valuePayforAmount === "" ? 0 : valuePayforAmount}
               suffix={" บาท"}
             />
-          </span>{" "}
-          |<span>เป้ายอดซื้อ TA 10,000,000.00 บ.</span>
+          </span>{" "} |
+          <span>
+            เป้ายอดซื้อ TA 
+            <NumberFormat
+              thousandSeparator={true}
+              className="ml-2"
+              displayType={"text"}
+              value={parseFloat(purchaseTarget).toFixed(2)}
+              suffix={" บ."}
+            />
+          </span>
         </small>
       </h2>
       <div className="tabDetail">

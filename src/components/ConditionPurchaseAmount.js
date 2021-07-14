@@ -27,7 +27,7 @@ const ConditionPurchaseAmount = () => {
   // Form
   const [period, setPeriod] = useState(0);
   const [valuePurchaseAmount, setvaluePurchaseAmount] = useState("");
-  const purchaseTarget = 10000000.00;
+  const purchaseTarget = 10000000;
 
   const [filterMonth, setFilterMonth] = useState("1");
 
@@ -79,7 +79,7 @@ const ConditionPurchaseAmount = () => {
               thousandSeparator={true}
               className="ml-2"
               displayType={"text"}
-              value={(purchaseTarget * valuePurchaseAmount) / 100+".00"}
+              value={parseFloat((purchaseTarget * valuePurchaseAmount) / 100).toFixed(2)}
               suffix={" บาท"}
             />
           </span>{" "} |
@@ -90,9 +90,8 @@ const ConditionPurchaseAmount = () => {
               thousandSeparator={true}
               className="ml-2"
               displayType={"text"}
-              value={purchaseTarget+".00"}
+              value={parseFloat(purchaseTarget).toFixed(2)}
               suffix={" บ."}
-              // format={'##,###,###.00'}
             />
           </span>
         </small>

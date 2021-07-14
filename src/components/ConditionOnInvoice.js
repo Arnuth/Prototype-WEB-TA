@@ -26,7 +26,7 @@ const ConditionOnInvoice = () => {
 
   // Form
   const [valueSalesAmount, setValueSalesAmount] = useState("");
-  const purchaseTarget = 10000000.00;
+  const purchaseTarget = 10000000;
 
   
   //Search Article Table
@@ -60,7 +60,7 @@ const ConditionOnInvoice = () => {
               thousandSeparator={true}
               className="ml-2"
               displayType={"text"}
-              value={(purchaseTarget * valueSalesAmount) / 100+".00"}
+              value={parseFloat((purchaseTarget * valueSalesAmount) / 100).toFixed(2)}
               suffix={" บาท"}
             />
           </span>{" "} |
@@ -71,9 +71,8 @@ const ConditionOnInvoice = () => {
               thousandSeparator={true}
               className="ml-2"
               displayType={"text"}
-              value={purchaseTarget+".00"}
+              value={parseFloat(purchaseTarget).toFixed(2)}
               suffix={" บ."}
-              // format={'##,###,###.00'}
             />
           </span>
         </small>
