@@ -27,7 +27,7 @@ const ConditionPurchaseAmount = () => {
   // Form
   const [period, setPeriod] = useState(0);
   const [valuePurchaseAmount, setvaluePurchaseAmount] = useState("");
-  const purchaseTarget = 10000000.00;
+  const purchaseTarget = 10000000;
 
   const [filterMonth, setFilterMonth] = useState("1");
 
@@ -41,8 +41,6 @@ const ConditionPurchaseAmount = () => {
   //checkbox
   const [state, setState] = useState({
     checkedQuarter: true,
-    // checkedMonth: true,
-    // checkedHaftYear: true,
   });
   // const handleCheckChange = (event) => {
   //   setState({ ...state, [event.target.name]: event.target.checked });
@@ -53,7 +51,7 @@ const ConditionPurchaseAmount = () => {
   const [radioValue, setRadioValue] = useState('article');
 
   const handleRemove = (vid) => {
-    alert("ลบรายการสำเร็จ")
+      alert("ลบรายการสำเร็จ")
   }
 
 
@@ -79,7 +77,7 @@ const ConditionPurchaseAmount = () => {
               thousandSeparator={true}
               className="ml-2"
               displayType={"text"}
-              value={(purchaseTarget * valuePurchaseAmount) / 100+".00"}
+              value={parseFloat((purchaseTarget * valuePurchaseAmount) / 100).toFixed(2)}
               suffix={" บาท"}
             />
           </span>{" "} |
@@ -90,9 +88,8 @@ const ConditionPurchaseAmount = () => {
               thousandSeparator={true}
               className="ml-2"
               displayType={"text"}
-              value={purchaseTarget+".00"}
+              value={parseFloat(purchaseTarget).toFixed(2)}
               suffix={" บ."}
-              // format={'##,###,###.00'}
             />
           </span>
         </small>
@@ -152,7 +149,7 @@ const ConditionPurchaseAmount = () => {
           <Col md={12}>
             <div className="card wrap-accordion p-3 mb-5">
               <Form.Group controlId="excluded_items" className="pt-1">
-                <Form.Label className="text-dark f-large mb-2">รายการที่ยกเว้น <span className="text-gray font-weight-light ml-2"> {qValue.length * 3} รายการ</span></Form.Label>
+                <Form.Label className="text-dark f-large mb-2">รายการที่ยกเว้น <span className="text-gray font-weight-light ml-2"> {qValue.length === 5 || qValue.length === 8 ? "3" : null} รายการ</span></Form.Label>
                 <InputGroup>
                   <InputGroup className="col p-0">
                     <InputGroup.Prepend>
@@ -202,9 +199,9 @@ const ConditionPurchaseAmount = () => {
 
               </Form.Group>
               {
-                qValue &&
+                qValue.length === 5 || qValue.length === 8 ?
               
-              <div className="z-supplier-tb">
+                <div className="z-supplier-tb">
               <Table responsive>
                 <thead>
                   <tr className="th-light">
@@ -220,7 +217,7 @@ const ConditionPurchaseAmount = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {Array.from({ length: qValue.length })
+                  {Array.from({ length: 1 })
                     .map((_, index) => (
                       <>
                       <tr key={`${index+1}_1`}>
@@ -324,6 +321,7 @@ const ConditionPurchaseAmount = () => {
                 </tbody>
               </Table>
               </div>
+                : null
               }
             </div>
 
@@ -404,10 +402,10 @@ const ConditionPurchaseAmount = () => {
                             thousandSeparator={true}
                             decimalSeparator={'.'} 
                             decimalScale={2}
-                            value={valuePurchaseAmount}
+                            value={parseFloat(valuePurchaseAmount).toFixed(2)}
                             type={"text"}
                             suffix={" %"}
-                            placeholder="%"
+                            placeholder="ยอดเรียกเก็บ %"
                           />
                         </Form.Group>
                       </Col>
@@ -430,51 +428,7 @@ const ConditionPurchaseAmount = () => {
                       </Form.Label>
                     </Col>
                   </Row>
-                  <Row className="ml-n2 mr-n2">
-                    <Col className="pl-2 pr-2" md={6}>
-                      <Form.Group
-                        className="form-control bg-disabled d-flex align-items-center mb-2"
-                        controlId="equalCheckbox"
-                      >
-                        <Form.Check
-                          className="mb-0"
-                          type="checkbox"
-                          label="เท่ากันรายครึ่งปี"
-                          checked={true}
-                          // onChange={handleCheckChange}
-                          onClick={() => alert('สามารถระบุค่า "เท่ากันรายครึ่งปี" เท่านั้นค่ะ')}
-                          name="checkedQuarter"
-                        />
-                      </Form.Group>
-                    </Col>
-                    <Col className="pl-2 pr-2" md={6}>
-                      <Form.Group
-                        controlId="purchase_equalamount"
-                        className="mb-2"
-                      >
-                        <NumberFormat
-                          className="form-control text-right"
-                          disabled={!state.checkedQuarter}
-                          readOnly
-                          className={`form-control text-right
-                                    ${
-                                      state.checkedQuarter === true
-                                        ? "bg-white"
-                                        : "bg-disabled"
-                                    }
-                                    `}
-                          // id="purchase_equalamount"
-                          thousandSeparator={true}
-                          decimalSeparator={'.'} 
-                          decimalScale={2}
-                          placeholder="ยอดเรียกเก็บ %"
-                          value={valuePurchaseAmount}
-                          type={"text"}
-                          suffix={" %"}
-                        />
-                      </Form.Group>
-                    </Col>
-                  </Row>
+                  
                   {Array.from({ length: 2 }).map((_, index) => (
                     <Row className="ml-n2 mr-n2" key={index}>
                       <Col className="pl-2 pr-2" md={6}>
@@ -512,7 +466,7 @@ const ConditionPurchaseAmount = () => {
                             thousandSeparator={true}
                             decimalSeparator={'.'} 
                             decimalScale={2}
-                            value={valuePurchaseAmount}
+                            value={parseFloat(valuePurchaseAmount).toFixed(2)}
                             type={"text"}
                             suffix={" %"}
                           />
@@ -538,52 +492,7 @@ const ConditionPurchaseAmount = () => {
                       </Form.Label>
                     </Col>
                   </Row>
-                  <Row className="ml-n2 mr-n2">
-                    <Col className="pl-2 pr-2" md={6}>
-                      <Form.Group
-                        className="form-control bg-disabled d-flex align-items-center mb-2"
-                        controlId="equalCheckbox"
-                      >
-                        <Form.Check
-                          className="mb-0"
-                          type="checkbox"
-                          label="เท่ากันทุกไตรมาส"
-                          // checked={state.checkedQuarter}
-                          checked={true}
-                          // onChange={handleCheckChange}
-                          onClick={() => alert('สามารถระบุค่า "เท่ากันทุกไตรมาส" เท่านั้นค่ะ')}
-                          name="checkedQuarter"
-                        />
-                      </Form.Group>
-                    </Col>
-                    <Col className="pl-2 pr-2" md={6}>
-                      <Form.Group
-                        controlId="purchase_equalamount"
-                        className="mb-2"
-                      >
-                        <NumberFormat
-                          className="form-control text-right"
-                          disabled={!state.checkedQuarter}
-                          readOnly
-                          className={`form-control text-right
-                                    ${
-                                      state.checkedQuarter === true
-                                        ? "bg-white"
-                                        : "bg-disabled"
-                                    }
-                                    `}
-                          // id="purchase_equalamount"
-                          thousandSeparator={true}
-                          decimalSeparator={'.'} 
-                          decimalScale={2}
-                          placeholder="ยอดเรียกเก็บ %"
-                          value={valuePurchaseAmount}
-                          type={"text"}
-                          suffix={" %"}
-                        />
-                      </Form.Group>
-                    </Col>
-                  </Row>
+                  
                   {Array.from({ length: 4 }).map((_, index) => (
                     <Row className="ml-n2 mr-n2" key={index}>
                       <Col className="pl-2 pr-2" md={6}>
@@ -623,7 +532,7 @@ const ConditionPurchaseAmount = () => {
                             thousandSeparator={true}
                             decimalSeparator={'.'} 
                             decimalScale={2}
-                            value={valuePurchaseAmount}
+                            value={parseFloat(valuePurchaseAmount).toFixed(2)}
                             type={"text"}
                             suffix={" %"}
                             
@@ -651,52 +560,7 @@ const ConditionPurchaseAmount = () => {
                       </Form.Label>
                     </Col>
                   </Row>
-                  <Row className="ml-n2 mr-n2">
-                    <Col className="pl-2 pr-2" md={6}>
-                      <Form.Group
-                        className="form-control bg-disabled d-flex align-items-center mb-2"
-                        controlId="equalCheckbox"
-                      >
-                        <Form.Check
-                          className="mb-0"
-                          type="checkbox"
-                          label="เท่ากันทุกเดือน"
-                          // checked={state.checkedQuarter}
-                          checked={true}
-                          // onChange={handleCheckChange}
-                          onClick={() => alert('สามารถระบุค่า "เท่ากันทุกเดือน" เท่านั้นค่ะ')}
-                          name="checkedQuarter"
-                        />
-                      </Form.Group>
-                    </Col>
-                    <Col className="pl-2 pr-2" md={6}>
-                      <Form.Group
-                        controlId="purchase_equalamount"
-                        className="mb-2"
-                      >
-                        <NumberFormat
-                          className="form-control text-right"
-                          disabled={!state.checkedQuarter}
-                          readOnly
-                          className={`form-control text-right
-                                    ${
-                                      state.checkedQuarter === true
-                                        ? "bg-white"
-                                        : "bg-disabled"
-                                    }
-                                    `}
-                          // id="purchase_equalamount"
-                          thousandSeparator={true}
-                          decimalSeparator={'.'} 
-                          decimalScale={2}
-                          placeholder="ยอดเรียกเก็บ %"
-                          value={valuePurchaseAmount}
-                          type={"text"}
-                          suffix={" %"}
-                        />
-                      </Form.Group>
-                    </Col>
-                  </Row>
+                  
                   {Array.from({ length: 12 }).map((_, index) => (
                     <Row className="ml-n2 mr-n2" key={index}>
                       <Col className="pl-2 pr-2" md={6}>
@@ -745,7 +609,7 @@ const ConditionPurchaseAmount = () => {
                             thousandSeparator={true}
                             decimalSeparator={'.'} 
                             decimalScale={2}
-                            value={valuePurchaseAmount}
+                            value={parseFloat(valuePurchaseAmount).toFixed(2)}
                             type={"text"}
                             suffix={" %"}
                           />
@@ -816,9 +680,7 @@ const ConditionPurchaseAmount = () => {
                             thousandSeparator={true}
                             decimalSeparator={'.'} 
                             decimalScale={2}
-                            value={valuePurchaseAmount}
-                            type={"text"}
-                            placeholder="%"
+                            placeholder="ยอดเรียกเก็บ %"
                             suffix={" %"}
                           />
                         </Form.Group>
