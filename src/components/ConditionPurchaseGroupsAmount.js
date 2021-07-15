@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const ConditionPurchaseAmount = () => {
+const ConditionPurchaseGroupsAmount = () => {
     
   const classes = useStyles();
   const history = useHistory();
@@ -27,6 +27,8 @@ const ConditionPurchaseAmount = () => {
   // Form
   const [period, setPeriod] = useState(0);
   const [valuePurchaseAmount, setValuePurchaseAmount] = useState("");
+
+  const [valuePurchaseGroup1, setValuePurchaseGroup1] = useState("");
   const purchaseTarget = 10000000;
 
   const [filterMonth, setFilterMonth] = useState("1");
@@ -41,15 +43,13 @@ const ConditionPurchaseAmount = () => {
   //checkbox
   const [state, setState] = useState({
     checkedQuarter: true,
-    // checkedMonth: true,
-    // checkedHaftYear: true,
   });
-  // const handleCheckChange = (event) => {
-  //   setState({ ...state, [event.target.name]: event.target.checked });
-  // };
+
 
   //Search Article Table
+  const [qSelectValue, setQSelectValue] = useState('');
   const [qValue, setQValue] = useState('');
+  const [radioSelectValue, setRadioSelectValue] = useState('article');
   const [radioValue, setRadioValue] = useState('article');
 
   const handleRemove = (vid) => {
@@ -61,7 +61,7 @@ const ConditionPurchaseAmount = () => {
   return (
     <>
       <h2 className={`HdCondition ${classes.HeadTab}`}>
-        <b className="head">% จากยอดซื้อ</b>
+        <b className="head">% จากยอดซื้อ เฉพาะกลุ่ม</b>
         <small className="d-block">
           <span>
             Amount 
@@ -99,7 +99,28 @@ const ConditionPurchaseAmount = () => {
       <div className="tabDetail">
         <h3 class="topic-line">ข้อมูลส่วนที่ 1: รายการเรียกเก็บ</h3>
         <Row>
-          <Col md={6} className="pr-md-2">
+          <Col md={5} className="pr-md-2">
+            <Form.Group>
+              <Form.Label htmlFor="payfor_amount" className="text-dark">
+                เป้าเฉพาะกลุ่ม
+              </Form.Label>
+              <NumberFormat
+                className="form-control text-right"
+                id="payfor_amount"
+                thousandSeparator={true}
+                decimalSeparator={'.'} 
+                decimalScale={2}
+                placeholder="ยอดซื้อของกลุ่ม 1 (บ.)"
+                value={valuePurchaseGroup1}
+                type={"text"}
+                suffix={" บ."}
+                onValueChange={(values) => {
+                  setValuePurchaseGroup1(values.floatValue);
+                }}
+              />
+            </Form.Group>
+          </Col>
+          <Col md className="pl-md-2 pr-md-2">
             <Form.Group>
               <Form.Label htmlFor="purchase_amount" className="text-dark">
                 เรียกเก็บ
@@ -126,7 +147,7 @@ const ConditionPurchaseAmount = () => {
               </InputGroup>
             </Form.Group>
           </Col>
-          <Col md={6} className="pl-md-2">
+          <Col md className="pl-md-2">
             <Form.Group>
               <Form.Label htmlFor="purchase_amount_bath">
                 ยอดเรียกเก็บ
@@ -140,7 +161,7 @@ const ConditionPurchaseAmount = () => {
                 decimalSeparator={'.'} 
                 decimalScale={2}
                 placeholder="ยอดเรียกเก็บ บ."
-                value={(purchaseTarget * valuePurchaseAmount) / 100}
+                value={(valuePurchaseGroup1 * valuePurchaseAmount) / 100}
                 type={"text"}
                 suffix={" บ."}
               />
@@ -149,6 +170,184 @@ const ConditionPurchaseAmount = () => {
         </Row>
         <Row>
           <Col md={12}>
+          <div className="card wrap-accordion p-3 mb-4">
+              <Form.Group controlId="excluded_items" className="pt-1">
+                <Form.Label className="text-dark f-large mb-2">รายการที่เลือก <span className="text-gray font-weight-light ml-2"> {qSelectValue.length === 5 || qSelectValue.length === 8 ? "3" : null} รายการ</span></Form.Label>
+                <InputGroup>
+                  <InputGroup className="col p-0">
+                    <InputGroup.Prepend>
+                      <InputGroup.Text className="bg-white pr-0"><BiSearch size="1.3rem" color="#B8BCCA" className="mr-2" /></InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                      className="pl-0 border-left-0 rounded-0"
+                      value={qSelectValue}
+                      onChange={(e) => {
+                        setQSelectValue(e.target.value);
+                      }}
+                      placeholder={
+                        radioSelectValue === "article" ? 
+                        "ค้นหา Article" :
+                        radioSelectValue === "subcategory" ?
+                        "ค้นหา Sub Category" :
+                        radioSelectValue === "category" ?
+                        "ค้นหา Category" : null
+                      }
+                      id="text-search"
+                    />
+                  </InputGroup>
+                  <InputGroup.Append>
+                    <div className="input-group-text bg-white">
+                      <Form.Check className="d-flex align-items-center mb-0" type="radio" name="included_type" id="searchSelectArticle" label="Article"
+                      value="article"
+                      checked={radioSelectValue === 'article'}
+                      onChange={(e) => setRadioSelectValue(e.currentTarget.value)}
+                      />
+                    </div>
+                    <div className="input-group-text bg-white">
+                      <Form.Check className="d-flex align-items-center mb-0" type="radio" name="included_type" id="searchSelectSubCategory" label="Sub Category"
+                      value="subcategory"
+                      checked={radioSelectValue === 'subcategory'}
+                      onChange={(e) => setRadioSelectValue(e.currentTarget.value)}
+                      />
+                    </div>
+                    <div className="input-group-text bg-white">
+                      <Form.Check className="d-flex align-items-center mb-0" type="radio" name="included_type" id="searchSelectCategory" label="Category"
+                      value="category"
+                      checked={radioSelectValue === 'category'}
+                      onChange={(e) => setRadioSelectValue(e.currentTarget.value)}
+                      />
+                    </div>
+                  </InputGroup.Append>
+                </InputGroup>
+
+              </Form.Group>
+              {
+                qSelectValue.length === 5 || qSelectValue.length === 8 ?
+              
+                <div className="z-supplier-tb">
+                <Table responsive>
+                    <thead>
+                    <tr className="th-light">
+                        <th width="50">#</th>
+                        <th width="20%">Category</th>
+                        <th width="20%">
+                        Sub Category
+                        </th>
+                        <th width="40%">
+                        Article
+                        </th>
+                        <th width="30">&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {Array.from({ length: 1 })
+                        .map((_, index) => (
+                        <>
+                        <tr key={`${index+1}_1`}>
+                            <td style={{verticalAlign:"bottom"}}>{index*2 + 1}</td>
+                            <td>
+                            <small className="dsID">10200</small>
+                            <div>SPRITS</div>
+                            </td>
+                            <td>
+                            <small className="dsID">10203</small>
+                            <div>WHITE SPIRITS</div>
+                            </td>
+                            <td>
+                            <small className="dsID">20021339</small>
+                            <div>ตะวันแดงสุราข้าวหอม35ดีกรี 330ml</div>
+                            </td>
+                            <td style={{verticalAlign:"bottom"}} className="tools-btn text-center">
+                            <Button
+                                variant="light"
+                                size="sm"
+                                className="pt-0 pb-0 pl-1 pr-1"
+                                onClick={ async () => {
+                                    const isConfirm = window.confirm(`ต้องการลบข้อมูล ${index+1} ?`)
+                                    if (isConfirm === true) {
+                                        handleRemove(index+1)
+                                        // alert("ลบรายการสำเร็จ!")
+                                    }
+                                }}
+                            >
+                                <BiTrashAlt />
+                            </Button>
+                            </td>
+                        </tr>
+
+                        <tr key={`${index+1}_2`}>
+                            <td style={{verticalAlign:"bottom"}}>{index*2 + 2}</td>
+                            <td>
+                            <small className="dsID">I0600</small>
+                            <div>MILK POWDER-BA...</div>
+                            </td>
+                            <td>
+                            <small className="dsID">I0601</small>
+                            <div>FOLLOW-UP FORM...</div>
+                            </td>
+                            <td>
+                            <small className="dsID">&nbsp;</small>
+                            <div>[All] Article</div>
+                            </td>
+                            <td style={{verticalAlign:"bottom"}} className="tools-btn text-center">
+                            <Button
+                                variant="light"
+                                size="sm"
+                                className="pt-0 pb-0 pl-1 pr-1"
+                                onClick={ async () => {
+                                    const isConfirm = window.confirm(`ต้องการลบข้อมูล ${index+1} ?`)
+                                    if (isConfirm === true) {
+                                        handleRemove(index+1)
+                                        // alert("ลบรายการสำเร็จ!")
+                                    }
+                                }}
+                            >
+                                <BiTrashAlt />
+                            </Button>
+                            </td>
+                        </tr>
+
+                        <tr key={`${index+1}_3`}>
+                            <td style={{verticalAlign:"bottom"}}>{index*2 + 3}</td>
+                            <td>
+                            <small className="dsID">I0100</small>
+                            <div>FOOD SUPPLEMENT</div>
+                            </td>
+                            <td>
+                            <small className="dsID">&nbsp;</small>
+                            <div>[All] Sub Category</div>
+                            </td>
+                            <td>
+                            <small className="dsID">&nbsp;</small>
+                            <div>[All] Article</div>
+                            </td>
+                            <td style={{verticalAlign:"bottom"}} className="tools-btn text-center">
+                            <Button
+                                variant="light"
+                                size="sm"
+                                className="pt-0 pb-0 pl-1 pr-1"
+                                onClick={ async () => {
+                                    const isConfirm = window.confirm(`ต้องการลบข้อมูล ${index+1} ?`)
+                                    if (isConfirm === true) {
+                                        handleRemove(index+1)
+                                        // alert("ลบรายการสำเร็จ!")
+                                    }
+                                }}
+                            >
+                                <BiTrashAlt />
+                            </Button>
+                            </td>
+                        </tr>
+
+                        </>
+                        ))}
+                    </tbody>
+                </Table>
+                </div>
+                    : null
+              }
+            </div>
+
             <div className="card wrap-accordion p-3 mb-5">
               <Form.Group controlId="excluded_items" className="pt-1">
                 <Form.Label className="text-dark f-large mb-2">รายการที่ยกเว้น <span className="text-gray font-weight-light ml-2"> {qValue.length === 5 || qValue.length === 8 ? "3" : null} รายการ</span></Form.Label>
@@ -855,4 +1054,4 @@ const ConditionPurchaseAmount = () => {
   );
 };
 
-export default ConditionPurchaseAmount;
+export default ConditionPurchaseGroupsAmount;

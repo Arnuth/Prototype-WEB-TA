@@ -7,9 +7,11 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
 import { BsImage } from "react-icons/bs";
-import ConditionPayFor from "../components/ConditionPayFor";
+
 import ConditionPurchaseAmount from "../components/ConditionPurchaseAmount";
+import ConditionPurchaseGroupsAmount from "../components/ConditionPurchaseGroupsAmount";
 import ConditionSalesAmount from "../components/ConditionSalesAmount";
+import ConditionPayFor from "../components/ConditionPayFor";
 import ConditionOnInvoice from "../components/ConditionOnInvoice";
 
 function TabPanel(props) {
@@ -168,7 +170,7 @@ const ContractCreateCondition = () => {
                   <small className="d-block">
                     <span>Amount 1%</span> |
                     <span>Total Amount 100,000.00 บาท</span> |
-                    <span>เป้ายอดซื้อ TA 10,000,000.00 บ.</span>
+                    <span>เป้ายอดซื้อ TA 10,000,000.00 บาท</span>
                   </small>
                 </h2>
               </TabPanel>
@@ -176,14 +178,15 @@ const ContractCreateCondition = () => {
                 <ConditionPurchaseAmount />
               </TabPanel>
               <TabPanel value={value} index={2}>
-                <h2 className={`HdCondition ${classes.HeadTab}`}>
+                {/* <h2 className={`HdCondition ${classes.HeadTab}`}>
                   <b className="head">% จากยอดซื้อ เฉพาะกลุ่ม</b>
                   <small className="d-block">
                     <span>Amount 1%</span> |
                     <span>Total Amount 100,000.00 บาท</span> |
-                    <span>เป้ายอดซื้อ TA 10,000,000.00 บ.</span>
+                    <span>เป้ายอดซื้อ TA 10,000,000.00 บาท</span>
                   </small>
-                </h2>
+                </h2> */}
+                <ConditionPurchaseGroupsAmount />
               </TabPanel>
               <TabPanel value={value} index={3}>
                 {/* <h2 className={`HdCondition ${classes.HeadTab}`}>
@@ -191,7 +194,7 @@ const ContractCreateCondition = () => {
                   <small className="d-block">
                     <span>Amount 1%</span> |
                     <span>Total Amount 100,000.00 บาท</span> |
-                    <span>เป้ายอดซื้อ TA 10,000,000.00 บ.</span>
+                    <span>เป้ายอดซื้อ TA 10,000,000.00 บาท</span>
                   </small>
                 </h2> */}
                 <ConditionSalesAmount />
@@ -205,7 +208,7 @@ const ContractCreateCondition = () => {
                   <small className="d-block">
                     <span>Amount 1%</span> |
                     <span>Total Amount 100,000.00 บาท</span> |
-                    <span>เป้ายอดซื้อ TA 10,000,000.00 บ.</span>
+                    <span>เป้ายอดซื้อ TA 10,000,000.00 บาท</span>
                   </small>
                 </h2> */}
                 <ConditionOnInvoice />
