@@ -280,7 +280,7 @@ decimalScale={2}
 decimalSeparator={'.'} 
 decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
-                          value={valuePayforAmount / 2}
+                          value={parseFloat(valuePayforAmount / 2).toFixed(2)}
                           type={"text"}
                           suffix={" บ."}
                         />
@@ -422,7 +422,7 @@ decimalScale={2}
 decimalSeparator={'.'} 
 decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
-                          value={valuePayforAmount / 4}
+                          value={parseFloat(valuePayforAmount / 4).toFixed(2)}
                           type={"text"}
                           suffix={" บ."}
                         />
@@ -577,7 +577,7 @@ decimalScale={2}
 decimalSeparator={'.'} 
 decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
-                          value={valuePayforAmount / 12}
+                          value={parseFloat(valuePayforAmount / 12).toFixed(2)}
                           type={"text"}
                           suffix={" บ."}
                         />
@@ -737,7 +737,7 @@ decimalScale={2}
                             thousandSeparator={true}
 decimalSeparator={'.'} 
 decimalScale={2}
-                            value={valuePayforAmount}
+                            value={parseFloat(valuePayforAmount).toFixed(2)}
                             type={"text"}
                             placeholder="บ."
                             suffix={" บ."}

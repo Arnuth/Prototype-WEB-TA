@@ -151,7 +151,7 @@ const ConditionPurchaseAmount = () => {
           <Col md={12}>
             <div className="card wrap-accordion p-3 mb-5">
               <Form.Group controlId="excluded_items" className="pt-1">
-                <Form.Label className="text-dark f-large mb-2">รายการที่ยกเว้น <span className="text-gray font-weight-light ml-2"> {qValue.length * 3} รายการ</span></Form.Label>
+                <Form.Label className="text-dark f-large mb-2">รายการที่ยกเว้น <span className="text-gray font-weight-light ml-2"> {qValue.length === 5 || qValue.length === 8 ? "3" : null} รายการ</span></Form.Label>
                 <InputGroup>
                   <InputGroup className="col p-0">
                     <InputGroup.Prepend>
@@ -201,9 +201,9 @@ const ConditionPurchaseAmount = () => {
 
               </Form.Group>
               {
-                qValue &&
+                qValue.length === 5 || qValue.length === 8 ?
               
-              <div className="z-supplier-tb">
+                <div className="z-supplier-tb">
               <Table responsive>
                 <thead>
                   <tr className="th-light">
@@ -219,7 +219,7 @@ const ConditionPurchaseAmount = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {Array.from({ length: qValue.length })
+                  {Array.from({ length: 1 })
                     .map((_, index) => (
                       <>
                       <tr key={`${index+1}_1`}>
@@ -323,6 +323,7 @@ const ConditionPurchaseAmount = () => {
                 </tbody>
               </Table>
               </div>
+                : null
               }
             </div>
 
@@ -403,10 +404,10 @@ const ConditionPurchaseAmount = () => {
                             thousandSeparator={true}
                             decimalSeparator={'.'} 
                             decimalScale={2}
-                            value={valuePurchaseAmount}
+                            value={parseFloat(valuePurchaseAmount).toFixed(2)}
                             type={"text"}
                             suffix={" %"}
-                            placeholder="%"
+                            placeholder="ยอดเรียกเก็บ %"
                           />
                         </Form.Group>
                       </Col>
@@ -429,7 +430,7 @@ const ConditionPurchaseAmount = () => {
                       </Form.Label>
                     </Col>
                   </Row>
-                  <Row className="ml-n2 mr-n2">
+                  {/* <Row className="ml-n2 mr-n2">
                     <Col className="pl-2 pr-2" md={6}>
                       <Form.Group
                         className="form-control bg-disabled d-flex align-items-center mb-2"
@@ -467,13 +468,13 @@ const ConditionPurchaseAmount = () => {
                           decimalSeparator={'.'} 
                           decimalScale={2}
                           placeholder="ยอดเรียกเก็บ %"
-                          value={valuePurchaseAmount}
+                          value={parseFloat(valuePurchaseAmount).toFixed(2)}
                           type={"text"}
                           suffix={" %"}
                         />
                       </Form.Group>
                     </Col>
-                  </Row>
+                  </Row> */}
                   {Array.from({ length: 2 }).map((_, index) => (
                     <Row className="ml-n2 mr-n2" key={index}>
                       <Col className="pl-2 pr-2" md={6}>
@@ -511,7 +512,7 @@ const ConditionPurchaseAmount = () => {
                             thousandSeparator={true}
                             decimalSeparator={'.'} 
                             decimalScale={2}
-                            value={valuePurchaseAmount}
+                            value={parseFloat(valuePurchaseAmount).toFixed(2)}
                             type={"text"}
                             suffix={" %"}
                           />
@@ -537,7 +538,7 @@ const ConditionPurchaseAmount = () => {
                       </Form.Label>
                     </Col>
                   </Row>
-                  <Row className="ml-n2 mr-n2">
+                  {/* <Row className="ml-n2 mr-n2">
                     <Col className="pl-2 pr-2" md={6}>
                       <Form.Group
                         className="form-control bg-disabled d-flex align-items-center mb-2"
@@ -576,13 +577,13 @@ const ConditionPurchaseAmount = () => {
                           decimalSeparator={'.'} 
                           decimalScale={2}
                           placeholder="ยอดเรียกเก็บ %"
-                          value={valuePurchaseAmount}
+                          value={parseFloat(valuePurchaseAmount).toFixed(2)}
                           type={"text"}
                           suffix={" %"}
                         />
                       </Form.Group>
                     </Col>
-                  </Row>
+                  </Row> */}
                   {Array.from({ length: 4 }).map((_, index) => (
                     <Row className="ml-n2 mr-n2" key={index}>
                       <Col className="pl-2 pr-2" md={6}>
@@ -622,7 +623,7 @@ const ConditionPurchaseAmount = () => {
                             thousandSeparator={true}
                             decimalSeparator={'.'} 
                             decimalScale={2}
-                            value={valuePurchaseAmount}
+                            value={parseFloat(valuePurchaseAmount).toFixed(2)}
                             type={"text"}
                             suffix={" %"}
                             
@@ -650,7 +651,7 @@ const ConditionPurchaseAmount = () => {
                       </Form.Label>
                     </Col>
                   </Row>
-                  <Row className="ml-n2 mr-n2">
+                  {/* <Row className="ml-n2 mr-n2">
                     <Col className="pl-2 pr-2" md={6}>
                       <Form.Group
                         className="form-control bg-disabled d-flex align-items-center mb-2"
@@ -689,13 +690,13 @@ const ConditionPurchaseAmount = () => {
                           decimalSeparator={'.'} 
                           decimalScale={2}
                           placeholder="ยอดเรียกเก็บ %"
-                          value={valuePurchaseAmount}
+                          value={parseFloat(valuePurchaseAmount).toFixed(2)}
                           type={"text"}
                           suffix={" %"}
                         />
                       </Form.Group>
                     </Col>
-                  </Row>
+                  </Row> */}
                   {Array.from({ length: 12 }).map((_, index) => (
                     <Row className="ml-n2 mr-n2" key={index}>
                       <Col className="pl-2 pr-2" md={6}>
@@ -744,7 +745,7 @@ const ConditionPurchaseAmount = () => {
                             thousandSeparator={true}
                             decimalSeparator={'.'} 
                             decimalScale={2}
-                            value={valuePurchaseAmount}
+                            value={parseFloat(valuePurchaseAmount).toFixed(2)}
                             type={"text"}
                             suffix={" %"}
                           />
@@ -815,9 +816,7 @@ const ConditionPurchaseAmount = () => {
                             thousandSeparator={true}
                             decimalSeparator={'.'} 
                             decimalScale={2}
-                            value={valuePurchaseAmount}
-                            type={"text"}
-                            placeholder="%"
+                            placeholder="ยอดเรียกเก็บ %"
                             suffix={" %"}
                           />
                         </Form.Group>
