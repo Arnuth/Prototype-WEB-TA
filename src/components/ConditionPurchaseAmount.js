@@ -91,7 +91,7 @@ const ConditionPurchaseAmount = () => {
               className="ml-2"
               displayType={"text"}
               value={parseFloat(purchaseTarget).toFixed(2)}
-              suffix={" บ."}
+              suffix={" บาท"}
             />
           </span>
         </small>
