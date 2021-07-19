@@ -26,6 +26,7 @@ const ConditionPayFor = () => {
   // Form
   const [period, setPeriod] = useState(0);
   const [valuePayforAmount, setValuePayforAmount] = useState("");
+  const purchaseTarget = 10000000;
 
   const [valuePayforQ1, setValuePayforQ1] = useState("");
   const [valuePayforQ2, setValuePayforQ2] = useState("");
@@ -65,10 +66,10 @@ const ConditionPayFor = () => {
   }
 
   useEffect(() => {
-    let month = parseInt(valuePayforAmount / 12);
-    let quarter = parseInt(valuePayforAmount / 4);
-    let haft = parseInt(valuePayforAmount / 2);
-    let year = parseInt(valuePayforAmount);
+    let month = parseFloat(valuePayforAmount / 12).toFixed(2);
+    let quarter = parseFloat(valuePayforAmount / 4).toFixed(2);
+    let haft = parseFloat(valuePayforAmount / 2).toFixed(2);
+    let year = parseFloat(valuePayforAmount).toFixed(2);
 
     setValuePayforQ1(quarter);
     setValuePayforQ2(quarter);
@@ -99,8 +100,17 @@ const ConditionPayFor = () => {
               value={valuePayforAmount === "" ? 0 : valuePayforAmount}
               suffix={" บาท"}
             />
-          </span>{" "}
-          |<span>เป้ายอดซื้อ TA 10,000,000.00 บ.</span>
+          </span>{" "} |
+          <span>
+            เป้ายอดซื้อ TA 
+            <NumberFormat
+              thousandSeparator={true}
+              className="ml-2"
+              displayType={"text"}
+              value={parseFloat(purchaseTarget).toFixed(2)}
+              suffix={" บาท"}
+            />
+          </span>
         </small>
       </h2>
       <div className="tabDetail">
@@ -115,8 +125,8 @@ const ConditionPayFor = () => {
                 className="form-control text-right"
                 id="payfor_amount"
                 thousandSeparator={true}
-                          decimalSeparator={'.'} 
-                          decimalScale={2}
+decimalSeparator={'.'} 
+decimalScale={2}
                 placeholder="ยอดเรียกเก็บ บ."
                 value={valuePayforAmount}
                 type={"text"}
@@ -202,8 +212,8 @@ const ConditionPayFor = () => {
                                     `}
                             disabled={true}
                             thousandSeparator={true}
-                          decimalSeparator={'.'} 
-                          decimalScale={2}
+decimalSeparator={'.'} 
+decimalScale={2}
                             value={valuePayforYear}
                             type={"text"}
                             suffix={" บ."}
@@ -233,7 +243,7 @@ const ConditionPayFor = () => {
                       </Form.Label>
                     </Col>
                   </Row>
-                  <Row className="ml-n2 mr-n2">
+                  {/* <Row className="ml-n2 mr-n2">
                     <Col className="pl-2 pr-2" md={6}>
                       <Form.Group
                         className="form-control bg-disabled d-flex align-items-center mb-2"
@@ -267,16 +277,16 @@ const ConditionPayFor = () => {
                                     `}
                           // id="payfor_equalamount"
                           thousandSeparator={true}
-                          decimalSeparator={'.'} 
-                          decimalScale={2}
+decimalSeparator={'.'} 
+decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
-                          value={valuePayforAmount / 2}
+                          value={parseFloat(valuePayforAmount / 2).toFixed(2)}
                           type={"text"}
                           suffix={" บ."}
                         />
                       </Form.Group>
                     </Col>
-                  </Row>
+                  </Row> */}
                   {Array.from({ length: 2 }).map((_, index) => (
                     <Row className="ml-n2 mr-n2" key={index}>
                       <Col className="pl-2 pr-2" md={6}>
@@ -312,8 +322,8 @@ const ConditionPayFor = () => {
                                     `}
                             disabled={state.checkedQuarter}
                             thousandSeparator={true}
-                          decimalSeparator={'.'} 
-                          decimalScale={2}
+decimalSeparator={'.'} 
+decimalScale={2}
                             value={
                               index === 0
                                 ? valuePayforHaft
@@ -348,8 +358,8 @@ const ConditionPayFor = () => {
                           disabled={true}
                           // id="payfor_sum_amount"
                           thousandSeparator={true}
-                          decimalSeparator={'.'} 
-                          decimalScale={2}
+decimalSeparator={'.'} 
+decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
                           value={valuePayforHaft + valuePayforHaft2}
                           type={"text"}
@@ -375,7 +385,7 @@ const ConditionPayFor = () => {
                       </Form.Label>
                     </Col>
                   </Row>
-                  <Row className="ml-n2 mr-n2">
+                  {/* <Row className="ml-n2 mr-n2">
                     <Col className="pl-2 pr-2" md={6}>
                       <Form.Group
                         className="form-control bg-disabled d-flex align-items-center mb-2"
@@ -409,16 +419,16 @@ const ConditionPayFor = () => {
                                     `}
                           // id="payfor_equalamount"
                           thousandSeparator={true}
-                          decimalSeparator={'.'} 
-                          decimalScale={2}
+decimalSeparator={'.'} 
+decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
-                          value={valuePayforAmount / 4}
+                          value={parseFloat(valuePayforAmount / 4).toFixed(2)}
                           type={"text"}
                           suffix={" บ."}
                         />
                       </Form.Group>
                     </Col>
-                  </Row>
+                  </Row> */}
                   {Array.from({ length: 4 }).map((_, index) => (
                     <Row className="ml-n2 mr-n2" key={index}>
                       <Col className="pl-2 pr-2" md={6}>
@@ -456,8 +466,8 @@ const ConditionPayFor = () => {
                                     `}
                             disabled={state.checkedQuarter}
                             thousandSeparator={true}
-                          decimalSeparator={'.'} 
-                          decimalScale={2}
+decimalSeparator={'.'} 
+decimalScale={2}
                             value={
                               index === 0
                                 ? valuePayforQ1
@@ -503,8 +513,8 @@ const ConditionPayFor = () => {
                           disabled={true}
                           // id="payfor_sum_amount"
                           thousandSeparator={true}
-                          decimalSeparator={'.'} 
-                          decimalScale={2}
+decimalSeparator={'.'} 
+decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
                           value={valuePayforSum}
                           type={"text"}
@@ -530,7 +540,7 @@ const ConditionPayFor = () => {
                       </Form.Label>
                     </Col>
                   </Row>
-                  <Row className="ml-n2 mr-n2">
+                  {/* <Row className="ml-n2 mr-n2">
                     <Col className="pl-2 pr-2" md={6}>
                       <Form.Group
                         className="form-control bg-disabled d-flex align-items-center mb-2"
@@ -564,16 +574,16 @@ const ConditionPayFor = () => {
                                     `}
                           // id="payfor_equalamount"
                           thousandSeparator={true}
-                          decimalSeparator={'.'} 
-                          decimalScale={2}
+decimalSeparator={'.'} 
+decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
-                          value={valuePayforAmount / 12}
+                          value={parseFloat(valuePayforAmount / 12).toFixed(2)}
                           type={"text"}
                           suffix={" บ."}
                         />
                       </Form.Group>
                     </Col>
-                  </Row>
+                  </Row> */}
                   {Array.from({ length: 12 }).map((_, index) => (
                     <Row className="ml-n2 mr-n2" key={index}>
                       <Col className="pl-2 pr-2" md={6}>
@@ -620,8 +630,8 @@ const ConditionPayFor = () => {
                                     `}
                             disabled={state.checkedQuarter}
                             thousandSeparator={true}
-                          decimalSeparator={'.'} 
-                          decimalScale={2}
+decimalSeparator={'.'} 
+decimalScale={2}
                             value={
                               valuePayforM
                               // index===0 ? valuePayforM :
@@ -655,8 +665,8 @@ const ConditionPayFor = () => {
                           disabled={true}
                           // id="payfor_sum_amount"
                           thousandSeparator={true}
-                          decimalSeparator={'.'} 
-                          decimalScale={2}
+decimalSeparator={'.'} 
+decimalScale={2}
                           placeholder="ยอดเรียกเก็บ บ."
                           value={valuePayforM * 12}
                           type={"text"}
@@ -725,9 +735,9 @@ const ConditionPayFor = () => {
                                     `}
                             disabled
                             thousandSeparator={true}
-                          decimalSeparator={'.'} 
-                          decimalScale={2}
-                            value={valuePayforAmount}
+decimalSeparator={'.'} 
+decimalScale={2}
+                            value={parseFloat(valuePayforAmount).toFixed(2)}
                             type={"text"}
                             placeholder="บ."
                             suffix={" บ."}
