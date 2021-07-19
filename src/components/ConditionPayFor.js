@@ -243,7 +243,7 @@ decimalScale={2}
                       </Form.Label>
                     </Col>
                   </Row>
-                  <Row className="ml-n2 mr-n2">
+                  {/* <Row className="ml-n2 mr-n2">
                     <Col className="pl-2 pr-2" md={6}>
                       <Form.Group
                         className="form-control bg-disabled d-flex align-items-center mb-2"
@@ -286,7 +286,7 @@ decimalScale={2}
                         />
                       </Form.Group>
                     </Col>
-                  </Row>
+                  </Row> */}
                   {Array.from({ length: 2 }).map((_, index) => (
                     <Row className="ml-n2 mr-n2" key={index}>
                       <Col className="pl-2 pr-2" md={6}>
@@ -385,7 +385,7 @@ decimalScale={2}
                       </Form.Label>
                     </Col>
                   </Row>
-                  <Row className="ml-n2 mr-n2">
+                  {/* <Row className="ml-n2 mr-n2">
                     <Col className="pl-2 pr-2" md={6}>
                       <Form.Group
                         className="form-control bg-disabled d-flex align-items-center mb-2"
@@ -428,7 +428,7 @@ decimalScale={2}
                         />
                       </Form.Group>
                     </Col>
-                  </Row>
+                  </Row> */}
                   {Array.from({ length: 4 }).map((_, index) => (
                     <Row className="ml-n2 mr-n2" key={index}>
                       <Col className="pl-2 pr-2" md={6}>
@@ -540,7 +540,7 @@ decimalScale={2}
                       </Form.Label>
                     </Col>
                   </Row>
-                  <Row className="ml-n2 mr-n2">
+                  {/* <Row className="ml-n2 mr-n2">
                     <Col className="pl-2 pr-2" md={6}>
                       <Form.Group
                         className="form-control bg-disabled d-flex align-items-center mb-2"
@@ -583,7 +583,7 @@ decimalScale={2}
                         />
                       </Form.Group>
                     </Col>
-                  </Row>
+                  </Row> */}
                   {Array.from({ length: 12 }).map((_, index) => (
                     <Row className="ml-n2 mr-n2" key={index}>
                       <Col className="pl-2 pr-2" md={6}>
