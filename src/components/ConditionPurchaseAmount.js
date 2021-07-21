@@ -69,7 +69,7 @@ const ConditionPurchaseAmount = () => {
               thousandSeparator={true}
               className="ml-2"
               displayType={"text"}
-              value={valuePurchaseAmount}
+              value={parseFloat(!valuePurchaseAmount ? 0 : valuePurchaseAmount).toFixed(2)}
               suffix={" %"}
             />
           </span> |
@@ -79,7 +79,7 @@ const ConditionPurchaseAmount = () => {
               thousandSeparator={true}
               className="ml-2"
               displayType={"text"}
-              value={parseFloat((purchaseTarget * valuePurchaseAmount) / 100).toFixed(2)}
+              value={parseFloat((!valuePurchaseAmount ? 0 : purchaseTarget * valuePurchaseAmount) / 100).toFixed(2)}
               suffix={" บาท"}
             />
           </span>{" "} |
